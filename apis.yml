@@ -1,0 +1,88 @@
+name: Azure Kubernetes Service
+description: Azure Kubernetes Service (AKS) simplifies deploying a managed Kubernetes cluster in Azure by offloading the operational overhead to Azure. As a hosted Kubernetes service, Azure handles critical tasks, like health monitoring and maintenance.
+image: https://azure.microsoft.com/images/aks-icon.png
+url: https://azure.microsoft.com/en-us/services/kubernetes-service/
+created: 2024-01-15 00:00:00+00:00
+modified: 2024-01-15 00:00:00+00:00
+specificationVersion: '0.18'
+tags:
+- Kubernetes
+- Containers
+- Orchestration
+- Cloud
+- Azure
+- DevOps
+apis:
+- name: Azure Kubernetes Service REST API
+  description: REST API for managing Azure Kubernetes Service clusters
+  image: https://azure.microsoft.com/images/aks-icon.png
+  humanURL: https://learn.microsoft.com/en-us/rest/api/aks/
+  baseURL: https://management.azure.com
+  tags:
+  - Kubernetes
+  - Containers
+  - Management
+  properties:
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/azure/aks/
+  - type: OpenAPI
+    url: https://github.com/Azure/azure-rest-api-specs/blob/main/specification/containerservice/resource-manager/Microsoft.ContainerService/aks/stable/2023-10-01/managedClusters.json
+  - type: Swagger
+    url: https://github.com/Azure/azure-rest-api-specs/tree/main/specification/containerservice/resource-manager
+  - type: Authentication
+    url: https://learn.microsoft.com/en-us/azure/aks/concepts-identity
+  - type: Pricing
+    url: https://azure.microsoft.com/en-us/pricing/details/kubernetes-service/
+  - type: SLA
+    url: https://azure.microsoft.com/en-us/support/legal/sla/kubernetes-service/
+  - type: Rate Limits
+    url: https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions
+- name: Azure Kubernetes Service kubectl API
+  description: Kubernetes API accessible via kubectl for cluster operations
+  humanURL: https://kubernetes.io/docs/reference/
+  baseURL: https://{cluster-name}.{region}.azmk8s.io
+  tags:
+  - Kubernetes
+  - kubectl
+  - Cluster Management
+  properties:
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/azure/aks/kubernetes-walkthrough
+  - type: API Reference
+    url: https://kubernetes.io/docs/reference/kubernetes-api/
+  - type: Authentication
+    url: https://learn.microsoft.com/en-us/azure/aks/control-kubeconfig-access
+maintainers:
+- name: Microsoft Azure
+  email: azuresupport@microsoft.com
+  url: https://azure.microsoft.com/en-us/support/
+common:
+- type: Portal
+  url: https://portal.azure.com/
+- type: Getting Started
+  url: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal
+- type: CLI Tools
+  url: https://learn.microsoft.com/en-us/cli/azure/aks
+- type: SDKs
+  url: https://learn.microsoft.com/en-us/azure/aks/kubernetes-action
+- type: Status
+  url: https://status.azure.com/
+- type: Support
+  url: https://azure.microsoft.com/en-us/support/options/
+- type: Blog
+  url: https://azure.microsoft.com/en-us/blog/topics/kubernetes/
+- type: GitHub
+  url: https://github.com/Azure/AKS
+- type: Stack Overflow
+  url: https://stackoverflow.com/questions/tagged/azure-aks
+- type: Roadmap
+  url: https://azure.microsoft.com/en-us/updates/?product=kubernetes-service
+- type: Security
+  url: https://learn.microsoft.com/en-us/azure/aks/concepts-security
+- type: Compliance
+  url: https://learn.microsoft.com/en-us/azure/aks/concepts-security#azure-policy
+include:
+- name: Azure Container Registry APIs
+  url: https://apis.io/apis/azure-container-registry
+- name: Azure Monitor APIs
+  url: https://apis.io/apis/azure-monitor
