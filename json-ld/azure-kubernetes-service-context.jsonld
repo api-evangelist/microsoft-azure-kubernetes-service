@@ -1,0 +1,577 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://schema.org/",
+    "aks": "https://learn.microsoft.com/en-us/rest/api/aks/",
+    "azure": "https://learn.microsoft.com/en-us/azure/",
+    "arm": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/",
+    "k8s": "https://kubernetes.io/docs/reference/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "ManagedCluster": {
+      "@id": "aks:managed-clusters",
+      "@context": {
+        "id": {
+          "@id": "schema:identifier",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "type": {
+          "@id": "arm:resource-type",
+          "@type": "xsd:string"
+        },
+        "location": {
+          "@id": "schema:location",
+          "@type": "xsd:string"
+        },
+        "tags": {
+          "@id": "schema:keywords",
+          "@container": "@index"
+        },
+        "sku": {
+          "@id": "aks:managed-cluster-sku",
+          "@type": "@id"
+        },
+        "kind": {
+          "@id": "schema:additionalType",
+          "@type": "xsd:string"
+        },
+        "identity": {
+          "@id": "aks:managed-cluster-identity",
+          "@type": "@id"
+        },
+        "properties": {
+          "@id": "aks:managed-cluster-properties",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "ManagedClusterProperties": {
+      "@id": "aks:managed-cluster-properties",
+      "@context": {
+        "provisioningState": {
+          "@id": "aks:provisioning-state",
+          "@type": "xsd:string"
+        },
+        "powerState": {
+          "@id": "aks:power-state",
+          "@type": "@id"
+        },
+        "kubernetesVersion": {
+          "@id": "aks:kubernetes-version",
+          "@type": "xsd:string"
+        },
+        "currentKubernetesVersion": {
+          "@id": "aks:current-kubernetes-version",
+          "@type": "xsd:string"
+        },
+        "dnsPrefix": {
+          "@id": "aks:dns-prefix",
+          "@type": "xsd:string"
+        },
+        "fqdn": {
+          "@id": "aks:fqdn",
+          "@type": "xsd:string"
+        },
+        "privateFQDN": {
+          "@id": "aks:private-fqdn",
+          "@type": "xsd:string"
+        },
+        "enableRBAC": {
+          "@id": "aks:enable-rbac",
+          "@type": "xsd:boolean"
+        },
+        "disableLocalAccounts": {
+          "@id": "aks:disable-local-accounts",
+          "@type": "xsd:boolean"
+        },
+        "supportPlan": {
+          "@id": "aks:support-plan",
+          "@type": "xsd:string"
+        },
+        "nodeResourceGroup": {
+          "@id": "aks:node-resource-group",
+          "@type": "xsd:string"
+        },
+        "maxAgentPools": {
+          "@id": "aks:max-agent-pools",
+          "@type": "xsd:integer"
+        },
+        "agentPoolProfiles": {
+          "@id": "aks:agent-pool-profiles",
+          "@container": "@list"
+        },
+        "linuxProfile": {
+          "@id": "aks:linux-profile",
+          "@type": "@id"
+        },
+        "windowsProfile": {
+          "@id": "aks:windows-profile",
+          "@type": "@id"
+        },
+        "networkProfile": {
+          "@id": "aks:network-profile",
+          "@type": "@id"
+        },
+        "aadProfile": {
+          "@id": "aks:aad-profile",
+          "@type": "@id"
+        },
+        "addonProfiles": {
+          "@id": "aks:addon-profiles",
+          "@container": "@index"
+        },
+        "autoScalerProfile": {
+          "@id": "aks:auto-scaler-profile",
+          "@type": "@id"
+        },
+        "autoUpgradeProfile": {
+          "@id": "aks:auto-upgrade-profile",
+          "@type": "@id"
+        },
+        "apiServerAccessProfile": {
+          "@id": "aks:api-server-access-profile",
+          "@type": "@id"
+        },
+        "securityProfile": {
+          "@id": "aks:security-profile",
+          "@type": "@id"
+        },
+        "storageProfile": {
+          "@id": "aks:storage-profile",
+          "@type": "@id"
+        },
+        "oidcIssuerProfile": {
+          "@id": "aks:oidc-issuer-profile",
+          "@type": "@id"
+        },
+        "serviceMeshProfile": {
+          "@id": "aks:service-mesh-profile",
+          "@type": "@id"
+        },
+        "workloadAutoScalerProfile": {
+          "@id": "aks:workload-auto-scaler-profile",
+          "@type": "@id"
+        },
+        "ingressProfile": {
+          "@id": "aks:ingress-profile",
+          "@type": "@id"
+        },
+        "diskEncryptionSetID": {
+          "@id": "aks:disk-encryption-set-id",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "ManagedClusterSKU": {
+      "@id": "aks:managed-cluster-sku",
+      "@context": {
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "tier": {
+          "@id": "aks:sku-tier",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "ManagedClusterIdentity": {
+      "@id": "aks:managed-cluster-identity",
+      "@context": {
+        "principalId": {
+          "@id": "aks:principal-id",
+          "@type": "xsd:string"
+        },
+        "tenantId": {
+          "@id": "aks:tenant-id",
+          "@type": "xsd:string"
+        },
+        "type": {
+          "@id": "aks:identity-type",
+          "@type": "xsd:string"
+        },
+        "userAssignedIdentities": {
+          "@id": "aks:user-assigned-identities",
+          "@container": "@index"
+        }
+      }
+    },
+
+    "AgentPoolProfile": {
+      "@id": "aks:agent-pools",
+      "@context": {
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "count": {
+          "@id": "aks:agent-count",
+          "@type": "xsd:integer"
+        },
+        "vmSize": {
+          "@id": "aks:vm-size",
+          "@type": "xsd:string"
+        },
+        "osDiskSizeGB": {
+          "@id": "aks:os-disk-size-gb",
+          "@type": "xsd:integer"
+        },
+        "osDiskType": {
+          "@id": "aks:os-disk-type",
+          "@type": "xsd:string"
+        },
+        "kubeletDiskType": {
+          "@id": "aks:kubelet-disk-type",
+          "@type": "xsd:string"
+        },
+        "maxPods": {
+          "@id": "aks:max-pods",
+          "@type": "xsd:integer"
+        },
+        "osType": {
+          "@id": "aks:os-type",
+          "@type": "xsd:string"
+        },
+        "osSKU": {
+          "@id": "aks:os-sku",
+          "@type": "xsd:string"
+        },
+        "type": {
+          "@id": "aks:agent-pool-type",
+          "@type": "xsd:string"
+        },
+        "mode": {
+          "@id": "aks:agent-pool-mode",
+          "@type": "xsd:string"
+        },
+        "orchestratorVersion": {
+          "@id": "aks:orchestrator-version",
+          "@type": "xsd:string"
+        },
+        "enableAutoScaling": {
+          "@id": "aks:enable-auto-scaling",
+          "@type": "xsd:boolean"
+        },
+        "minCount": {
+          "@id": "aks:min-count",
+          "@type": "xsd:integer"
+        },
+        "maxCount": {
+          "@id": "aks:max-count",
+          "@type": "xsd:integer"
+        },
+        "scaleSetPriority": {
+          "@id": "aks:scale-set-priority",
+          "@type": "xsd:string"
+        },
+        "scaleSetEvictionPolicy": {
+          "@id": "aks:scale-set-eviction-policy",
+          "@type": "xsd:string"
+        },
+        "scaleDownMode": {
+          "@id": "aks:scale-down-mode",
+          "@type": "xsd:string"
+        },
+        "spotMaxPrice": {
+          "@id": "aks:spot-max-price",
+          "@type": "xsd:float"
+        },
+        "vnetSubnetID": {
+          "@id": "aks:vnet-subnet-id",
+          "@type": "xsd:string"
+        },
+        "podSubnetID": {
+          "@id": "aks:pod-subnet-id",
+          "@type": "xsd:string"
+        },
+        "enableNodePublicIP": {
+          "@id": "aks:enable-node-public-ip",
+          "@type": "xsd:boolean"
+        },
+        "enableEncryptionAtHost": {
+          "@id": "aks:enable-encryption-at-host",
+          "@type": "xsd:boolean"
+        },
+        "enableFIPS": {
+          "@id": "aks:enable-fips",
+          "@type": "xsd:boolean"
+        },
+        "enableUltraSSD": {
+          "@id": "aks:enable-ultra-ssd",
+          "@type": "xsd:boolean"
+        },
+        "nodeLabels": {
+          "@id": "aks:node-labels",
+          "@container": "@index"
+        },
+        "nodeTaints": {
+          "@id": "aks:node-taints",
+          "@container": "@list"
+        },
+        "tags": {
+          "@id": "schema:keywords",
+          "@container": "@index"
+        },
+        "availabilityZones": {
+          "@id": "aks:availability-zones",
+          "@container": "@list"
+        },
+        "upgradeSettings": {
+          "@id": "aks:upgrade-settings",
+          "@type": "@id"
+        },
+        "powerState": {
+          "@id": "aks:power-state",
+          "@type": "@id"
+        },
+        "workloadRuntime": {
+          "@id": "aks:workload-runtime",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "NetworkProfile": {
+      "@id": "aks:network-profile",
+      "@context": {
+        "networkPlugin": {
+          "@id": "aks:network-plugin",
+          "@type": "xsd:string"
+        },
+        "networkPluginMode": {
+          "@id": "aks:network-plugin-mode",
+          "@type": "xsd:string"
+        },
+        "networkPolicy": {
+          "@id": "aks:network-policy",
+          "@type": "xsd:string"
+        },
+        "networkDataplane": {
+          "@id": "aks:network-dataplane",
+          "@type": "xsd:string"
+        },
+        "podCidr": {
+          "@id": "aks:pod-cidr",
+          "@type": "xsd:string"
+        },
+        "serviceCidr": {
+          "@id": "aks:service-cidr",
+          "@type": "xsd:string"
+        },
+        "dnsServiceIP": {
+          "@id": "aks:dns-service-ip",
+          "@type": "xsd:string"
+        },
+        "outboundType": {
+          "@id": "aks:outbound-type",
+          "@type": "xsd:string"
+        },
+        "loadBalancerSku": {
+          "@id": "aks:load-balancer-sku",
+          "@type": "xsd:string"
+        },
+        "loadBalancerProfile": {
+          "@id": "aks:load-balancer-profile",
+          "@type": "@id"
+        },
+        "natGatewayProfile": {
+          "@id": "aks:nat-gateway-profile",
+          "@type": "@id"
+        },
+        "ipFamilies": {
+          "@id": "aks:ip-families",
+          "@container": "@list"
+        }
+      }
+    },
+
+    "AADProfile": {
+      "@id": "aks:aad-profile",
+      "@context": {
+        "managed": {
+          "@id": "aks:managed-aad",
+          "@type": "xsd:boolean"
+        },
+        "enableAzureRBAC": {
+          "@id": "aks:enable-azure-rbac",
+          "@type": "xsd:boolean"
+        },
+        "adminGroupObjectIDs": {
+          "@id": "aks:admin-group-object-ids",
+          "@container": "@list"
+        },
+        "tenantID": {
+          "@id": "aks:tenant-id",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "AutoUpgradeProfile": {
+      "@id": "aks:auto-upgrade-profile",
+      "@context": {
+        "upgradeChannel": {
+          "@id": "aks:upgrade-channel",
+          "@type": "xsd:string"
+        },
+        "nodeOSUpgradeChannel": {
+          "@id": "aks:node-os-upgrade-channel",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "SecurityProfile": {
+      "@id": "aks:security-profile",
+      "@context": {
+        "defender": {
+          "@id": "aks:defender-profile",
+          "@type": "@id"
+        },
+        "workloadIdentity": {
+          "@id": "aks:workload-identity",
+          "@type": "@id"
+        },
+        "imageCleaner": {
+          "@id": "aks:image-cleaner",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "APIServerAccessProfile": {
+      "@id": "aks:api-server-access-profile",
+      "@context": {
+        "authorizedIPRanges": {
+          "@id": "aks:authorized-ip-ranges",
+          "@container": "@list"
+        },
+        "enablePrivateCluster": {
+          "@id": "aks:enable-private-cluster",
+          "@type": "xsd:boolean"
+        },
+        "privateDNSZone": {
+          "@id": "aks:private-dns-zone",
+          "@type": "xsd:string"
+        },
+        "enablePrivateClusterPublicFQDN": {
+          "@id": "aks:enable-private-cluster-public-fqdn",
+          "@type": "xsd:boolean"
+        },
+        "disableRunCommand": {
+          "@id": "aks:disable-run-command",
+          "@type": "xsd:boolean"
+        },
+        "enableVnetIntegration": {
+          "@id": "aks:enable-vnet-integration",
+          "@type": "xsd:boolean"
+        },
+        "subnetId": {
+          "@id": "aks:subnet-id",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "PowerState": {
+      "@id": "aks:power-state",
+      "@context": {
+        "code": {
+          "@id": "aks:power-state-code",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "UpgradeSettings": {
+      "@id": "aks:upgrade-settings",
+      "@context": {
+        "maxSurge": {
+          "@id": "aks:max-surge",
+          "@type": "xsd:string"
+        },
+        "drainTimeoutInMinutes": {
+          "@id": "aks:drain-timeout-in-minutes",
+          "@type": "xsd:integer"
+        },
+        "nodeSoakDurationInMinutes": {
+          "@id": "aks:node-soak-duration-in-minutes",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+
+    "LinuxProfile": {
+      "@id": "aks:linux-profile",
+      "@context": {
+        "adminUsername": {
+          "@id": "aks:admin-username",
+          "@type": "xsd:string"
+        },
+        "ssh": {
+          "@id": "aks:ssh-configuration",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "StorageProfile": {
+      "@id": "aks:storage-profile",
+      "@context": {
+        "diskCSIDriver": {
+          "@id": "aks:disk-csi-driver",
+          "@type": "@id"
+        },
+        "fileCSIDriver": {
+          "@id": "aks:file-csi-driver",
+          "@type": "@id"
+        },
+        "snapshotController": {
+          "@id": "aks:snapshot-controller",
+          "@type": "@id"
+        },
+        "blobCSIDriver": {
+          "@id": "aks:blob-csi-driver",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "ServiceMeshProfile": {
+      "@id": "aks:service-mesh-profile",
+      "@context": {
+        "mode": {
+          "@id": "aks:service-mesh-mode",
+          "@type": "xsd:string"
+        },
+        "istio": {
+          "@id": "aks:istio-configuration",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "OIDCIssuerProfile": {
+      "@id": "aks:oidc-issuer-profile",
+      "@context": {
+        "issuerURL": {
+          "@id": "aks:oidc-issuer-url",
+          "@type": "xsd:string"
+        },
+        "enabled": {
+          "@id": "aks:oidc-issuer-enabled",
+          "@type": "xsd:boolean"
+        }
+      }
+    }
+  }
+}
