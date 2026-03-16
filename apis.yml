@@ -3,7 +3,7 @@ description: Azure Kubernetes Service (AKS) simplifies deploying a managed Kuber
 image: https://azure.microsoft.com/images/aks-icon.png
 url: https://azure.microsoft.com/en-us/services/kubernetes-service/
 created: 2024-01-15 00:00:00+00:00
-modified: 2026-03-03
+modified: '2026-03-16'
 specificationVersion: '0.18'
 tags:
 - Kubernetes
@@ -191,9 +191,8 @@ apis:
   - type: Getting Started
     url: https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-deploy-cluster
 maintainers:
-- name: Kin Lane
+- FN: Kin Lane
   email: kin@apievangelist.com
-  url: https://apievangelist.com
 common:
 - type: Portal
   url: https://portal.azure.com/
