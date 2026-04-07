@@ -27,14 +27,14 @@ security:
   - azure_auth:
       - user_impersonation
 tags:
-  - name: Managed Clusters
-    description: Operations for managing AKS managed clusters
-    externalDocs:
-      url: https://learn.microsoft.com/en-us/rest/api/aks/managed-clusters
   - name: Agent Pools
     description: Operations for managing agent pools (node pools) within AKS clusters
     externalDocs:
       url: https://learn.microsoft.com/en-us/rest/api/aks/agent-pools
+  - name: Managed Clusters
+    description: Operations for managing AKS managed clusters
+    externalDocs:
+      url: https://learn.microsoft.com/en-us/rest/api/aks/managed-clusters
 paths:
   /subscriptions/{subscriptionId}/providers/Microsoft.ContainerService/managedClusters:
     get:
