@@ -39,7 +39,7 @@ paths:
   /subscriptions/{subscriptionId}/providers/Microsoft.ContainerService/managedClusters:
     get:
       operationId: ManagedClusters_List
-      summary: List managed clusters
+      summary: Azure Kubernetes Service List managed clusters
       description: >-
         Gets a list of managed clusters in the specified subscription.
       tags:
@@ -63,7 +63,7 @@ paths:
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters:
     get:
       operationId: ManagedClusters_ListByResourceGroup
-      summary: List managed clusters by resource group
+      summary: Azure Kubernetes Service List managed clusters by resource group
       description: >-
         Lists managed clusters in the specified subscription and resource group.
       tags:
@@ -85,10 +85,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}
+  : get:
       operationId: ManagedClusters_Get
-      summary: Get a managed cluster
+      summary: Azure Kubernetes Service Get a managed cluster
       description: Gets the details of the managed cluster with a specified resource group and name.
       tags:
         - Managed Clusters
@@ -112,7 +112,7 @@ paths:
                 $ref: '#/components/schemas/CloudError'
     put:
       operationId: ManagedClusters_CreateOrUpdate
-      summary: Create or update a managed cluster
+      summary: Azure Kubernetes Service Create or update a managed cluster
       description: Creates or updates a managed cluster.
       tags:
         - Managed Clusters
@@ -170,7 +170,7 @@ paths:
                 $ref: '#/components/schemas/CloudError'
     patch:
       operationId: ManagedClusters_UpdateTags
-      summary: Update managed cluster tags
+      summary: Azure Kubernetes Service Update managed cluster tags
       description: Updates tags on a managed cluster.
       tags:
         - Managed Clusters
@@ -201,7 +201,7 @@ paths:
                 $ref: '#/components/schemas/CloudError'
     delete:
       operationId: ManagedClusters_Delete
-      summary: Delete a managed cluster
+      summary: Azure Kubernetes Service Delete a managed cluster
       description: Deletes a managed cluster.
       tags:
         - Managed Clusters
@@ -234,10 +234,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/upgradeProfiles/default:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/upgradeProfiles/default
+  : get:
       operationId: ManagedClusters_GetUpgradeProfile
-      summary: Get upgrade profile for a managed cluster
+      summary: Azure Kubernetes Service Get upgrade profile for a managed cluster
       description: Gets the upgrade profile of a managed cluster.
       tags:
         - Managed Clusters
@@ -259,10 +259,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/listClusterAdminCredential:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/listClusterAdminCredential
+  : post:
       operationId: ManagedClusters_ListClusterAdminCredentials
-      summary: List cluster admin credentials
+      summary: Azure Kubernetes Service List cluster admin credentials
       description: Lists the admin credentials of a managed cluster.
       tags:
         - Managed Clusters
@@ -284,10 +284,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/listClusterUserCredential:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/listClusterUserCredential
+  : post:
       operationId: ManagedClusters_ListClusterUserCredentials
-      summary: List cluster user credentials
+      summary: Azure Kubernetes Service List cluster user credentials
       description: Lists the user credentials of a managed cluster.
       tags:
         - Managed Clusters
@@ -309,10 +309,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/listClusterMonitoringUserCredential:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/listClusterMonitoringUserCredential
+  : post:
       operationId: ManagedClusters_ListClusterMonitoringUserCredentials
-      summary: List cluster monitoring user credentials
+      summary: Azure Kubernetes Service List cluster monitoring user credentials
       description: Lists the cluster monitoring user credentials of a managed cluster.
       tags:
         - Managed Clusters
@@ -334,10 +334,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/rotateClusterCertificates:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/rotateClusterCertificates
+  : post:
       operationId: ManagedClusters_RotateClusterCertificates
-      summary: Rotate cluster certificates
+      summary: Azure Kubernetes Service Rotate cluster certificates
       description: Rotates the certificates of a managed cluster.
       tags:
         - Managed Clusters
@@ -370,10 +370,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/stop:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/stop
+  : post:
       operationId: ManagedClusters_Stop
-      summary: Stop a managed cluster
+      summary: Azure Kubernetes Service Stop a managed cluster
       description: >-
         Stops a previously running managed cluster. This can only be performed
         on Azure Virtual Machine Scale Set backed clusters. Stopping a cluster
@@ -410,10 +410,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/start:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/start
+  : post:
       operationId: ManagedClusters_Start
-      summary: Start a managed cluster
+      summary: Azure Kubernetes Service Start a managed cluster
       description: Starts a previously stopped managed cluster.
       tags:
         - Managed Clusters
@@ -446,10 +446,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/runCommand:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/runCommand
+  : post:
       operationId: ManagedClusters_RunCommand
-      summary: Run a command on a managed cluster
+      summary: Azure Kubernetes Service Run a command on a managed cluster
       description: >-
         Submits a command to run against the Managed Cluster. This is useful
         for running kubectl commands on a private cluster.
@@ -495,10 +495,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/abort:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/abort
+  : post:
       operationId: ManagedClusters_AbortLatestOperation
-      summary: Abort the latest operation on a managed cluster
+      summary: Azure Kubernetes Service Abort the latest operation on a managed cluster
       description: >-
         Aborts the currently running operation on the managed cluster.
         The Managed Cluster will be moved to a Canceling state and eventually
@@ -534,10 +534,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools
+  : get:
       operationId: AgentPools_List
-      summary: List agent pools
+      summary: Azure Kubernetes Service List agent pools
       description: Gets a list of agent pools in the specified managed cluster.
       tags:
         - Agent Pools
@@ -559,10 +559,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}
+  : get:
       operationId: AgentPools_Get
-      summary: Get an agent pool
+      summary: Azure Kubernetes Service Get an agent pool
       description: Gets the specified managed cluster agent pool.
       tags:
         - Agent Pools
@@ -587,7 +587,7 @@ paths:
                 $ref: '#/components/schemas/CloudError'
     put:
       operationId: AgentPools_CreateOrUpdate
-      summary: Create or update an agent pool
+      summary: Azure Kubernetes Service Create or update an agent pool
       description: Creates or updates an agent pool in the specified managed cluster.
       tags:
         - Agent Pools
@@ -646,7 +646,7 @@ paths:
                 $ref: '#/components/schemas/CloudError'
     delete:
       operationId: AgentPools_Delete
-      summary: Delete an agent pool
+      summary: Azure Kubernetes Service Delete an agent pool
       description: Deletes an agent pool in the specified managed cluster.
       tags:
         - Agent Pools
@@ -680,10 +680,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/upgradeProfiles/default:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/upgradeProfiles/default
+  : get:
       operationId: AgentPools_GetUpgradeProfile
-      summary: Get the upgrade profile for an agent pool
+      summary: Azure Kubernetes Service Get the upgrade profile for an agent pool
       description: Gets the upgrade profile for an agent pool.
       tags:
         - Agent Pools
@@ -706,10 +706,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/availableAgentPoolVersions:
-    get:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/availableAgentPoolVersions
+  : get:
       operationId: AgentPools_GetAvailableAgentPoolVersions
-      summary: Get available agent pool versions
+      summary: Azure Kubernetes Service Get available agent pool versions
       description: Gets a list of supported Kubernetes versions for the specified agent pool.
       tags:
         - Agent Pools
@@ -732,10 +732,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/upgradeNodeImageVersion:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/upgradeNodeImageVersion
+  : post:
       operationId: AgentPools_UpgradeNodeImageVersion
-      summary: Upgrade node image version
+      summary: Azure Kubernetes Service Upgrade node image version
       description: Upgrades the node image version of an agent pool to the latest.
       tags:
         - Agent Pools
@@ -769,10 +769,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/abort:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/abort
+  : post:
       operationId: AgentPools_AbortLatestOperation
-      summary: Abort latest operation on an agent pool
+      summary: Azure Kubernetes Service Abort latest operation on an agent pool
       description: Aborts the currently running operation on the agent pool.
       tags:
         - Agent Pools
@@ -806,10 +806,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudError'
-  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/deleteMachines:
-    post:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/deleteMachines
+  : post:
       operationId: AgentPools_DeleteMachines
-      summary: Delete specific machines in an agent pool
+      summary: Azure Kubernetes Service Delete specific machines in an agent pool
       description: Deletes specific machines in an agent pool.
       tags:
         - Agent Pools
