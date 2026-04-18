@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ManagedClusterProperties",
+  "type": "object",
+  "properties": {
+    "provisioningState": {
+      "type": "string"
+    },
+    "maxAgentPools": {
+      "type": "integer"
+    },
+    "kubernetesVersion": {
+      "type": "string"
+    },
+    "currentKubernetesVersion": {
+      "type": "string"
+    },
+    "dnsPrefix": {
+      "type": "string"
+    },
+    "fqdnSubdomain": {
+      "type": "string"
+    },
+    "fqdn": {
+      "type": "string"
+    },
+    "privateFQDN": {
+      "type": "string"
+    },
+    "azurePortalFQDN": {
+      "type": "string"
+    },
+    "enableRBAC": {
+      "type": "boolean"
+    },
+    "supportPlan": {
+      "type": "string"
+    },
+    "disableLocalAccounts": {
+      "type": "boolean"
+    },
+    "nodeResourceGroup": {
+      "type": "string"
+    },
+    "agentPoolProfiles": {
+      "type": "array"
+    },
+    "identityProfile": {
+      "type": "object"
+    },
+    "addonProfiles": {
+      "type": "object"
+    },
+    "diskEncryptionSetID": {
+      "type": "string"
+    }
+  }
+}

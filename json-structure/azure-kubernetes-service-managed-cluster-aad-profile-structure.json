@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ManagedClusterAADProfile",
+  "type": "object",
+  "properties": {
+    "managed": {
+      "type": "boolean"
+    },
+    "enableAzureRBAC": {
+      "type": "boolean"
+    },
+    "adminGroupObjectIDs": {
+      "type": "array"
+    },
+    "clientAppID": {
+      "type": "string"
+    },
+    "serverAppID": {
+      "type": "string"
+    },
+    "serverAppSecret": {
+      "type": "string"
+    },
+    "tenantID": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterIngressProfile",
+  "type": "object",
+  "description": "Ingress profile for the managed cluster.",
+  "properties": {
+    "webAppRouting": {
+      "type": "object",
+      "description": "Web App Routing settings."
+    }
+  }
+}

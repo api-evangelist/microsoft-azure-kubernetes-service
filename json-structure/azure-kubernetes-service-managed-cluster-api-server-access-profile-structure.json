@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ManagedClusterAPIServerAccessProfile",
+  "type": "object",
+  "properties": {
+    "authorizedIPRanges": {
+      "type": "array"
+    },
+    "enablePrivateCluster": {
+      "type": "boolean"
+    },
+    "privateDNSZone": {
+      "type": "string"
+    },
+    "enablePrivateClusterPublicFQDN": {
+      "type": "boolean"
+    },
+    "disableRunCommand": {
+      "type": "boolean"
+    },
+    "enableVnetIntegration": {
+      "type": "boolean"
+    },
+    "subnetId": {
+      "type": "string"
+    }
+  }
+}

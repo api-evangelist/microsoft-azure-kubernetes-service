@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterWorkloadAutoScalerProfile",
+  "type": "object",
+  "description": "Workload Auto-scaler profile for the managed cluster.",
+  "properties": {
+    "keda": {
+      "type": "object",
+      "description": "KEDA (Kubernetes Event-driven Autoscaling) settings."
+    },
+    "verticalPodAutoscaler": {
+      "type": "object",
+      "description": "VPA (Vertical Pod Autoscaler) settings."
+    }
+  }
+}

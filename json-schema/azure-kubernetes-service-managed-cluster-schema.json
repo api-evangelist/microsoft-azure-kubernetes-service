@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedCluster",
+  "type": "object",
+  "description": "Managed cluster resource representing an Azure Kubernetes Service cluster.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Fully qualified resource ID for the resource. Example: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the resource."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of the resource. Example: Microsoft.ContainerService/managedClusters"
+    },
+    "location": {
+      "type": "string",
+      "description": "The geo-location where the resource lives."
+    },
+    "tags": {
+      "type": "object",
+      "description": "Resource tags."
+    },
+    "kind": {
+      "type": "string",
+      "description": "This is primarily used to expose different UI experiences in the portal for different kinds."
+    }
+  }
+}

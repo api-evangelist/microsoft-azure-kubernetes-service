@@ -1,0 +1,19 @@
+{
+  "provisioningState": "example_value",
+  "maxAgentPools": 10,
+  "kubernetesVersion": "example_value",
+  "currentKubernetesVersion": "example_value",
+  "dnsPrefix": "example_value",
+  "fqdnSubdomain": "example_value",
+  "fqdn": "example_value",
+  "privateFQDN": "example_value",
+  "azurePortalFQDN": "example_value",
+  "enableRBAC": true,
+  "supportPlan": "example_value",
+  "disableLocalAccounts": true,
+  "nodeResourceGroup": "example_value",
+  "agentPoolProfiles": [],
+  "identityProfile": "example_value",
+  "addonProfiles": "example_value",
+  "diskEncryptionSetID": "500123"
+}

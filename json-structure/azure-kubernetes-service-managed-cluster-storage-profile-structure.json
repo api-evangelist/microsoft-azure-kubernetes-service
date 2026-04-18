@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ManagedClusterStorageProfile",
+  "type": "object",
+  "properties": {
+    "diskCSIDriver": {
+      "type": "object"
+    },
+    "fileCSIDriver": {
+      "type": "object"
+    },
+    "snapshotController": {
+      "type": "object"
+    },
+    "blobCSIDriver": {
+      "type": "object"
+    }
+  }
+}

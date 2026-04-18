@@ -1,0 +1,4 @@
+{
+  "keda": "example_value",
+  "verticalPodAutoscaler": "example_value"
+}

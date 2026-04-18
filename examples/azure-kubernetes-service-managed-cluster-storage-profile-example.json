@@ -1,0 +1,6 @@
+{
+  "diskCSIDriver": "example_value",
+  "fileCSIDriver": "example_value",
+  "snapshotController": "example_value",
+  "blobCSIDriver": "example_value"
+}

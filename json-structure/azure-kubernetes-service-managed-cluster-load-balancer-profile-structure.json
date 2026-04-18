@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ManagedClusterLoadBalancerProfile",
+  "type": "object",
+  "properties": {
+    "managedOutboundIPs": {
+      "type": "object"
+    },
+    "outboundIPPrefixes": {
+      "type": "object"
+    },
+    "outboundIPs": {
+      "type": "object"
+    },
+    "effectiveOutboundIPs": {
+      "type": "array"
+    },
+    "allocatedOutboundPorts": {
+      "type": "integer"
+    },
+    "idleTimeoutInMinutes": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "adminUsername": "example_value",
+  "adminPassword": "example_value",
+  "licenseType": "example_value",
+  "enableCSIProxy": true
+}

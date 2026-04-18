@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RunCommandRequest",
+  "type": "object",
+  "description": "A run command request.",
+  "properties": {
+    "command": {
+      "type": "string",
+      "description": "The command to run."
+    },
+    "context": {
+      "type": "string",
+      "description": "A base64 encoded zip file containing the files required by the command."
+    },
+    "clusterToken": {
+      "type": "string",
+      "description": "AuthToken issued for AKS AAD Server App."
+    }
+  }
+}

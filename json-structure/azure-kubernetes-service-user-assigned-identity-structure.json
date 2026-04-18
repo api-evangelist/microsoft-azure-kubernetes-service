@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "UserAssignedIdentity",
+  "type": "object",
+  "properties": {
+    "resourceId": {
+      "type": "string"
+    },
+    "clientId": {
+      "type": "string"
+    },
+    "objectId": {
+      "type": "string"
+    }
+  }
+}

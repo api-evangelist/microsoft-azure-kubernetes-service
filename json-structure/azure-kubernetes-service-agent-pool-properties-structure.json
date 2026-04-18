@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "AgentPoolProperties",
+  "type": "object",
+  "properties": {
+    "provisioningState": {
+      "type": "string"
+    },
+    "count": {
+      "type": "integer"
+    },
+    "vmSize": {
+      "type": "string"
+    },
+    "osDiskSizeGB": {
+      "type": "integer"
+    },
+    "osDiskType": {
+      "type": "string"
+    },
+    "kubeletDiskType": {
+      "type": "string"
+    },
+    "maxPods": {
+      "type": "integer"
+    },
+    "osType": {
+      "type": "string"
+    },
+    "osSKU": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string"
+    },
+    "orchestratorVersion": {
+      "type": "string"
+    },
+    "currentOrchestratorVersion": {
+      "type": "string"
+    },
+    "nodeImageVersion": {
+      "type": "string"
+    },
+    "enableAutoScaling": {
+      "type": "boolean"
+    },
+    "minCount": {
+      "type": "integer"
+    },
+    "maxCount": {
+      "type": "integer"
+    },
+    "scaleSetPriority": {
+      "type": "string"
+    },
+    "scaleSetEvictionPolicy": {
+      "type": "string"
+    },
+    "spotMaxPrice": {
+      "type": "number"
+    },
+    "scaleDownMode": {
+      "type": "string"
+    },
+    "vnetSubnetID": {
+      "type": "string"
+    },
+    "podSubnetID": {
+      "type": "string"
+    },
+    "enableNodePublicIP": {
+      "type": "boolean"
+    },
+    "nodePublicIPPrefixID": {
+      "type": "string"
+    },
+    "enableEncryptionAtHost": {
+      "type": "boolean"
+    },
+    "enableFIPS": {
+      "type": "boolean"
+    },
+    "enableUltraSSD": {
+      "type": "boolean"
+    },
+    "nodeLabels": {
+      "type": "object"
+    },
+    "nodeTaints": {
+      "type": "array"
+    },
+    "tags": {
+      "type": "object"
+    },
+    "proximityPlacementGroupID": {
+      "type": "string"
+    },
+    "availabilityZones": {
+      "type": "array"
+    },
+    "workloadRuntime": {
+      "type": "string"
+    },
+    "messageOfTheDay": {
+      "type": "string"
+    }
+  }
+}

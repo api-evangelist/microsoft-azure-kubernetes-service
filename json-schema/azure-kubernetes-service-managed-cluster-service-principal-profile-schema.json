@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterServicePrincipalProfile",
+  "type": "object",
+  "description": "Information about a service principal identity for the cluster to use for manipulating Azure APIs.",
+  "properties": {
+    "clientId": {
+      "type": "string",
+      "description": "The ID for the service principal."
+    },
+    "secret": {
+      "type": "string",
+      "description": "The secret password associated with the service principal."
+    }
+  }
+}

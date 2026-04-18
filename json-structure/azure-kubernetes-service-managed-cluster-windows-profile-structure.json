@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ManagedClusterWindowsProfile",
+  "type": "object",
+  "properties": {
+    "adminUsername": {
+      "type": "string"
+    },
+    "adminPassword": {
+      "type": "string"
+    },
+    "licenseType": {
+      "type": "string"
+    },
+    "enableCSIProxy": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterUpgradeProfile",
+  "type": "object",
+  "description": "The list of available upgrades for compute pools.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the upgrade profile."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the upgrade profile."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of the upgrade profile."
+    },
+    "properties": {
+      "type": "object"
+    }
+  }
+}

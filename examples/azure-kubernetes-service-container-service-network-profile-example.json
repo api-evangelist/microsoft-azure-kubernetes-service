@@ -1,0 +1,12 @@
+{
+  "networkPlugin": "example_value",
+  "networkPluginMode": "example_value",
+  "networkPolicy": "example_value",
+  "networkDataplane": "example_value",
+  "podCidr": "example_value",
+  "serviceCidr": "example_value",
+  "dnsServiceIP": "example_value",
+  "outboundType": "example_value",
+  "loadBalancerSku": "example_value",
+  "ipFamilies": []
+}

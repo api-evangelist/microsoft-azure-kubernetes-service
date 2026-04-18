@@ -1,0 +1,21 @@
+{
+  "balance-similar-node-groups": "example_value",
+  "daemonset-eviction-for-empty-nodes": true,
+  "daemonset-eviction-for-occupied-nodes": true,
+  "expander": "example_value",
+  "max-empty-bulk-delete": "example_value",
+  "max-graceful-termination-sec": "example_value",
+  "max-node-provision-time": "example_value",
+  "max-total-unready-percentage": "example_value",
+  "new-pod-scale-up-delay": "example_value",
+  "ok-total-unready-count": "example_value",
+  "scan-interval": "example_value",
+  "scale-down-delay-after-add": "example_value",
+  "scale-down-delay-after-delete": "example_value",
+  "scale-down-delay-after-failure": "example_value",
+  "scale-down-unneeded-time": "example_value",
+  "scale-down-unready-time": "example_value",
+  "scale-down-utilization-threshold": "example_value",
+  "skip-nodes-with-local-storage": "example_value",
+  "skip-nodes-with-system-pods": "example_value"
+}

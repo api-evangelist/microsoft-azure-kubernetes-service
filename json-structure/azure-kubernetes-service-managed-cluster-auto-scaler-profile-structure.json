@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ManagedClusterAutoScalerProfile",
+  "type": "object",
+  "properties": {
+    "balance-similar-node-groups": {
+      "type": "string"
+    },
+    "daemonset-eviction-for-empty-nodes": {
+      "type": "boolean"
+    },
+    "daemonset-eviction-for-occupied-nodes": {
+      "type": "boolean"
+    },
+    "expander": {
+      "type": "string"
+    },
+    "max-empty-bulk-delete": {
+      "type": "string"
+    },
+    "max-graceful-termination-sec": {
+      "type": "string"
+    },
+    "max-node-provision-time": {
+      "type": "string"
+    },
+    "max-total-unready-percentage": {
+      "type": "string"
+    },
+    "new-pod-scale-up-delay": {
+      "type": "string"
+    },
+    "ok-total-unready-count": {
+      "type": "string"
+    },
+    "scan-interval": {
+      "type": "string"
+    },
+    "scale-down-delay-after-add": {
+      "type": "string"
+    },
+    "scale-down-delay-after-delete": {
+      "type": "string"
+    },
+    "scale-down-delay-after-failure": {
+      "type": "string"
+    },
+    "scale-down-unneeded-time": {
+      "type": "string"
+    },
+    "scale-down-unready-time": {
+      "type": "string"
+    },
+    "scale-down-utilization-threshold": {
+      "type": "string"
+    },
+    "skip-nodes-with-local-storage": {
+      "type": "string"
+    },
+    "skip-nodes-with-system-pods": {
+      "type": "string"
+    }
+  }
+}

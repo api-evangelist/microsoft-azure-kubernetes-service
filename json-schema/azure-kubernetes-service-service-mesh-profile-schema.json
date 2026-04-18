@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ServiceMeshProfile",
+  "type": "object",
+  "description": "Service mesh profile for a managed cluster.",
+  "properties": {
+    "mode": {
+      "type": "string",
+      "description": "Mode of the service mesh."
+    },
+    "istio": {
+      "type": "object",
+      "description": "Istio service mesh configuration."
+    }
+  }
+}

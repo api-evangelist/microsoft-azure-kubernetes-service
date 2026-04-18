@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterLoadBalancerProfile",
+  "type": "object",
+  "description": "Profile of the managed cluster load balancer.",
+  "properties": {
+    "managedOutboundIPs": {
+      "type": "object",
+      "description": "Desired managed outbound IPs for the cluster load balancer."
+    },
+    "outboundIPPrefixes": {
+      "type": "object",
+      "description": "Desired outbound IP Prefix resources for the cluster load balancer."
+    },
+    "outboundIPs": {
+      "type": "object",
+      "description": "Desired outbound IP resources for the cluster load balancer."
+    },
+    "effectiveOutboundIPs": {
+      "type": "array",
+      "description": "The effective outbound IP resources of the cluster load balancer."
+    },
+    "allocatedOutboundPorts": {
+      "type": "integer",
+      "description": "The desired number of allocated SNAT ports per VM."
+    },
+    "idleTimeoutInMinutes": {
+      "type": "integer",
+      "description": "Desired outbound flow idle timeout in minutes."
+    }
+  }
+}

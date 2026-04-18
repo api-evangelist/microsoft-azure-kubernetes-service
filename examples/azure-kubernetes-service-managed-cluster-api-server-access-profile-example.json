@@ -1,0 +1,9 @@
+{
+  "authorizedIPRanges": [],
+  "enablePrivateCluster": true,
+  "privateDNSZone": "example_value",
+  "enablePrivateClusterPublicFQDN": true,
+  "disableRunCommand": true,
+  "enableVnetIntegration": true,
+  "subnetId": "500123"
+}

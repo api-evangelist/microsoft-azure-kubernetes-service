@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "SystemData",
+  "type": "object",
+  "properties": {
+    "createdBy": {
+      "type": "string"
+    },
+    "createdByType": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "lastModifiedBy": {
+      "type": "string"
+    },
+    "lastModifiedByType": {
+      "type": "string"
+    },
+    "lastModifiedAt": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterAADProfile",
+  "type": "object",
+  "description": "Azure Active Directory configuration for integration with AKS.",
+  "properties": {
+    "managed": {
+      "type": "boolean",
+      "description": "Whether to enable managed AAD."
+    },
+    "enableAzureRBAC": {
+      "type": "boolean",
+      "description": "Whether to enable Azure RBAC for Kubernetes authorization."
+    },
+    "adminGroupObjectIDs": {
+      "type": "array",
+      "description": "The list of AAD group object IDs that will have admin role of the cluster."
+    },
+    "clientAppID": {
+      "type": "string",
+      "description": "(DEPRECATED) The client AAD application ID. Used for legacy/non-managed AAD."
+    },
+    "serverAppID": {
+      "type": "string",
+      "description": "(DEPRECATED) The server AAD application ID. Used for legacy/non-managed AAD."
+    },
+    "serverAppSecret": {
+      "type": "string",
+      "description": "(DEPRECATED) The server AAD application secret. Used for legacy/non-managed AAD."
+    },
+    "tenantID": {
+      "type": "string",
+      "description": "The AAD tenant ID to use for authentication. If not specified, will use the tenant of the deployment subscription."
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterNodeResourceGroupProfile",
+  "type": "object",
+  "description": "Node resource group lockdown profile for a managed cluster.",
+  "properties": {
+    "restrictionLevel": {
+      "type": "string",
+      "description": "The restriction level applied to the cluster node resource group."
+    }
+  }
+}

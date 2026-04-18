@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterAzureMonitorProfile",
+  "type": "object",
+  "description": "Azure Monitor addon profiles for monitoring the managed cluster.",
+  "properties": {
+    "metrics": {
+      "type": "object",
+      "description": "Metrics profile for the Azure Monitor managed service for Prometheus addon."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterAddonProfile",
+  "type": "object",
+  "description": "A Kubernetes add-on profile for a managed cluster.",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the add-on is enabled or not."
+    },
+    "config": {
+      "type": "object",
+      "description": "Key-value pairs for configuring an add-on."
+    }
+  }
+}

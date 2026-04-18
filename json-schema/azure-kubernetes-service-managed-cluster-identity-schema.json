@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterIdentity",
+  "type": "object",
+  "description": "Identity for the managed cluster.",
+  "properties": {
+    "principalId": {
+      "type": "string",
+      "description": "The principal id of the system assigned identity associated with this resource."
+    },
+    "tenantId": {
+      "type": "string",
+      "description": "The tenant id of the system assigned identity associated with this resource."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of identity used for the managed cluster."
+    },
+    "userAssignedIdentities": {
+      "type": "object",
+      "description": "The keys must be ARM resource IDs in the form of /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}."
+    }
+  }
+}

@@ -2,8 +2,8 @@ name: Azure Kubernetes Service
 description: Azure Kubernetes Service (AKS) simplifies deploying a managed Kubernetes cluster in Azure by offloading the operational overhead to Azure. As a hosted Kubernetes service, Azure handles critical tasks, like health monitoring and maintenance.
 image: https://azure.microsoft.com/images/aks-icon.png
 url: https://azure.microsoft.com/en-us/services/kubernetes-service/
-created: 2024-01-15 00:00:00+00:00
-modified: '2026-03-16'
+created: '2024-01-15'
+modified: '2026-04-18'
 specificationVersion: '0.18'
 tags:
   - Azure
@@ -28,10 +28,6 @@ apis:
         url: https://learn.microsoft.com/en-us/azure/aks/
       - type: OpenAPI
         url: openapi/azure-kubernetes-service-openapi.yml
-      - type: OpenAPI
-        url: https://github.com/Azure/azure-rest-api-specs/blob/main/specification/containerservice/resource-manager/Microsoft.ContainerService/aks/stable/2023-10-01/managedClusters.json
-      - type: Swagger
-        url: https://github.com/Azure/azure-rest-api-specs/tree/main/specification/containerservice/resource-manager
       - type: JSONSchema
         url: json-schema/azure-kubernetes-service-cluster-schema.json
       - type: JSONLD
@@ -40,26 +36,29 @@ apis:
         url: https://learn.microsoft.com/en-us/azure/aks/concepts-identity
       - type: Pricing
         url: https://azure.microsoft.com/en-us/pricing/details/kubernetes-service/
-      - type: SLA
-        url: https://azure.microsoft.com/en-us/support/legal/sla/kubernetes-service/
-      - type: Rate Limits
+      - type: RateLimits
         url: https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions
-      - type: Getting Started
+      - type: GettingStarted
         url: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal
-      - type: Change Log
+      - type: ChangeLog
         url: https://github.com/Azure/AKS/blob/master/CHANGELOG.md
-      - type: Release Notes
+      - type: ReleaseNotes
         url: https://learn.microsoft.com/en-us/azure/aks/release-tracker
-      - type: SDK - Python
+      - type: SDK
         url: https://learn.microsoft.com/en-us/python/api/overview/azure/mgmt-containerservice-readme
-      - type: SDK - JavaScript
+        title: Python SDK
+      - type: SDK
         url: https://learn.microsoft.com/en-us/javascript/api/overview/azure/container-service
-      - type: SDK - .NET
+        title: JavaScript SDK
+      - type: SDK
         url: https://learn.microsoft.com/en-us/dotnet/api/overview/azure/resourcemanager.containerservice-readme
-      - type: SDK - Java
+        title: .NET SDK
+      - type: SDK
         url: https://learn.microsoft.com/en-us/java/api/overview/azure/resourcemanager-containerservice-readme
-      - type: SDK - Go
+        title: Java SDK
+      - type: SDK
         url: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/containerservice/armcontainerservice/v6
+        title: Go SDK
   - name: Azure Kubernetes Service Managed Clusters API
     description: REST API for creating, updating, deleting, and managing AKS managed clusters including cluster configuration, upgrades, credentials, and run commands.
     image: https://azure.microsoft.com/images/aks-icon.png
@@ -72,19 +71,17 @@ apis:
     properties:
       - type: Documentation
         url: https://learn.microsoft.com/en-us/azure/aks/
-      - type: API Reference
+      - type: APIReference
         url: https://learn.microsoft.com/en-us/rest/api/aks/managed-clusters
       - type: OpenAPI
         url: openapi/azure-kubernetes-service-openapi.yml
-      - type: OpenAPI
-        url: https://github.com/Azure/azure-rest-api-specs/blob/main/specification/containerservice/resource-manager/Microsoft.ContainerService/aks/stable/2023-10-01/managedClusters.json
       - type: JSONSchema
         url: json-schema/azure-kubernetes-service-cluster-schema.json
       - type: JSONLD
         url: json-ld/azure-kubernetes-service-context.jsonld
       - type: Authentication
         url: https://learn.microsoft.com/en-us/azure/aks/concepts-identity
-      - type: Getting Started
+      - type: GettingStarted
         url: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
       - type: Pricing
         url: https://azure.microsoft.com/en-us/pricing/details/kubernetes-service/
@@ -100,7 +97,7 @@ apis:
     properties:
       - type: Documentation
         url: https://learn.microsoft.com/en-us/azure/aks/create-node-pools
-      - type: API Reference
+      - type: APIReference
         url: https://learn.microsoft.com/en-us/rest/api/aks/agent-pools
       - type: OpenAPI
         url: openapi/azure-kubernetes-service-openapi.yml
@@ -108,7 +105,7 @@ apis:
         url: json-schema/azure-kubernetes-service-cluster-schema.json
       - type: Authentication
         url: https://learn.microsoft.com/en-us/azure/aks/concepts-identity
-      - type: Getting Started
+      - type: GettingStarted
         url: https://learn.microsoft.com/en-us/azure/aks/create-node-pools
   - name: Azure Kubernetes Service Maintenance Configurations API
     description: REST API for managing planned maintenance configurations, used to configure when updates can be deployed to an AKS managed cluster.
@@ -122,7 +119,7 @@ apis:
     properties:
       - type: Documentation
         url: https://learn.microsoft.com/en-us/azure/aks/planned-maintenance
-      - type: API Reference
+      - type: APIReference
         url: https://learn.microsoft.com/en-us/rest/api/aks/maintenance-configurations
       - type: Authentication
         url: https://learn.microsoft.com/en-us/azure/aks/concepts-identity
@@ -138,7 +135,7 @@ apis:
     properties:
       - type: Documentation
         url: https://learn.microsoft.com/en-us/azure/aks/node-pool-snapshot
-      - type: API Reference
+      - type: APIReference
         url: https://learn.microsoft.com/en-us/rest/api/aks/snapshots
       - type: Authentication
         url: https://learn.microsoft.com/en-us/azure/aks/concepts-identity
@@ -154,7 +151,7 @@ apis:
     properties:
       - type: Documentation
         url: https://learn.microsoft.com/en-us/azure/aks/private-clusters
-      - type: API Reference
+      - type: APIReference
         url: https://learn.microsoft.com/en-us/rest/api/aks/private-endpoint-connections
       - type: Authentication
         url: https://learn.microsoft.com/en-us/azure/aks/concepts-identity
@@ -170,7 +167,7 @@ apis:
     properties:
       - type: Documentation
         url: https://learn.microsoft.com/en-us/azure/aks/trusted-access-feature
-      - type: API Reference
+      - type: APIReference
         url: https://learn.microsoft.com/en-us/rest/api/aks/trusted-access-role-bindings
       - type: Authentication
         url: https://learn.microsoft.com/en-us/azure/aks/concepts-identity
@@ -186,11 +183,11 @@ apis:
     properties:
       - type: Documentation
         url: https://learn.microsoft.com/en-us/azure/aks/kubernetes-walkthrough
-      - type: API Reference
+      - type: APIReference
         url: https://kubernetes.io/docs/reference/kubernetes-api/
       - type: Authentication
         url: https://learn.microsoft.com/en-us/azure/aks/control-kubeconfig-access
-      - type: Getting Started
+      - type: GettingStarted
         url: https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-deploy-cluster
 maintainers:
   - FN: Kin Lane
@@ -198,45 +195,39 @@ maintainers:
 common:
   - type: Portal
     url: https://portal.azure.com/
-  - type: Getting Started
+  - type: GettingStarted
     url: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal
-  - type: CLI Tools
+  - type: CLI
     url: https://learn.microsoft.com/en-us/cli/azure/aks
-  - type: SDKs
-    url: https://learn.microsoft.com/en-us/azure/aks/kubernetes-action
-  - type: Status
+  - type: StatusPage
     url: https://status.azure.com/
   - type: Support
     url: https://azure.microsoft.com/en-us/support/options/
   - type: Blog
     url: https://azure.microsoft.com/en-us/blog/topics/kubernetes/
-  - type: GitHub
+  - type: GitHubRepository
     url: https://github.com/Azure/AKS
-  - type: Stack Overflow
+  - type: StackOverflow
     url: https://stackoverflow.com/questions/tagged/azure-aks
-  - type: Roadmap
-    url: https://azure.microsoft.com/en-us/updates/?product=kubernetes-service
   - type: Security
     url: https://learn.microsoft.com/en-us/azure/aks/concepts-security
   - type: Compliance
     url: https://learn.microsoft.com/en-us/azure/aks/concepts-security#azure-policy
-  - type: Website
-    url: https://azure.microsoft.com/en-us/products/kubernetes-service
   - type: Documentation
     url: https://learn.microsoft.com/en-us/azure/aks/
   - type: Pricing
     url: https://azure.microsoft.com/en-us/pricing/details/kubernetes-service/
-  - type: Sign Up
+  - type: SignUp
     url: https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account
   - type: Login
     url: https://portal.azure.com/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://azure.microsoft.com/en-us/support/legal/
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://privacy.microsoft.com/en-us/privacystatement
-  - type: Change Log
+  - type: ChangeLog
     url: https://github.com/Azure/AKS/blob/master/CHANGELOG.md
-  - type: Release Notes
+  - type: ReleaseNotes
     url: https://learn.microsoft.com/en-us/azure/aks/release-tracker
   - type: FAQ
     url: https://learn.microsoft.com/en-us/azure/aks/faq
@@ -244,12 +235,60 @@ common:
     url: https://learn.microsoft.com/en-us/training/modules/intro-to-azure-kubernetes-service/
   - type: YouTube
     url: https://www.youtube.com/c/MicrosoftAzure
-  - type: Support Policies
-    url: https://learn.microsoft.com/en-us/azure/aks/support-policies
-  - type: GitHub REST API Specs
-    url: https://github.com/Azure/azure-rest-api-specs/tree/main/specification/containerservice/resource-manager
-  - type: Release Tracker
-    url: https://releases.aks.azure.com/
+  - type: SpectralRules
+    url: rules/azure-kubernetes-service-spectral-rules.yml
+  - type: NaftikoCapability
+    url: capabilities/shared/aks-rest.yaml
+    title: AKS REST API Shared Definition
+  - type: NaftikoCapability
+    url: capabilities/cluster-management.yaml
+    title: Cluster Management Workflow
+  - type: Features
+    data:
+      - name: Managed Cluster Lifecycle
+        description: Create, update, delete, start, and stop AKS managed clusters with full lifecycle management.
+      - name: Agent Pool Management
+        description: Create and manage node pools with configurable VM sizes, scaling, and upgrade policies.
+      - name: Cluster Upgrades
+        description: Upgrade Kubernetes versions and node images with controlled rollout and upgrade profiles.
+      - name: Credential Management
+        description: Retrieve admin, user, and monitoring credentials for cluster access and authentication.
+      - name: Private Clusters
+        description: Deploy private AKS clusters with private endpoint connections for secure API server access.
+      - name: Maintenance Windows
+        description: Configure planned maintenance windows to control when updates are applied to clusters.
+      - name: Node Pool Snapshots
+        description: Create and manage snapshots of node pools for backup and recovery scenarios.
+      - name: Trusted Access
+        description: Grant Azure services secure access to AKS API server using managed identities and role bindings.
+      - name: Run Commands
+        description: Execute commands on cluster nodes remotely through the AKS API without direct SSH access.
+      - name: Auto-Scaling
+        description: Automatically scale node pools based on workload demands with configurable auto-scaler profiles.
+  - type: UseCases
+    data:
+      - name: Microservices Deployment
+        description: Deploy and manage microservices architectures with container orchestration and service mesh capabilities.
+      - name: CI/CD Pipelines
+        description: Integrate AKS with Azure DevOps and GitHub Actions for automated build, test, and deployment workflows.
+      - name: Hybrid Cloud
+        description: Run Kubernetes workloads across on-premises and Azure environments with Azure Arc integration.
+      - name: Machine Learning
+        description: Deploy and scale ML model serving infrastructure using AKS with GPU-enabled node pools.
+      - name: Edge Computing
+        description: Deploy containerized workloads to edge locations using AKS Edge Essentials and Azure IoT.
+  - type: Integrations
+    data:
+      - name: Azure Container Registry
+        description: Pull container images from Azure Container Registry with managed identity authentication.
+      - name: Azure Monitor
+        description: Monitor cluster health, performance, and logs with Azure Monitor and Container Insights.
+      - name: Azure Policy
+        description: Enforce organizational standards and compliance with Azure Policy for Kubernetes.
+      - name: Azure Active Directory
+        description: Integrate with Azure AD for cluster authentication and role-based access control.
+      - name: Azure DevOps
+        description: Automate deployments to AKS using Azure Pipelines with native Kubernetes tasks.
 include:
   - name: Azure Container Registry APIs
     url: https://apis.io/apis/azure-container-registry

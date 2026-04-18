@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ContainerServiceNetworkProfile",
+  "type": "object",
+  "description": "Profile of network configuration.",
+  "properties": {
+    "networkPlugin": {
+      "type": "string",
+      "description": "Network plugin used for building the Kubernetes network."
+    },
+    "networkPluginMode": {
+      "type": "string",
+      "description": "The mode the network plugin should use."
+    },
+    "networkPolicy": {
+      "type": "string",
+      "description": "Network policy used for building the Kubernetes network."
+    },
+    "networkDataplane": {
+      "type": "string",
+      "description": "Network dataplane used in the Kubernetes cluster."
+    },
+    "podCidr": {
+      "type": "string",
+      "description": "A CIDR notation IP range from which to assign pod IPs."
+    },
+    "serviceCidr": {
+      "type": "string",
+      "description": "A CIDR notation IP range from which to assign service cluster IPs."
+    },
+    "dnsServiceIP": {
+      "type": "string",
+      "description": "An IP address assigned to the Kubernetes DNS service. It must be within the Kubernetes service address range."
+    },
+    "outboundType": {
+      "type": "string",
+      "description": "The outbound (egress) routing method."
+    },
+    "loadBalancerSku": {
+      "type": "string",
+      "description": "The load balancer sku for the managed cluster."
+    },
+    "ipFamilies": {
+      "type": "array",
+      "description": "IP families used to specify IP versions available to the cluster."
+    }
+  }
+}

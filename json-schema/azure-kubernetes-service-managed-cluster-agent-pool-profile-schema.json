@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterAgentPoolProfile",
+  "type": "object",
+  "description": "Profile for the container service agent pool.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The unique name of the agent pool profile in the context of the subscription and resource group."
+    },
+    "count": {
+      "type": "integer",
+      "description": "Number of agents (VMs) to host docker containers. Allowed values must be in the range of 0 to 1000 (inclusive) for user pools and in the range of 1 to 1000 (inclusive) for system pools."
+    },
+    "vmSize": {
+      "type": "string",
+      "description": "The size of the agent VMs. Example: Standard_DS2_v2"
+    },
+    "osDiskSizeGB": {
+      "type": "integer",
+      "description": "OS Disk Size in GB to be used to specify the disk size for every machine in the master/agent pool."
+    },
+    "osDiskType": {
+      "type": "string",
+      "description": "The OS disk type to be used for machines in the agent pool."
+    },
+    "kubeletDiskType": {
+      "type": "string",
+      "description": "Determines the placement of emptyDir volumes, container runtime data root, and Kubelet ephemeral storage."
+    },
+    "maxPods": {
+      "type": "integer",
+      "description": "The maximum number of pods that can run on a node."
+    },
+    "osType": {
+      "type": "string",
+      "description": "The operating system type."
+    },
+    "osSKU": {
+      "type": "string",
+      "description": "Specifies the OS SKU used by the agent pool."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of Agent Pool."
+    },
+    "mode": {
+      "type": "string",
+      "description": "The mode of an agent pool. A cluster must have at least one System agent pool at all times."
+    },
+    "orchestratorVersion": {
+      "type": "string",
+      "description": "The version of Kubernetes running on the Agent Pool."
+    },
+    "currentOrchestratorVersion": {
+      "type": "string",
+      "description": "The version of Kubernetes the Agent Pool is running."
+    },
+    "nodeImageVersion": {
+      "type": "string",
+      "description": "The version of node image."
+    },
+    "enableAutoScaling": {
+      "type": "boolean",
+      "description": "Whether to enable auto-scaler."
+    },
+    "minCount": {
+      "type": "integer",
+      "description": "The minimum number of nodes for auto-scaling."
+    },
+    "maxCount": {
+      "type": "integer",
+      "description": "The maximum number of nodes for auto-scaling."
+    },
+    "scaleSetPriority": {
+      "type": "string",
+      "description": "The Virtual Machine Scale Set priority."
+    },
+    "scaleSetEvictionPolicy": {
+      "type": "string",
+      "description": "The Virtual Machine Scale Set eviction policy."
+    },
+    "spotMaxPrice": {
+      "type": "number",
+      "description": "The maximum price (in US Dollars) you are willing to pay for spot instances. Possible values are any decimal value greater than zero or -1 which indicates that default price is up-to on-demand."
+    },
+    "scaleDownMode": {
+      "type": "string",
+      "description": "Describes how VMs are added to or removed from Agent Pools."
+    },
+    "vnetSubnetID": {
+      "type": "string",
+      "description": "The ID of the subnet which agent pool nodes and optionally pods will join on startup."
+    },
+    "podSubnetID": {
+      "type": "string",
+      "description": "The ID of the subnet which pods will join when launched."
+    },
+    "enableNodePublicIP": {
+      "type": "boolean",
+      "description": "Whether each node is allocated its own public IP."
+    },
+    "nodePublicIPPrefixID": {
+      "type": "string",
+      "description": "The public IP prefix ID for the nodes in the agent pool."
+    },
+    "enableEncryptionAtHost": {
+      "type": "boolean",
+      "description": "Whether to enable host-based OS and data drive encryption."
+    },
+    "enableFIPS": {
+      "type": "boolean",
+      "description": "Whether to use a FIPS-enabled OS."
+    },
+    "enableUltraSSD": {
+      "type": "boolean",
+      "description": "Whether to enable UltraSSD."
+    },
+    "nodeLabels": {
+      "type": "object",
+      "description": "The node labels to be persisted across all nodes in agent pool."
+    },
+    "nodeTaints": {
+      "type": "array",
+      "description": "The taints added to new nodes during node pool create and scale."
+    },
+    "tags": {
+      "type": "object",
+      "description": "The tags to be persisted on the agent pool virtual machine scale set."
+    },
+    "proximityPlacementGroupID": {
+      "type": "string",
+      "description": "The ID for Proximity Placement Group."
+    },
+    "availabilityZones": {
+      "type": "array",
+      "description": "The list of Availability zones to use for nodes. This can only be specified if the AgentPoolType property is VirtualMachineScaleSets."
+    },
+    "workloadRuntime": {
+      "type": "string",
+      "description": "Determines the type of workload a node can run."
+    },
+    "messageOfTheDay": {
+      "type": "string",
+      "description": "A base64-encoded string which will be written to /etc/motd after decoding. Applicable only for Linux nodes."
+    }
+  }
+}

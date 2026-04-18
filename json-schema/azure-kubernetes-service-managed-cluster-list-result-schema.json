@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterListResult",
+  "type": "object",
+  "description": "The response from the List Managed Clusters operation.",
+  "properties": {
+    "value": {
+      "type": "array",
+      "description": "The list of managed clusters."
+    },
+    "nextLink": {
+      "type": "string",
+      "description": "The URL to get the next set of managed cluster results."
+    }
+  }
+}

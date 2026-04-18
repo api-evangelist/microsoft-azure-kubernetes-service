@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterNATGatewayProfile",
+  "type": "object",
+  "description": "Profile of the managed cluster NAT gateway.",
+  "properties": {
+    "managedOutboundIPProfile": {
+      "type": "object",
+      "description": "The managed outbound IP profile of the NAT gateway."
+    },
+    "effectiveOutboundIPs": {
+      "type": "array",
+      "description": "The effective outbound IP resources of the NAT gateway."
+    },
+    "idleTimeoutInMinutes": {
+      "type": "integer",
+      "description": "Desired outbound flow idle timeout in minutes."
+    }
+  }
+}

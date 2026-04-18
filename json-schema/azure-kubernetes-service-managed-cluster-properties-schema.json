@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterProperties",
+  "type": "object",
+  "description": "Properties of the managed cluster.",
+  "properties": {
+    "provisioningState": {
+      "type": "string",
+      "description": "The current provisioning state of the managed cluster resource."
+    },
+    "maxAgentPools": {
+      "type": "integer",
+      "description": "The max number of agent pools for the managed cluster."
+    },
+    "kubernetesVersion": {
+      "type": "string",
+      "description": "The version of Kubernetes specified by the user. Both patch version (e.g. 1.20.13) and minor version (e.g. 1.20) are supported. When a minor version is specified, the latest supported patch version is chosen automatically."
+    },
+    "currentKubernetesVersion": {
+      "type": "string",
+      "description": "The version of Kubernetes the Managed Cluster is running."
+    },
+    "dnsPrefix": {
+      "type": "string",
+      "description": "This cannot be updated once the Managed Cluster has been created."
+    },
+    "fqdnSubdomain": {
+      "type": "string",
+      "description": "This cannot be updated once the Managed Cluster has been created. Used only with private clusters with custom private DNS zone."
+    },
+    "fqdn": {
+      "type": "string",
+      "description": "The FQDN of the master pool."
+    },
+    "privateFQDN": {
+      "type": "string",
+      "description": "The FQDN of private cluster."
+    },
+    "azurePortalFQDN": {
+      "type": "string",
+      "description": "The special FQDN used by the Azure Portal to access the Managed Cluster. It is only set for private cluster enabled clusters."
+    },
+    "enableRBAC": {
+      "type": "boolean",
+      "description": "Whether to enable Kubernetes Role-Based Access Control."
+    },
+    "supportPlan": {
+      "type": "string",
+      "description": "The support plan for the Managed Cluster."
+    },
+    "disableLocalAccounts": {
+      "type": "boolean",
+      "description": "If set to true, getting static credentials will be disabled for this cluster."
+    },
+    "nodeResourceGroup": {
+      "type": "string",
+      "description": "The name of the resource group containing agent pool nodes."
+    },
+    "agentPoolProfiles": {
+      "type": "array",
+      "description": "The agent pool properties."
+    },
+    "identityProfile": {
+      "type": "object",
+      "description": "Identities associated with the cluster."
+    },
+    "addonProfiles": {
+      "type": "object",
+      "description": "The profile of managed cluster add-ons."
+    },
+    "diskEncryptionSetID": {
+      "type": "string",
+      "description": "The Resource ID of the disk encryption set to use for enabling encryption at rest."
+    }
+  }
+}

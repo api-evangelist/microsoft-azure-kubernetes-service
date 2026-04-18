@@ -1,0 +1,5 @@
+{
+  "managedOutboundIPProfile": "example_value",
+  "effectiveOutboundIPs": [],
+  "idleTimeoutInMinutes": 10
+}

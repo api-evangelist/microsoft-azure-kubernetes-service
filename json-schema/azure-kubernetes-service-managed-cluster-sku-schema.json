@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterSKU",
+  "type": "object",
+  "description": "The SKU of a Managed Cluster.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of a managed cluster SKU."
+    },
+    "tier": {
+      "type": "string",
+      "description": "If not specified, the default is Free. See AKS Pricing Tier for more details."
+    }
+  }
+}

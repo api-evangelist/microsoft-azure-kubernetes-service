@@ -1,0 +1,5 @@
+{
+  "maxSurge": "example_value",
+  "drainTimeoutInMinutes": 10,
+  "nodeSoakDurationInMinutes": 10
+}

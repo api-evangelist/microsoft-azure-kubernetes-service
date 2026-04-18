@@ -1,0 +1,9 @@
+name: azure-kubernetes-service API Vocabulary
+provider: azure-kubernetes-service
+created: '2026-04-18'
+modified: '2026-04-18'
+operations: 24
+schemas: 45
+tags:
+- Agent Pools
+- Managed Clusters

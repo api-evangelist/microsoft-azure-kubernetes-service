@@ -1,0 +1,247 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Azure Kubernetes Service Cluster Management"
+  description: "Workflow for managing AKS clusters and agent pools including lifecycle operations, upgrades, scaling, and credentials. Used by DevOps engineers and platform administrators."
+  tags:
+    - Azure
+    - Kubernetes
+    - Cluster Management
+    - DevOps
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      AZURE_BEARER_TOKEN: AZURE_BEARER_TOKEN
+
+capability:
+  consumes:
+    - import: aks-rest
+      location: ./shared/aks-rest.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: aks-cluster-api
+      description: "Unified REST API for AKS cluster management."
+      resources:
+        - path: /v1/clusters
+          name: clusters
+          description: "Cluster lifecycle operations"
+          operations:
+            - method: GET
+              name: list-clusters
+              description: "List all managed clusters"
+              call: "aks-rest.list-clusters"
+              with:
+                subscriptionId: "rest.subscriptionId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/clusters/{resourceName}
+          name: cluster
+          description: "Single cluster operations"
+          operations:
+            - method: GET
+              name: get-cluster
+              description: "Get cluster details"
+              call: "aks-rest.get-cluster"
+              with:
+                subscriptionId: "rest.subscriptionId"
+                resourceGroupName: "rest.resourceGroupName"
+                resourceName: "rest.resourceName"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PUT
+              name: create-or-update-cluster
+              description: "Create or update a cluster"
+              call: "aks-rest.create-or-update-cluster"
+              with:
+                subscriptionId: "rest.subscriptionId"
+                resourceGroupName: "rest.resourceGroupName"
+                resourceName: "rest.resourceName"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-cluster
+              description: "Delete a cluster"
+              call: "aks-rest.delete-cluster"
+              with:
+                subscriptionId: "rest.subscriptionId"
+                resourceGroupName: "rest.resourceGroupName"
+                resourceName: "rest.resourceName"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/clusters/{resourceName}/agent-pools
+          name: agent-pools
+          description: "Agent pool operations"
+          operations:
+            - method: GET
+              name: list-agent-pools
+              description: "List agent pools in a cluster"
+              call: "aks-rest.list-agent-pools"
+              with:
+                subscriptionId: "rest.subscriptionId"
+                resourceGroupName: "rest.resourceGroupName"
+                resourceName: "rest.resourceName"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: aks-cluster-mcp
+      transport: http
+      description: "MCP server for AI-assisted AKS cluster management."
+      tools:
+        - name: list-clusters
+          description: "List all AKS managed clusters in a subscription"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "aks-rest.list-clusters"
+          with:
+            subscriptionId: "tools.subscriptionId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-cluster
+          description: "Get details of an AKS cluster"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "aks-rest.get-cluster"
+          with:
+            subscriptionId: "tools.subscriptionId"
+            resourceGroupName: "tools.resourceGroupName"
+            resourceName: "tools.resourceName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-or-update-cluster
+          description: "Create or update an AKS managed cluster"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "aks-rest.create-or-update-cluster"
+          with:
+            subscriptionId: "tools.subscriptionId"
+            resourceGroupName: "tools.resourceGroupName"
+            resourceName: "tools.resourceName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-cluster
+          description: "Delete an AKS managed cluster"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "aks-rest.delete-cluster"
+          with:
+            subscriptionId: "tools.subscriptionId"
+            resourceGroupName: "tools.resourceGroupName"
+            resourceName: "tools.resourceName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-upgrade-profile
+          description: "Get the upgrade profile for a cluster"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "aks-rest.get-upgrade-profile"
+          with:
+            subscriptionId: "tools.subscriptionId"
+            resourceGroupName: "tools.resourceGroupName"
+            resourceName: "tools.resourceName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: stop-cluster
+          description: "Stop a running AKS cluster"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "aks-rest.stop-cluster"
+          with:
+            subscriptionId: "tools.subscriptionId"
+            resourceGroupName: "tools.resourceGroupName"
+            resourceName: "tools.resourceName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: start-cluster
+          description: "Start a stopped AKS cluster"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "aks-rest.start-cluster"
+          with:
+            subscriptionId: "tools.subscriptionId"
+            resourceGroupName: "tools.resourceGroupName"
+            resourceName: "tools.resourceName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-agent-pools
+          description: "List agent pools in a cluster"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "aks-rest.list-agent-pools"
+          with:
+            subscriptionId: "tools.subscriptionId"
+            resourceGroupName: "tools.resourceGroupName"
+            resourceName: "tools.resourceName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-agent-pool
+          description: "Get agent pool details"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "aks-rest.get-agent-pool"
+          with:
+            subscriptionId: "tools.subscriptionId"
+            resourceGroupName: "tools.resourceGroupName"
+            resourceName: "tools.resourceName"
+            agentPoolName: "tools.agentPoolName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-or-update-agent-pool
+          description: "Create or update an agent pool"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "aks-rest.create-or-update-agent-pool"
+          with:
+            subscriptionId: "tools.subscriptionId"
+            resourceGroupName: "tools.resourceGroupName"
+            resourceName: "tools.resourceName"
+            agentPoolName: "tools.agentPoolName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-agent-pool
+          description: "Delete an agent pool from a cluster"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "aks-rest.delete-agent-pool"
+          with:
+            subscriptionId: "tools.subscriptionId"
+            resourceGroupName: "tools.resourceGroupName"
+            resourceName: "tools.resourceName"
+            agentPoolName: "tools.agentPoolName"
+          outputParameters:
+            - type: object
+              mapping: "$."

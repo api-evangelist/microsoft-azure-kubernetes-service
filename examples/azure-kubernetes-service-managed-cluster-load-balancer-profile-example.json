@@ -1,0 +1,8 @@
+{
+  "managedOutboundIPs": "example_value",
+  "outboundIPPrefixes": "example_value",
+  "outboundIPs": "example_value",
+  "effectiveOutboundIPs": [],
+  "allocatedOutboundPorts": 10,
+  "idleTimeoutInMinutes": 10
+}

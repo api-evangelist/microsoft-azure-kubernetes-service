@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterWindowsProfile",
+  "type": "object",
+  "description": "Profile for Windows VMs in the managed cluster.",
+  "properties": {
+    "adminUsername": {
+      "type": "string",
+      "description": "The administrator username to use for Windows VMs."
+    },
+    "adminPassword": {
+      "type": "string",
+      "description": "The administrator password to use for Windows VMs."
+    },
+    "licenseType": {
+      "type": "string",
+      "description": "The license type to use for Windows VMs."
+    },
+    "enableCSIProxy": {
+      "type": "boolean",
+      "description": "Whether to enable CSI proxy."
+    }
+  }
+}

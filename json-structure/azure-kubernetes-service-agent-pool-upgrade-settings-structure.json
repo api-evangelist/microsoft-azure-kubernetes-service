@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "AgentPoolUpgradeSettings",
+  "type": "object",
+  "properties": {
+    "maxSurge": {
+      "type": "string"
+    },
+    "drainTimeoutInMinutes": {
+      "type": "integer"
+    },
+    "nodeSoakDurationInMinutes": {
+      "type": "integer"
+    }
+  }
+}

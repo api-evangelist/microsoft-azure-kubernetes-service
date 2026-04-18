@@ -1,0 +1,9 @@
+{
+  "managed": true,
+  "enableAzureRBAC": true,
+  "adminGroupObjectIDs": [],
+  "clientAppID": "500123",
+  "serverAppID": "500123",
+  "serverAppSecret": "example_value",
+  "tenantID": "500123"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ManagedClusterIdentity",
+  "type": "object",
+  "properties": {
+    "principalId": {
+      "type": "string"
+    },
+    "tenantId": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "userAssignedIdentities": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RunCommandResult",
+  "type": "object",
+  "description": "Run command result.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The command id."
+    },
+    "properties": {
+      "type": "object"
+    }
+  }
+}

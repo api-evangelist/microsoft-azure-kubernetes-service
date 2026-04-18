@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterSecurityProfile",
+  "type": "object",
+  "description": "Security profile for the container service cluster.",
+  "properties": {
+    "defender": {
+      "type": "object",
+      "description": "Microsoft Defender settings for the security profile."
+    },
+    "workloadIdentity": {
+      "type": "object",
+      "description": "Workload identity settings for the security profile."
+    },
+    "imageCleaner": {
+      "type": "object",
+      "description": "Image Cleaner settings for the security profile."
+    }
+  }
+}

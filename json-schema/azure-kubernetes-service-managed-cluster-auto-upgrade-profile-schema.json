@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ManagedClusterAutoUpgradeProfile",
+  "type": "object",
+  "description": "Auto upgrade profile for a managed cluster.",
+  "properties": {
+    "upgradeChannel": {
+      "type": "string",
+      "description": "The upgrade channel for auto upgrade."
+    },
+    "nodeOSUpgradeChannel": {
+      "type": "string",
+      "description": "The node OS upgrade channel. Manner in which the OS on your nodes is updated."
+    }
+  }
+}

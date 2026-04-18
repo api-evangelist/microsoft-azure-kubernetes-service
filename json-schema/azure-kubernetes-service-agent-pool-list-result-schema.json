@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AgentPoolListResult",
+  "type": "object",
+  "description": "The response from the List Agent Pools operation.",
+  "properties": {
+    "value": {
+      "type": "array",
+      "description": "The list of agent pools."
+    },
+    "nextLink": {
+      "type": "string",
+      "description": "The URL to get the next set of agent pool results."
+    }
+  }
+}

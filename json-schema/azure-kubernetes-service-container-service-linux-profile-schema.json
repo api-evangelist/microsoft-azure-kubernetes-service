@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ContainerServiceLinuxProfile",
+  "type": "object",
+  "description": "Profile for Linux VMs in the container service cluster.",
+  "properties": {
+    "adminUsername": {
+      "type": "string",
+      "description": "The administrator username to use for Linux VMs."
+    },
+    "ssh": {
+      "type": "object",
+      "description": "The SSH configuration for Linux-based VMs running on Azure."
+    }
+  }
+}

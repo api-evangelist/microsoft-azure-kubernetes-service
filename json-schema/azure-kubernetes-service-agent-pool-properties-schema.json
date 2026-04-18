@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AgentPoolProperties",
+  "type": "object",
+  "description": "Properties for the container service agent pool profile.",
+  "properties": {
+    "provisioningState": {
+      "type": "string",
+      "description": "The current deployment or provisioning state."
+    },
+    "count": {
+      "type": "integer",
+      "description": "Number of agents (VMs) to host docker containers. Allowed values must be in the range of 0 to 1000 (inclusive) for user pools and in the range of 1 to 1000 (inclusive) for system pools. The default value is 1."
+    },
+    "vmSize": {
+      "type": "string",
+      "description": "The size of the agent VMs."
+    },
+    "osDiskSizeGB": {
+      "type": "integer",
+      "description": "OS Disk Size in GB."
+    },
+    "osDiskType": {
+      "type": "string",
+      "description": "The OS disk type."
+    },
+    "kubeletDiskType": {
+      "type": "string",
+      "description": "Kubelet disk type."
+    },
+    "maxPods": {
+      "type": "integer",
+      "description": "The maximum number of pods that can run on a node."
+    },
+    "osType": {
+      "type": "string",
+      "description": "The operating system type."
+    },
+    "osSKU": {
+      "type": "string",
+      "description": "Specifies the OS SKU used by the agent pool."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of Agent Pool."
+    },
+    "mode": {
+      "type": "string",
+      "description": "A cluster must have at least one System agent pool at all times."
+    },
+    "orchestratorVersion": {
+      "type": "string",
+      "description": "The version of Kubernetes running on the Agent Pool."
+    },
+    "currentOrchestratorVersion": {
+      "type": "string",
+      "description": "The running Kubernetes version on the Agent Pool."
+    },
+    "nodeImageVersion": {
+      "type": "string",
+      "description": "The version of node image."
+    },
+    "enableAutoScaling": {
+      "type": "boolean",
+      "description": "Whether to enable auto-scaler."
+    },
+    "minCount": {
+      "type": "integer",
+      "description": "The minimum number of nodes for auto-scaling."
+    },
+    "maxCount": {
+      "type": "integer",
+      "description": "The maximum number of nodes for auto-scaling."
+    },
+    "scaleSetPriority": {
+      "type": "string",
+      "description": "The Virtual Machine Scale Set priority."
+    },
+    "scaleSetEvictionPolicy": {
+      "type": "string",
+      "description": "The Virtual Machine Scale Set eviction policy."
+    },
+    "spotMaxPrice": {
+      "type": "number",
+      "description": "The maximum price for spot instances."
+    },
+    "scaleDownMode": {
+      "type": "string",
+      "description": "Describes how VMs are added to or removed from Agent Pools."
+    },
+    "vnetSubnetID": {
+      "type": "string",
+      "description": "The ID of the subnet for agent pool nodes."
+    },
+    "podSubnetID": {
+      "type": "string",
+      "description": "The ID of the subnet for pods."
+    },
+    "enableNodePublicIP": {
+      "type": "boolean",
+      "description": "Whether each node gets its own public IP."
+    },
+    "nodePublicIPPrefixID": {
+      "type": "string",
+      "description": "The public IP prefix ID for the nodes."
+    },
+    "enableEncryptionAtHost": {
+      "type": "boolean",
+      "description": "Whether to enable host-based encryption."
+    },
+    "enableFIPS": {
+      "type": "boolean",
+      "description": "Whether to use FIPS-enabled OS."
+    },
+    "enableUltraSSD": {
+      "type": "boolean",
+      "description": "Whether to enable UltraSSD."
+    },
+    "nodeLabels": {
+      "type": "object",
+      "description": "The node labels to be persisted across all nodes."
+    },
+    "nodeTaints": {
+      "type": "array",
+      "description": "The taints added to new nodes."
+    },
+    "tags": {
+      "type": "object",
+      "description": "The tags to persist on the VMSS."
+    },
+    "proximityPlacementGroupID": {
+      "type": "string",
+      "description": "The ID for Proximity Placement Group."
+    },
+    "availabilityZones": {
+      "type": "array",
+      "description": "The list of Availability zones to use for nodes."
+    },
+    "workloadRuntime": {
+      "type": "string",
+      "description": "The type of workload a node can run."
+    },
+    "messageOfTheDay": {
+      "type": "string",
+      "description": "A base64-encoded message of the day for Linux nodes."
+    }
+  }
+}
