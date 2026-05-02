@@ -12,7 +12,7 @@ Azure Kubernetes Service (AKS) simplifies deploying a managed Kubernetes cluster
 ## Timestamps
 
 - **Created:** 2024-01-15
-- **Modified:** 2026-04-18
+- **Modified:** 2026-04-28
 
 ## APIs
 

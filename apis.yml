@@ -3,7 +3,7 @@ description: Azure Kubernetes Service (AKS) simplifies deploying a managed Kuber
 image: https://azure.microsoft.com/images/aks-icon.png
 url: https://azure.microsoft.com/en-us/services/kubernetes-service/
 created: '2024-01-15'
-modified: '2026-04-18'
+modified: '2026-04-28'
 specificationVersion: '0.18'
 tags:
   - Azure
