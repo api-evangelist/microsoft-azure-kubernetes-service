@@ -1,189 +1,103 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Azure Kubernetes Service
+providerId: azure-kubernetes-service
+created: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
+tags:
+  - Containers
+  - Kubernetes
+  - FinOps
+  - FOCUS
+description: 'FOCUS-aligned FinOps for Azure Kubernetes Service: free cluster management on the Free
+  tier (no SLA), pay-per-cluster-hour on Standard / Premium for control-plane SLA, plus pay-as-you-go
+  for the underlying VMs, disks, load balancers, and egress. Tier choice and node-pool right-sizing dominate
+  total cost.'
+sources:
+  - https://azure.microsoft.com/en-us/pricing/details/kubernetes-service/
+  - https://learn.microsoft.com/en-us/azure/aks/free-standard-pricing-tiers
+  - https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-provider: Azure Kubernetes Service
-providerId: azure-kubernetes-service
-publisherName: Azure Kubernetes Service
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
-tags:
-  - Azure
-  - Cloud
-  - Containers
-  - DevOps
-  - Kubernetes
-  - Orchestration
-  - FinOps
-  - Cost Management
-  - FOCUS
-description: FinOps framework definition for the Azure Kubernetes Service API surface. Provides a FOCUS-aligned
-  mapping for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+publisherName: Microsoft Corporation
+serviceCategory: Container Platform
 billingModel:
-  pricingCategory: Usage-Based
+  pricingCategory: Pay-As-You-Go + Committed Use
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
     - Usage
     - Purchase
     - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
   ServiceName: Azure Kubernetes Service
-  ServiceCategory: Developer Tools / API
-  ProviderName: Azure Kubernetes Service
-  PublisherName: Azure Kubernetes Service
-  InvoiceIssuerName: Azure Kubernetes Service
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceCategory: Container Platform
+  ProviderName: Microsoft
+  PublisherName: Microsoft Corporation
+  InvoiceIssuerName: Microsoft Corporation
+  PricingCategory: Pay-As-You-Go
   BillingCurrency: USD
   ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: control_plane_hours
+    description: Per-cluster-hour management charge on Standard / Premium tiers
+    unit: cluster-hour
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
       - tier
       - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
+      - cluster
+  - name: node_vm_hours
+    description: Agent node compute time
+    unit: instance-hour
+    aggregation: sum
+    dimensions:
+      - vm_sku
+      - region
+      - node_pool
+      - cluster
+  - name: managed_disks
+    description: OS disks and persistent volumes
+    unit: GB-month
+    aggregation: avg
+    dimensions:
+      - disk_tier
+      - region
+  - name: load_balancer
+    description: Standard Load Balancer rules and data processed
+    unit: rule-hour
+    aggregation: sum
+    dimensions:
+      - region
+  - name: egress_bandwidth
+    description: Internet / cross-region traffic from cluster
     unit: GB
     aggregation: sum
     dimensions:
-      - api
       - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Azure Kubernetes Service REST API
-    baseURL: https://management.azure.com
-    tags:
-      - Containers
-      - Kubernetes
-      - Management
-    serviceName: Azure Kubernetes Service REST API
-    serviceCategory: API
-  - name: Azure Kubernetes Service Managed Clusters API
-    baseURL: https://management.azure.com
-    tags:
-      - Clusters
-      - Kubernetes
-      - Management
-    serviceName: Azure Kubernetes Service Managed Clusters API
-    serviceCategory: API
-  - name: Azure Kubernetes Service Agent Pools API
-    baseURL: https://management.azure.com
-    tags:
-      - Agent Pools
-      - Kubernetes
-      - Node Pools
-    serviceName: Azure Kubernetes Service Agent Pools API
-    serviceCategory: API
-  - name: Azure Kubernetes Service Maintenance Configurations API
-    baseURL: https://management.azure.com
-    tags:
-      - Configuration
-      - Kubernetes
-      - Maintenance
-    serviceName: Azure Kubernetes Service Maintenance Configurations API
-    serviceCategory: API
-  - name: Azure Kubernetes Service Snapshots API
-    baseURL: https://management.azure.com
-    tags:
-      - Backup
-      - Kubernetes
-      - Snapshots
-    serviceName: Azure Kubernetes Service Snapshots API
-    serviceCategory: API
-  - name: Azure Kubernetes Service Private Endpoint Connections API
-    baseURL: https://management.azure.com
-    tags:
-      - Kubernetes
-      - Networking
-      - Private Endpoints
-    serviceName: Azure Kubernetes Service Private Endpoint Connections API
-    serviceCategory: API
-  - name: Azure Kubernetes Service Trusted Access Role Bindings API
-    baseURL: https://management.azure.com
-    tags:
-      - Kubernetes
-      - Security
-      - Trusted Access
-    serviceName: Azure Kubernetes Service Trusted Access Role Bindings API
-    serviceCategory: API
-  - name: Azure Kubernetes Service kubectl API
-    baseURL: https://{cluster-name}.{region}.azmk8s.io
-    tags:
-      - Cluster Management
-      - Kubectl
-      - Kubernetes
-    serviceName: Azure Kubernetes Service kubectl API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - destination
+principles:
+  - name: Visibility
+    description: Use AKS Cost Analysis (preview) which integrates with OpenCost; layer Azure Cost Management
+      tag-based filters by namespace, deployment, and pod label propagated from cluster tags.
+  - name: Allocation
+    description: Tag clusters and node pools; map Kubernetes namespaces to teams via cost allocation
+      labels; use OpenCost or Microsoft Cost Analysis to break down by workload.
+  - name: Optimization
+    description: Use Free tier for non-production; pick Standard over Premium unless LTS is required;
+      enable cluster autoscaler and Karpenter-style pod-driven scaling; right-size VM SKUs; use Spot
+      node pools for fault-tolerant workloads; commit to Azure Reservations or Savings Plans for steady
+      node pools.
+  - name: Accountability
+    description: Assign cluster admins as cost owners; review monthly per-namespace cost trends; alert
+      on unattended node-pool growth or Spot eviction-driven cost spikes.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
