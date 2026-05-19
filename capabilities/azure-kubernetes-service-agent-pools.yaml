@@ -1,0 +1,344 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Azure Kubernetes Service REST API — Agent Pools
+  description: 'Azure Kubernetes Service REST API — Agent Pools. 9 operations. Lead operation: Azure Kubernetes Service List
+    Agent Pools. Self-contained Naftiko capability covering one Azure Kubernetes Service business surface.'
+  tags:
+  - Azure Kubernetes Service
+  - Agent Pools
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AZURE_KUBERNETES_SERVICE_API_KEY: AZURE_KUBERNETES_SERVICE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: azure-kubernetes-service-agent-pools
+    baseUri: https://management.azure.com
+    description: Azure Kubernetes Service REST API — Agent Pools business capability. Self-contained, no shared references.
+    resources:
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools
+      operations:
+      - name: agentpoolslist
+        method: GET
+        description: Azure Kubernetes Service List Agent Pools
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}
+      operations:
+      - name: agentpoolsget
+        method: GET
+        description: Azure Kubernetes Service Get an Agent Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: agentpoolscreateorupdate
+        method: PUT
+        description: Azure Kubernetes Service Create or Update an Agent Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: if-match
+          in: header
+          type: string
+          description: The request should only proceed if an entity matches this string.
+        - name: if-none-match
+          in: header
+          type: string
+          description: The request should only proceed if no entity matches this string.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: agentpoolsdelete
+        method: DELETE
+        description: Azure Kubernetes Service Delete an Agent Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/abort
+      operations:
+      - name: agentpoolsabortlatestoperation
+        method: POST
+        description: Azure Kubernetes Service Abort Latest Operation on an Agent Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/availableAgentPoolVersions
+      operations:
+      - name: agentpoolsgetavailableagentpoolversions
+        method: GET
+        description: Azure Kubernetes Service Get Available Agent Pool Versions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/deleteMachines
+      operations:
+      - name: agentpoolsdeletemachines
+        method: POST
+        description: Azure Kubernetes Service Delete Specific Machines in an Agent Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/upgradeNodeImageVersion
+      operations:
+      - name: agentpoolsupgradenodeimageversion
+        method: POST
+        description: Azure Kubernetes Service Upgrade Node Image Version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/upgradeProfiles/default
+      operations:
+      - name: agentpoolsgetupgradeprofile
+        method: GET
+        description: Azure Kubernetes Service Get the Upgrade Profile for an Agent Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.AZURE_KUBERNETES_SERVICE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: azure-kubernetes-service-agent-pools-rest
+    port: 8080
+    description: REST adapter for Azure Kubernetes Service REST API — Agent Pools. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-containerservice/managedclusters/{resourcename}/agentpools
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: agentpoolslist
+        description: Azure Kubernetes Service List Agent Pools
+        call: azure-kubernetes-service-agent-pools.agentpoolslist
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-containerservice/managedclusters/{resourcename}/agentpools/{agentpoolname}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: agentpoolsget
+        description: Azure Kubernetes Service Get an Agent Pool
+        call: azure-kubernetes-service-agent-pools.agentpoolsget
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: agentpoolscreateorupdate
+        description: Azure Kubernetes Service Create or Update an Agent Pool
+        call: azure-kubernetes-service-agent-pools.agentpoolscreateorupdate
+        with:
+          if-match: rest.if-match
+          if-none-match: rest.if-none-match
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: agentpoolsdelete
+        description: Azure Kubernetes Service Delete an Agent Pool
+        call: azure-kubernetes-service-agent-pools.agentpoolsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-containerservice/managedclusters/{resourcename}/agentpools/{agentpoolname}/abort
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: agentpoolsabortlatestoperation
+        description: Azure Kubernetes Service Abort Latest Operation on an Agent Pool
+        call: azure-kubernetes-service-agent-pools.agentpoolsabortlatestoperation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-containerservice/managedclusters/{resourcename}/agentpools/{agentpoolname}/availableagentpoolversions
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: agentpoolsgetavailableagentpoolversions
+        description: Azure Kubernetes Service Get Available Agent Pool Versions
+        call: azure-kubernetes-service-agent-pools.agentpoolsgetavailableagentpoolversions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-containerservice/managedclusters/{resourcename}/agentpools/{agentpoolname}/deletemachines
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: agentpoolsdeletemachines
+        description: Azure Kubernetes Service Delete Specific Machines in an Agent Pool
+        call: azure-kubernetes-service-agent-pools.agentpoolsdeletemachines
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-containerservice/managedclusters/{resourcename}/agentpools/{agentpoolname}/upgradenodeimageversion
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: agentpoolsupgradenodeimageversion
+        description: Azure Kubernetes Service Upgrade Node Image Version
+        call: azure-kubernetes-service-agent-pools.agentpoolsupgradenodeimageversion
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-containerservice/managedclusters/{resourcename}/agentpools/{agentpoolname}/upgradeprofiles/default
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: agentpoolsgetupgradeprofile
+        description: Azure Kubernetes Service Get the Upgrade Profile for an Agent Pool
+        call: azure-kubernetes-service-agent-pools.agentpoolsgetupgradeprofile
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: azure-kubernetes-service-agent-pools-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Azure Kubernetes Service REST API — Agent Pools. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: azure-kubernetes-service-list-agent
+      description: Azure Kubernetes Service List Agent Pools
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-kubernetes-service-agent-pools.agentpoolslist
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-kubernetes-service-get-agent
+      description: Azure Kubernetes Service Get an Agent Pool
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-kubernetes-service-agent-pools.agentpoolsget
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-kubernetes-service-create-update
+      description: Azure Kubernetes Service Create or Update an Agent Pool
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-kubernetes-service-agent-pools.agentpoolscreateorupdate
+      with:
+        if-match: tools.if-match
+        if-none-match: tools.if-none-match
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-kubernetes-service-delete-agent
+      description: Azure Kubernetes Service Delete an Agent Pool
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: azure-kubernetes-service-agent-pools.agentpoolsdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-kubernetes-service-abort-latest
+      description: Azure Kubernetes Service Abort Latest Operation on an Agent Pool
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: azure-kubernetes-service-agent-pools.agentpoolsabortlatestoperation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-kubernetes-service-get-available
+      description: Azure Kubernetes Service Get Available Agent Pool Versions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-kubernetes-service-agent-pools.agentpoolsgetavailableagentpoolversions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-kubernetes-service-delete-specific
+      description: Azure Kubernetes Service Delete Specific Machines in an Agent Pool
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-kubernetes-service-agent-pools.agentpoolsdeletemachines
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-kubernetes-service-upgrade-node
+      description: Azure Kubernetes Service Upgrade Node Image Version
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-kubernetes-service-agent-pools.agentpoolsupgradenodeimageversion
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: azure-kubernetes-service-get-upgrade
+      description: Azure Kubernetes Service Get the Upgrade Profile for an Agent Pool
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-kubernetes-service-agent-pools.agentpoolsgetupgradeprofile
+      outputParameters:
+      - type: object
+        mapping: $.
