@@ -1,0 +1,515 @@
+{
+  "provider": "Azure Kubernetes Service",
+  "providerId": "microsoft-azure-kubernetes-service",
+  "kind": "json-structure",
+  "description": "Structural overview of the Azure Kubernetes Service API surface; extracted from openapi/.",
+  "schemaCount": 45,
+  "operationCount": 24,
+  "schemas": [
+    {
+      "name": "ManagedCluster",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "location"
+      ]
+    },
+    {
+      "name": "ManagedClusterProperties",
+      "type": "object",
+      "propertyCount": 36,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterAgentPoolProfile",
+      "type": "object",
+      "propertyCount": 38,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "AgentPool",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "AgentPoolProperties",
+      "type": "object",
+      "propertyCount": 38,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterSKU",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterIdentity",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "UserAssignedIdentity",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ExtendedLocation",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "SystemData",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "ContainerServiceLinuxProfile",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "adminUsername",
+        "ssh"
+      ]
+    },
+    {
+      "name": "ManagedClusterWindowsProfile",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "adminUsername"
+      ]
+    },
+    {
+      "name": "ManagedClusterServicePrincipalProfile",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "clientId"
+      ]
+    },
+    {
+      "name": "ManagedClusterAddonProfile",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "enabled"
+      ]
+    },
+    {
+      "name": "ContainerServiceNetworkProfile",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterLoadBalancerProfile",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterNATGatewayProfile",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterAADProfile",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterAutoScalerProfile",
+      "type": "object",
+      "propertyCount": 19,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterAutoUpgradeProfile",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ClusterUpgradeSettings",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterAPIServerAccessProfile",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterSecurityProfile",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterStorageProfile",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterIngressProfile",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterOIDCIssuerProfile",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterMetricsProfile",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterAzureMonitorProfile",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ServiceMeshProfile",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterWorkloadAutoScalerProfile",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterNodeResourceGroupProfile",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "AgentPoolUpgradeSettings",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "PowerState",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "CreationData",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterListResult",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AgentPoolListResult",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ManagedClusterUpgradeProfile",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "AgentPoolUpgradeProfile",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "AgentPoolAvailableVersions",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "CredentialResults",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "RunCommandRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "command"
+      ]
+    },
+    {
+      "name": "RunCommandResult",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AgentPoolDeleteMachinesParameter",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "machineNames"
+      ]
+    },
+    {
+      "name": "TagsObject",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "CloudError",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/subscriptions/{subscriptionId}/providers/Microsoft.ContainerService/managedClusters",
+      "operationId": "ManagedClusters_List",
+      "summary": "Azure Kubernetes Service List Managed Clusters",
+      "tags": [
+        "Managed Clusters"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters",
+      "operationId": "ManagedClusters_ListByResourceGroup",
+      "summary": "Azure Kubernetes Service List Managed Clusters by Resource Group",
+      "tags": [
+        "Managed Clusters"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}",
+      "operationId": "ManagedClusters_Get",
+      "summary": "Azure Kubernetes Service Get a Managed Cluster",
+      "tags": [
+        "Managed Clusters"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}",
+      "operationId": "ManagedClusters_CreateOrUpdate",
+      "summary": "Azure Kubernetes Service Create or Update a Managed Cluster",
+      "tags": [
+        "Managed Clusters"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}",
+      "operationId": "ManagedClusters_Delete",
+      "summary": "Azure Kubernetes Service Delete a Managed Cluster",
+      "tags": [
+        "Managed Clusters"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}",
+      "operationId": "ManagedClusters_UpdateTags",
+      "summary": "Azure Kubernetes Service Update Managed Cluster Tags",
+      "tags": [
+        "Managed Clusters"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/upgradeProfiles/default",
+      "operationId": "ManagedClusters_GetUpgradeProfile",
+      "summary": "Azure Kubernetes Service Get Upgrade Profile for a Managed Cluster",
+      "tags": [
+        "Managed Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/listClusterAdminCredential",
+      "operationId": "ManagedClusters_ListClusterAdminCredentials",
+      "summary": "Azure Kubernetes Service List Cluster Admin Credentials",
+      "tags": [
+        "Managed Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/listClusterUserCredential",
+      "operationId": "ManagedClusters_ListClusterUserCredentials",
+      "summary": "Azure Kubernetes Service List Cluster User Credentials",
+      "tags": [
+        "Managed Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/listClusterMonitoringUserCredential",
+      "operationId": "ManagedClusters_ListClusterMonitoringUserCredentials",
+      "summary": "Azure Kubernetes Service List Cluster Monitoring User Credentials",
+      "tags": [
+        "Managed Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/rotateClusterCertificates",
+      "operationId": "ManagedClusters_RotateClusterCertificates",
+      "summary": "Azure Kubernetes Service Rotate Cluster Certificates",
+      "tags": [
+        "Managed Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/stop",
+      "operationId": "ManagedClusters_Stop",
+      "summary": "Azure Kubernetes Service Stop a Managed Cluster",
+      "tags": [
+        "Managed Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/start",
+      "operationId": "ManagedClusters_Start",
+      "summary": "Azure Kubernetes Service Start a Managed Cluster",
+      "tags": [
+        "Managed Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/runCommand",
+      "operationId": "ManagedClusters_RunCommand",
+      "summary": "Azure Kubernetes Service Run a Command on a Managed Cluster",
+      "tags": [
+        "Managed Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/abort",
+      "operationId": "ManagedClusters_AbortLatestOperation",
+      "summary": "Azure Kubernetes Service Abort the Latest Operation on a Managed Cluster",
+      "tags": [
+        "Managed Clusters"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools",
+      "operationId": "AgentPools_List",
+      "summary": "Azure Kubernetes Service List Agent Pools",
+      "tags": [
+        "Agent Pools"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}",
+      "operationId": "AgentPools_Get",
+      "summary": "Azure Kubernetes Service Get an Agent Pool",
+      "tags": [
+        "Agent Pools"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}",
+      "operationId": "AgentPools_CreateOrUpdate",
+      "summary": "Azure Kubernetes Service Create or Update an Agent Pool",
+      "tags": [
+        "Agent Pools"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}",
+      "operationId": "AgentPools_Delete",
+      "summary": "Azure Kubernetes Service Delete an Agent Pool",
+      "tags": [
+        "Agent Pools"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/upgradeProfiles/default",
+      "operationId": "AgentPools_GetUpgradeProfile",
+      "summary": "Azure Kubernetes Service Get the Upgrade Profile for an Agent Pool",
+      "tags": [
+        "Agent Pools"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/availableAgentPoolVersions",
+      "operationId": "AgentPools_GetAvailableAgentPoolVersions",
+      "summary": "Azure Kubernetes Service Get Available Agent Pool Versions",
+      "tags": [
+        "Agent Pools"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/upgradeNodeImageVersion",
+      "operationId": "AgentPools_UpgradeNodeImageVersion",
+      "summary": "Azure Kubernetes Service Upgrade Node Image Version",
+      "tags": [
+        "Agent Pools"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/abort",
+      "operationId": "AgentPools_AbortLatestOperation",
+      "summary": "Azure Kubernetes Service Abort Latest Operation on an Agent Pool",
+      "tags": [
+        "Agent Pools"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/deleteMachines",
+      "operationId": "AgentPools_DeleteMachines",
+      "summary": "Azure Kubernetes Service Delete Specific Machines in an Agent Pool",
+      "tags": [
+        "Agent Pools"
+      ]
+    }
+  ]
+}

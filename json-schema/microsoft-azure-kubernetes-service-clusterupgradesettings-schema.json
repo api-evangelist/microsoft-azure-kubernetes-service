@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ClusterUpgradeSettings",
+  "title": "ClusterUpgradeSettings",
+  "type": "object",
+  "description": "Settings for upgrading a cluster.",
+  "properties": {
+    "overrideSettings": {
+      "type": "object",
+      "description": "Settings for overrides during upgrade.",
+      "properties": {
+        "forceUpgrade": {
+          "type": "boolean",
+          "description": "Whether to force upgrade the cluster. Note that this option instructs the upgrade operation to bypass upgrade protections."
+        },
+        "until": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Until when the overrides are effective."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

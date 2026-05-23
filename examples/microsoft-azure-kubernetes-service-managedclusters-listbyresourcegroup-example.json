@@ -1,0 +1,46 @@
+{
+  "operationId": "ManagedClusters_ListByResourceGroup",
+  "method": "GET",
+  "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters",
+  "summary": "Azure Kubernetes Service List Managed Clusters by Resource Group",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ManagedclustersListbyresourcegroup200Example",
+      "example": {
+        "value": [
+          {
+            "id": "abc123",
+            "name": "Example Title",
+            "type": "example_value",
+            "location": "example_value",
+            "tags": "example_value",
+            "kind": "example_value"
+          }
+        ],
+        "nextLink": "example_value"
+      }
+    },
+    {
+      "status": "default",
+      "contentType": "application/json",
+      "name": "ManagedclustersListbyresourcegroupdefaultExample",
+      "example": {
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "target": "example_value",
+          "details": [
+            {
+              "code": "example_value",
+              "message": "example_value",
+              "target": "example_value"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

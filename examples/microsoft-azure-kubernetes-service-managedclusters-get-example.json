@@ -1,0 +1,84 @@
+{
+  "operationId": "ManagedClusters_Get",
+  "method": "GET",
+  "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}",
+  "summary": "Azure Kubernetes Service Get a Managed Cluster",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ManagedclustersGet200Example",
+      "example": {
+        "id": "abc123",
+        "name": "Example Title",
+        "type": "example_value",
+        "location": "example_value",
+        "tags": "example_value",
+        "sku": {
+          "name": "Base",
+          "tier": "Free"
+        },
+        "kind": "example_value",
+        "identity": {
+          "principalId": "500123",
+          "tenantId": "500123",
+          "type": "SystemAssigned",
+          "userAssignedIdentities": "example_value"
+        },
+        "extendedLocation": {
+          "name": "Example Title",
+          "type": "EdgeZone"
+        },
+        "systemData": {
+          "createdBy": "example_value",
+          "createdByType": "User",
+          "createdAt": "2026-01-15T10:30:00Z",
+          "lastModifiedBy": "example_value",
+          "lastModifiedByType": "User",
+          "lastModifiedAt": "2026-01-15T10:30:00Z"
+        },
+        "properties": {
+          "provisioningState": "example_value",
+          "maxAgentPools": 10,
+          "kubernetesVersion": "example_value",
+          "currentKubernetesVersion": "example_value",
+          "dnsPrefix": "example_value",
+          "fqdnSubdomain": "example_value",
+          "fqdn": "example_value",
+          "privateFQDN": "example_value",
+          "azurePortalFQDN": "example_value",
+          "enableRBAC": true,
+          "supportPlan": "KubernetesOfficial",
+          "disableLocalAccounts": true,
+          "nodeResourceGroup": "example_value",
+          "agentPoolProfiles": [
+            {}
+          ],
+          "identityProfile": "example_value",
+          "addonProfiles": "example_value",
+          "diskEncryptionSetID": "500123"
+        }
+      }
+    },
+    {
+      "status": "default",
+      "contentType": "application/json",
+      "name": "ManagedclustersGetdefaultExample",
+      "example": {
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "target": "example_value",
+          "details": [
+            {
+              "code": "example_value",
+              "message": "example_value",
+              "target": "example_value"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

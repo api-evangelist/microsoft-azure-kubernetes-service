@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RunCommandResult",
+  "title": "RunCommandResult",
+  "type": "object",
+  "description": "Run command result.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The command id.",
+      "example": "abc123"
+    },
+    "properties": {
+      "type": "object",
+      "readOnly": true,
+      "properties": {
+        "provisioningState": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Provisioning state."
+        },
+        "exitCode": {
+          "type": "integer",
+          "format": "int32",
+          "readOnly": true,
+          "description": "The exit code of the command."
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true,
+          "description": "The time when the command started."
+        },
+        "finishedAt": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true,
+          "description": "The time when the command finished."
+        },
+        "logs": {
+          "type": "string",
+          "readOnly": true,
+          "description": "The command output."
+        },
+        "reason": {
+          "type": "string",
+          "readOnly": true,
+          "description": "An explanation of why provisioningState is set to failed."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

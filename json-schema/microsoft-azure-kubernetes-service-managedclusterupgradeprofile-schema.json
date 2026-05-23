@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ManagedClusterUpgradeProfile",
+  "title": "ManagedClusterUpgradeProfile",
+  "type": "object",
+  "description": "The list of available upgrades for compute pools.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The ID of the upgrade profile.",
+      "example": "abc123"
+    },
+    "name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The name of the upgrade profile.",
+      "example": "Example Title"
+    },
+    "type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of the upgrade profile.",
+      "example": "example_value"
+    },
+    "properties": {
+      "type": "object",
+      "required": [
+        "controlPlaneProfile",
+        "agentPoolProfiles"
+      ],
+      "properties": {
+        "controlPlaneProfile": {
+          "type": "object",
+          "description": "The list of available upgrade versions for the control plane.",
+          "properties": {
+            "kubernetesVersion": {
+              "type": "string",
+              "description": "The Kubernetes version."
+            },
+            "osType": {
+              "type": "string",
+              "enum": [
+                "Linux",
+                "Windows"
+              ],
+              "default": "Linux"
+            },
+            "upgrades": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kubernetesVersion": {
+                    "type": "string"
+                  },
+                  "isPreview": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "agentPoolProfiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kubernetesVersion": {
+                "type": "string"
+              },
+              "osType": {
+                "type": "string",
+                "enum": [
+                  "Linux",
+                  "Windows"
+                ],
+                "default": "Linux"
+              },
+              "upgrades": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "kubernetesVersion": {
+                      "type": "string"
+                    },
+                    "isPreview": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": "The list of available upgrade versions for agent pools."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

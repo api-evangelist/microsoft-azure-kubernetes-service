@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreationData",
+  "title": "CreationData",
+  "type": "object",
+  "description": "Data used when creating a target resource from a source resource.",
+  "properties": {
+    "sourceResourceId": {
+      "type": "string",
+      "description": "This is the ARM ID of the source object to be used to create the target object.",
+      "example": "500123"
+    }
+  }
+}

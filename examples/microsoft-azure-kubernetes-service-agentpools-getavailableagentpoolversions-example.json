@@ -1,0 +1,47 @@
+{
+  "operationId": "AgentPools_GetAvailableAgentPoolVersions",
+  "method": "GET",
+  "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/availableAgentPoolVersions",
+  "summary": "Azure Kubernetes Service Get Available Agent Pool Versions",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "AgentpoolsGetavailableagentpoolversions200Example",
+      "example": {
+        "id": "abc123",
+        "name": "Example Title",
+        "type": "example_value",
+        "properties": {
+          "agentPoolVersions": [
+            {
+              "default": true,
+              "kubernetesVersion": "example_value",
+              "isPreview": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "status": "default",
+      "contentType": "application/json",
+      "name": "AgentpoolsGetavailableagentpoolversionsdefaultExample",
+      "example": {
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "target": "example_value",
+          "details": [
+            {
+              "code": "example_value",
+              "message": "example_value",
+              "target": "example_value"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

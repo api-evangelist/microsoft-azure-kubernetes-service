@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TagsObject",
+  "title": "TagsObject",
+  "type": "object",
+  "description": "Tags object for patch operations.",
+  "properties": {
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Resource tags.",
+      "example": "example_value"
+    }
+  }
+}

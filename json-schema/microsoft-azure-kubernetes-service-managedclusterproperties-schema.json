@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ManagedClusterProperties",
+  "title": "ManagedClusterProperties",
+  "type": "object",
+  "description": "Properties of the managed cluster.",
+  "properties": {
+    "provisioningState": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The current provisioning state of the managed cluster resource.",
+      "example": "example_value"
+    },
+    "powerState": {
+      "$ref": "#/components/schemas/PowerState",
+      "readOnly": true
+    },
+    "maxAgentPools": {
+      "type": "integer",
+      "format": "int32",
+      "readOnly": true,
+      "description": "The max number of agent pools for the managed cluster.",
+      "example": 10
+    },
+    "kubernetesVersion": {
+      "type": "string",
+      "description": "The version of Kubernetes specified by the user. Both patch version (e.g. 1.20.13) and minor version (e.g. 1.20) are supported. When a minor version is specified, the latest supported patch version is chosen automatically.",
+      "example": "example_value"
+    },
+    "currentKubernetesVersion": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The version of Kubernetes the Managed Cluster is running.",
+      "example": "example_value"
+    },
+    "dnsPrefix": {
+      "type": "string",
+      "description": "This cannot be updated once the Managed Cluster has been created.",
+      "example": "example_value"
+    },
+    "fqdnSubdomain": {
+      "type": "string",
+      "description": "This cannot be updated once the Managed Cluster has been created. Used only with private clusters with custom private DNS zone.",
+      "example": "example_value"
+    },
+    "fqdn": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The FQDN of the master pool.",
+      "example": "example_value"
+    },
+    "privateFQDN": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The FQDN of private cluster.",
+      "example": "example_value"
+    },
+    "azurePortalFQDN": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The special FQDN used by the Azure Portal to access the Managed Cluster. It is only set for private cluster enabled clusters.",
+      "example": "example_value"
+    },
+    "enableRBAC": {
+      "type": "boolean",
+      "description": "Whether to enable Kubernetes Role-Based Access Control.",
+      "example": true
+    },
+    "supportPlan": {
+      "type": "string",
+      "description": "The support plan for the Managed Cluster.",
+      "enum": [
+        "KubernetesOfficial",
+        "AKSLongTermSupport"
+      ],
+      "default": "KubernetesOfficial",
+      "example": "KubernetesOfficial"
+    },
+    "disableLocalAccounts": {
+      "type": "boolean",
+      "description": "If set to true, getting static credentials will be disabled for this cluster.",
+      "example": true
+    },
+    "nodeResourceGroup": {
+      "type": "string",
+      "description": "The name of the resource group containing agent pool nodes.",
+      "example": "example_value"
+    },
+    "nodeResourceGroupProfile": {
+      "$ref": "#/components/schemas/ManagedClusterNodeResourceGroupProfile"
+    },
+    "agentPoolProfiles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ManagedClusterAgentPoolProfile"
+      },
+      "description": "The agent pool properties.",
+      "example": []
+    },
+    "linuxProfile": {
+      "$ref": "#/components/schemas/ContainerServiceLinuxProfile"
+    },
+    "windowsProfile": {
+      "$ref": "#/components/schemas/ManagedClusterWindowsProfile"
+    },
+    "servicePrincipalProfile": {
+      "$ref": "#/components/schemas/ManagedClusterServicePrincipalProfile"
+    },
+    "identityProfile": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/UserAssignedIdentity"
+      },
+      "description": "Identities associated with the cluster.",
+      "example": "example_value"
+    },
+    "addonProfiles": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/ManagedClusterAddonProfile"
+      },
+      "description": "The profile of managed cluster add-ons.",
+      "example": "example_value"
+    },
+    "networkProfile": {
+      "$ref": "#/components/schemas/ContainerServiceNetworkProfile"
+    },
+    "aadProfile": {
+      "$ref": "#/components/schemas/ManagedClusterAADProfile"
+    },
+    "autoScalerProfile": {
+      "$ref": "#/components/schemas/ManagedClusterAutoScalerProfile"
+    },
+    "autoUpgradeProfile": {
+      "$ref": "#/components/schemas/ManagedClusterAutoUpgradeProfile"
+    },
+    "upgradeSettings": {
+      "$ref": "#/components/schemas/ClusterUpgradeSettings"
+    },
+    "apiServerAccessProfile": {
+      "$ref": "#/components/schemas/ManagedClusterAPIServerAccessProfile"
+    },
+    "diskEncryptionSetID": {
+      "type": "string",
+      "description": "The Resource ID of the disk encryption set to use for enabling encryption at rest.",
+      "example": "500123"
+    },
+    "securityProfile": {
+      "$ref": "#/components/schemas/ManagedClusterSecurityProfile"
+    },
+    "storageProfile": {
+      "$ref": "#/components/schemas/ManagedClusterStorageProfile"
+    },
+    "ingressProfile": {
+      "$ref": "#/components/schemas/ManagedClusterIngressProfile"
+    },
+    "oidcIssuerProfile": {
+      "$ref": "#/components/schemas/ManagedClusterOIDCIssuerProfile"
+    },
+    "metricsProfile": {
+      "$ref": "#/components/schemas/ManagedClusterMetricsProfile"
+    },
+    "azureMonitorProfile": {
+      "$ref": "#/components/schemas/ManagedClusterAzureMonitorProfile"
+    },
+    "serviceMeshProfile": {
+      "$ref": "#/components/schemas/ServiceMeshProfile"
+    },
+    "workloadAutoScalerProfile": {
+      "$ref": "#/components/schemas/ManagedClusterWorkloadAutoScalerProfile"
+    }
+  }
+}

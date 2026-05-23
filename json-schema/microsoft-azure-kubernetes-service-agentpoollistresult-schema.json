@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AgentPoolListResult",
+  "title": "AgentPoolListResult",
+  "type": "object",
+  "description": "The response from the List Agent Pools operation.",
+  "properties": {
+    "value": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AgentPool"
+      },
+      "description": "The list of agent pools.",
+      "example": []
+    },
+    "nextLink": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The URL to get the next set of agent pool results.",
+      "example": "example_value"
+    }
+  }
+}

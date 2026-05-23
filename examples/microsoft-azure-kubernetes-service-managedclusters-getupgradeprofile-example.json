@@ -1,0 +1,54 @@
+{
+  "operationId": "ManagedClusters_GetUpgradeProfile",
+  "method": "GET",
+  "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/upgradeProfiles/default",
+  "summary": "Azure Kubernetes Service Get Upgrade Profile for a Managed Cluster",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ManagedclustersGetupgradeprofile200Example",
+      "example": {
+        "id": "abc123",
+        "name": "Example Title",
+        "type": "example_value",
+        "properties": {
+          "controlPlaneProfile": {
+            "kubernetesVersion": "example_value",
+            "osType": "Linux",
+            "upgrades": [
+              {}
+            ]
+          },
+          "agentPoolProfiles": [
+            {
+              "kubernetesVersion": "example_value",
+              "osType": "Linux",
+              "upgrades": {}
+            }
+          ]
+        }
+      }
+    },
+    {
+      "status": "default",
+      "contentType": "application/json",
+      "name": "ManagedclustersGetupgradeprofiledefaultExample",
+      "example": {
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "target": "example_value",
+          "details": [
+            {
+              "code": "example_value",
+              "message": "example_value",
+              "target": "example_value"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ManagedClusterLoadBalancerProfile",
+  "title": "ManagedClusterLoadBalancerProfile",
+  "type": "object",
+  "description": "Profile of the managed cluster load balancer.",
+  "properties": {
+    "managedOutboundIPs": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 1,
+          "description": "The desired number of outbound IPs created/managed by Azure for the cluster load balancer."
+        }
+      },
+      "description": "Desired managed outbound IPs for the cluster load balancer.",
+      "example": "example_value"
+    },
+    "outboundIPPrefixes": {
+      "type": "object",
+      "properties": {
+        "publicIPPrefixes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The fully qualified Azure resource id."
+              }
+            }
+          }
+        }
+      },
+      "description": "Desired outbound IP Prefix resources for the cluster load balancer.",
+      "example": "example_value"
+    },
+    "outboundIPs": {
+      "type": "object",
+      "properties": {
+        "publicIPs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The fully qualified Azure resource id."
+              }
+            }
+          }
+        }
+      },
+      "description": "Desired outbound IP resources for the cluster load balancer.",
+      "example": "example_value"
+    },
+    "effectiveOutboundIPs": {
+      "type": "array",
+      "readOnly": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The fully qualified Azure resource id."
+          }
+        }
+      },
+      "description": "The effective outbound IP resources of the cluster load balancer.",
+      "example": []
+    },
+    "allocatedOutboundPorts": {
+      "type": "integer",
+      "format": "int32",
+      "minimum": 0,
+      "maximum": 64000,
+      "default": 0,
+      "description": "The desired number of allocated SNAT ports per VM.",
+      "example": 10
+    },
+    "idleTimeoutInMinutes": {
+      "type": "integer",
+      "format": "int32",
+      "minimum": 4,
+      "maximum": 120,
+      "default": 30,
+      "description": "Desired outbound flow idle timeout in minutes.",
+      "example": 10
+    }
+  }
+}

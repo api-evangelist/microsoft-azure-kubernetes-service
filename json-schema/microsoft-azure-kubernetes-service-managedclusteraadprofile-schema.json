@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ManagedClusterAADProfile",
+  "title": "ManagedClusterAADProfile",
+  "type": "object",
+  "description": "Azure Active Directory configuration for integration with AKS.",
+  "properties": {
+    "managed": {
+      "type": "boolean",
+      "description": "Whether to enable managed AAD.",
+      "example": true
+    },
+    "enableAzureRBAC": {
+      "type": "boolean",
+      "description": "Whether to enable Azure RBAC for Kubernetes authorization.",
+      "example": true
+    },
+    "adminGroupObjectIDs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The list of AAD group object IDs that will have admin role of the cluster.",
+      "example": []
+    },
+    "clientAppID": {
+      "type": "string",
+      "description": "(DEPRECATED) The client AAD application ID. Used for legacy/non-managed AAD.",
+      "example": "500123"
+    },
+    "serverAppID": {
+      "type": "string",
+      "description": "(DEPRECATED) The server AAD application ID. Used for legacy/non-managed AAD.",
+      "example": "500123"
+    },
+    "serverAppSecret": {
+      "type": "string",
+      "description": "(DEPRECATED) The server AAD application secret. Used for legacy/non-managed AAD.",
+      "example": "example_value"
+    },
+    "tenantID": {
+      "type": "string",
+      "description": "The AAD tenant ID to use for authentication. If not specified, will use the tenant of the deployment subscription.",
+      "example": "500123"
+    }
+  }
+}

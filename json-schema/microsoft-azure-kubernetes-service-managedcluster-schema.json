@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ManagedCluster",
+  "title": "ManagedCluster",
+  "type": "object",
+  "description": "Managed cluster resource representing an Azure Kubernetes Service cluster.",
+  "required": [
+    "location"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Fully qualified resource ID for the resource. Example: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}",
+      "example": "abc123"
+    },
+    "name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The name of the resource.",
+      "example": "Example Title"
+    },
+    "type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of the resource. Example: Microsoft.ContainerService/managedClusters",
+      "example": "example_value"
+    },
+    "location": {
+      "type": "string",
+      "description": "The geo-location where the resource lives.",
+      "example": "example_value"
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Resource tags.",
+      "example": "example_value"
+    },
+    "sku": {
+      "$ref": "#/components/schemas/ManagedClusterSKU"
+    },
+    "kind": {
+      "type": "string",
+      "description": "This is primarily used to expose different UI experiences in the portal for different kinds.",
+      "example": "example_value"
+    },
+    "identity": {
+      "$ref": "#/components/schemas/ManagedClusterIdentity"
+    },
+    "extendedLocation": {
+      "$ref": "#/components/schemas/ExtendedLocation"
+    },
+    "systemData": {
+      "$ref": "#/components/schemas/SystemData",
+      "readOnly": true
+    },
+    "properties": {
+      "$ref": "#/components/schemas/ManagedClusterProperties"
+    }
+  }
+}

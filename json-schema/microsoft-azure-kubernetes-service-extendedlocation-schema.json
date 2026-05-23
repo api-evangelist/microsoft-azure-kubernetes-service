@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExtendedLocation",
+  "title": "ExtendedLocation",
+  "type": "object",
+  "description": "The complex type of the extended location.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the extended location.",
+      "example": "Example Title"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of the extended location.",
+      "enum": [
+        "EdgeZone"
+      ],
+      "example": "EdgeZone"
+    }
+  }
+}

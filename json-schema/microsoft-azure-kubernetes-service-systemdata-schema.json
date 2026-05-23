@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SystemData",
+  "title": "SystemData",
+  "type": "object",
+  "description": "Metadata pertaining to creation and last modification of the resource.",
+  "properties": {
+    "createdBy": {
+      "type": "string",
+      "description": "The identity that created the resource.",
+      "example": "example_value"
+    },
+    "createdByType": {
+      "type": "string",
+      "description": "The type of identity that created the resource.",
+      "enum": [
+        "User",
+        "Application",
+        "ManagedIdentity",
+        "Key"
+      ],
+      "example": "User"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp of resource creation (UTC).",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "lastModifiedBy": {
+      "type": "string",
+      "description": "The identity that last modified the resource.",
+      "example": "example_value"
+    },
+    "lastModifiedByType": {
+      "type": "string",
+      "description": "The type of identity that last modified the resource.",
+      "enum": [
+        "User",
+        "Application",
+        "ManagedIdentity",
+        "Key"
+      ],
+      "example": "User"
+    },
+    "lastModifiedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp of resource last modification (UTC).",
+      "example": "2026-01-15T10:30:00Z"
+    }
+  }
+}

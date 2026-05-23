@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServiceMeshProfile",
+  "title": "ServiceMeshProfile",
+  "type": "object",
+  "description": "Service mesh profile for a managed cluster.",
+  "properties": {
+    "mode": {
+      "type": "string",
+      "description": "Mode of the service mesh.",
+      "enum": [
+        "Istio",
+        "Disabled"
+      ],
+      "example": "Istio"
+    },
+    "istio": {
+      "type": "object",
+      "description": "Istio service mesh configuration.",
+      "properties": {
+        "revisions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The list of revisions of the Istio control plane."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

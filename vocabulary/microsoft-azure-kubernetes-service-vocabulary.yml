@@ -1,0 +1,9 @@
+name: Azure Kubernetes Service Domain Vocabulary
+provider: Azure Kubernetes Service
+providerId: microsoft-azure-kubernetes-service
+description: Tag-derived vocabulary for the Azure Kubernetes Service API surface; sourced from openapi/ tags.
+terms:
+- term: Agent Pools
+  description: Operations for managing agent pools (node pools) within AKS clusters
+- term: Managed Clusters
+  description: Operations for managing AKS managed clusters

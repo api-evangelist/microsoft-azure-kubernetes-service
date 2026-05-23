@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AgentPoolDeleteMachinesParameter",
+  "title": "AgentPoolDeleteMachinesParameter",
+  "type": "object",
+  "description": "The parameters for deleting machines in an agent pool.",
+  "required": [
+    "machineNames"
+  ],
+  "properties": {
+    "machineNames": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The list of machine names to delete.",
+      "example": []
+    }
+  }
+}

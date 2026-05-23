@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AgentPoolAvailableVersions",
+  "title": "AgentPoolAvailableVersions",
+  "type": "object",
+  "description": "The available agent pool versions.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The ID of the agent pool version list.",
+      "example": "abc123"
+    },
+    "name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The name of the agent pool version list.",
+      "example": "Example Title"
+    },
+    "type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The resource type.",
+      "example": "example_value"
+    },
+    "properties": {
+      "type": "object",
+      "properties": {
+        "agentPoolVersions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "default": {
+                "type": "boolean",
+                "description": "Whether this version is the default."
+              },
+              "kubernetesVersion": {
+                "type": "string",
+                "description": "The Kubernetes version."
+              },
+              "isPreview": {
+                "type": "boolean",
+                "description": "Whether this version is in preview."
+              }
+            }
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

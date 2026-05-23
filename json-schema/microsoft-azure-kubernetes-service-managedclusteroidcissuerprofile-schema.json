@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ManagedClusterOIDCIssuerProfile",
+  "title": "ManagedClusterOIDCIssuerProfile",
+  "type": "object",
+  "description": "The OIDC issuer profile of the Managed Cluster.",
+  "properties": {
+    "issuerURL": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The OIDC issuer url of the Managed Cluster.",
+      "example": "https://www.example.com"
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the OIDC issuer is enabled.",
+      "example": true
+    }
+  }
+}

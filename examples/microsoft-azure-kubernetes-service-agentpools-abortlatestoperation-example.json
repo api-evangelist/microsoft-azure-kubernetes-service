@@ -1,0 +1,28 @@
+{
+  "operationId": "AgentPools_AbortLatestOperation",
+  "method": "POST",
+  "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/abort",
+  "summary": "Azure Kubernetes Service Abort Latest Operation on an Agent Pool",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "default",
+      "contentType": "application/json",
+      "name": "AgentpoolsAbortlatestoperationdefaultExample",
+      "example": {
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "target": "example_value",
+          "details": [
+            {
+              "code": "example_value",
+              "message": "example_value",
+              "target": "example_value"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

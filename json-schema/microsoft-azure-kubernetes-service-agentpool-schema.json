@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AgentPool",
+  "title": "AgentPool",
+  "type": "object",
+  "description": "Agent pool resource within a managed cluster.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Resource ID.",
+      "example": "abc123"
+    },
+    "name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The name of the resource that is unique within a resource group.",
+      "example": "Example Title"
+    },
+    "type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Resource type.",
+      "example": "example_value"
+    },
+    "properties": {
+      "$ref": "#/components/schemas/AgentPoolProperties"
+    }
+  }
+}

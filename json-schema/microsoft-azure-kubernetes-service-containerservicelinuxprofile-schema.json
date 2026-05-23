@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContainerServiceLinuxProfile",
+  "title": "ContainerServiceLinuxProfile",
+  "type": "object",
+  "description": "Profile for Linux VMs in the container service cluster.",
+  "required": [
+    "adminUsername",
+    "ssh"
+  ],
+  "properties": {
+    "adminUsername": {
+      "type": "string",
+      "description": "The administrator username to use for Linux VMs.",
+      "pattern": "^[A-Za-z][-A-Za-z0-9_]*$",
+      "example": "example_value"
+    },
+    "ssh": {
+      "type": "object",
+      "description": "The SSH configuration for Linux-based VMs running on Azure.",
+      "required": [
+        "publicKeys"
+      ],
+      "properties": {
+        "publicKeys": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "keyData"
+            ],
+            "properties": {
+              "keyData": {
+                "type": "string",
+                "description": "Certificate public key used to authenticate with VMs through SSH. The certificate must be in PEM format with or without headers."
+              }
+            }
+          },
+          "description": "The list of SSH public keys used to authenticate with Linux-based VMs."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

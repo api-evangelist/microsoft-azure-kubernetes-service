@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AgentPoolUpgradeProfile",
+  "title": "AgentPoolUpgradeProfile",
+  "type": "object",
+  "description": "The list of available upgrades for an agent pool.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The ID of the agent pool upgrade profile.",
+      "example": "abc123"
+    },
+    "name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The name of the agent pool upgrade profile.",
+      "example": "Example Title"
+    },
+    "type": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The type of the agent pool upgrade profile.",
+      "example": "example_value"
+    },
+    "properties": {
+      "type": "object",
+      "required": [
+        "kubernetesVersion",
+        "osType"
+      ],
+      "properties": {
+        "kubernetesVersion": {
+          "type": "string",
+          "description": "The Kubernetes version."
+        },
+        "osType": {
+          "type": "string",
+          "enum": [
+            "Linux",
+            "Windows"
+          ],
+          "default": "Linux"
+        },
+        "upgrades": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kubernetesVersion": {
+                "type": "string"
+              },
+              "isPreview": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "latestNodeImageVersion": {
+          "type": "string",
+          "description": "The latest node image version available for the agent pool."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

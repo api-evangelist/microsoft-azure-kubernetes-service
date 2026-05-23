@@ -1,0 +1,38 @@
+{
+  "operationId": "AgentPools_DeleteMachines",
+  "method": "POST",
+  "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/deleteMachines",
+  "summary": "Azure Kubernetes Service Delete Specific Machines in an Agent Pool",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "AgentpoolsDeletemachinesRequestExample",
+      "example": {
+        "machineNames": [
+          "example_value"
+        ]
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "default",
+      "contentType": "application/json",
+      "name": "AgentpoolsDeletemachinesdefaultExample",
+      "example": {
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "target": "example_value",
+          "details": [
+            {
+              "code": "example_value",
+              "message": "example_value",
+              "target": "example_value"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

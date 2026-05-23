@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContainerServiceNetworkProfile",
+  "title": "ContainerServiceNetworkProfile",
+  "type": "object",
+  "description": "Profile of network configuration.",
+  "properties": {
+    "networkPlugin": {
+      "type": "string",
+      "description": "Network plugin used for building the Kubernetes network.",
+      "enum": [
+        "azure",
+        "kubenet",
+        "none"
+      ],
+      "default": "kubenet",
+      "example": "azure"
+    },
+    "networkPluginMode": {
+      "type": "string",
+      "description": "The mode the network plugin should use.",
+      "enum": [
+        "overlay"
+      ],
+      "example": "overlay"
+    },
+    "networkPolicy": {
+      "type": "string",
+      "description": "Network policy used for building the Kubernetes network.",
+      "enum": [
+        "azure",
+        "calico",
+        "cilium",
+        "none"
+      ],
+      "example": "azure"
+    },
+    "networkDataplane": {
+      "type": "string",
+      "description": "Network dataplane used in the Kubernetes cluster.",
+      "enum": [
+        "azure",
+        "cilium"
+      ],
+      "example": "azure"
+    },
+    "podCidr": {
+      "type": "string",
+      "description": "A CIDR notation IP range from which to assign pod IPs.",
+      "default": "10.244.0.0/16",
+      "example": "example_value"
+    },
+    "serviceCidr": {
+      "type": "string",
+      "description": "A CIDR notation IP range from which to assign service cluster IPs.",
+      "default": "10.0.0.0/16",
+      "example": "example_value"
+    },
+    "dnsServiceIP": {
+      "type": "string",
+      "description": "An IP address assigned to the Kubernetes DNS service. It must be within the Kubernetes service address range.",
+      "default": "10.0.0.10",
+      "example": "example_value"
+    },
+    "outboundType": {
+      "type": "string",
+      "description": "The outbound (egress) routing method.",
+      "enum": [
+        "loadBalancer",
+        "userDefinedRouting",
+        "managedNATGateway",
+        "userAssignedNATGateway",
+        "none"
+      ],
+      "default": "loadBalancer",
+      "example": "loadBalancer"
+    },
+    "loadBalancerSku": {
+      "type": "string",
+      "description": "The load balancer sku for the managed cluster.",
+      "enum": [
+        "standard",
+        "basic"
+      ],
+      "default": "standard",
+      "example": "standard"
+    },
+    "loadBalancerProfile": {
+      "$ref": "#/components/schemas/ManagedClusterLoadBalancerProfile"
+    },
+    "natGatewayProfile": {
+      "$ref": "#/components/schemas/ManagedClusterNATGatewayProfile"
+    },
+    "ipFamilies": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "IPv4",
+          "IPv6"
+        ]
+      },
+      "description": "IP families used to specify IP versions available to the cluster.",
+      "example": []
+    }
+  }
+}

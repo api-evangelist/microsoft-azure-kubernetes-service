@@ -1,0 +1,28 @@
+{
+  "operationId": "AgentPools_Delete",
+  "method": "DELETE",
+  "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}",
+  "summary": "Azure Kubernetes Service Delete an Agent Pool",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "default",
+      "contentType": "application/json",
+      "name": "AgentpoolsDeletedefaultExample",
+      "example": {
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "target": "example_value",
+          "details": [
+            {
+              "code": "example_value",
+              "message": "example_value",
+              "target": "example_value"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

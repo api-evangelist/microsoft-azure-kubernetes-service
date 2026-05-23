@@ -1,0 +1,54 @@
+{
+  "operationId": "ManagedClusters_RunCommand",
+  "method": "POST",
+  "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/runCommand",
+  "summary": "Azure Kubernetes Service Run a Command on a Managed Cluster",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "ManagedclustersRuncommandRequestExample",
+      "example": {
+        "command": "example_value",
+        "context": "example_value",
+        "clusterToken": "example_value"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "ManagedclustersRuncommand200Example",
+      "example": {
+        "id": "abc123",
+        "properties": {
+          "provisioningState": "example_value",
+          "exitCode": 10,
+          "startedAt": "2026-01-15T10:30:00Z",
+          "finishedAt": "2026-01-15T10:30:00Z",
+          "logs": "example_value",
+          "reason": "example_value"
+        }
+      }
+    },
+    {
+      "status": "default",
+      "contentType": "application/json",
+      "name": "ManagedclustersRuncommanddefaultExample",
+      "example": {
+        "error": {
+          "code": "example_value",
+          "message": "example_value",
+          "target": "example_value",
+          "details": [
+            {
+              "code": "example_value",
+              "message": "example_value",
+              "target": "example_value"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

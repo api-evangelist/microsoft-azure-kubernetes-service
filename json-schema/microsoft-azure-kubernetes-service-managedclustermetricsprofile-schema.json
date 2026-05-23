@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ManagedClusterMetricsProfile",
+  "title": "ManagedClusterMetricsProfile",
+  "type": "object",
+  "description": "The metrics profile for the ManagedCluster.",
+  "properties": {
+    "costAnalysis": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether the cost analysis add-on is enabled."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}
