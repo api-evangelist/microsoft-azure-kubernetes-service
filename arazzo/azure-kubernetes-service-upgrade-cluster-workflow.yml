@@ -1,0 +1,156 @@
+arazzo: 1.0.1
+info:
+  title: Azure Kubernetes Service Upgrade Cluster Control Plane
+  summary: Discover an available Kubernetes version, upgrade the cluster, and poll until provisioned.
+  description: >-
+    Reads the cluster upgrade profile to discover the target control-plane
+    Kubernetes version, submits a create-or-update that sets that version, and
+    then polls the cluster Get endpoint until provisioningState reports
+    Succeeded, looping while it is still Upgrading. Every step inlines its
+    request so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: aksApi
+  url: ../openapi/azure-kubernetes-service-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upgrade-cluster-control-plane
+  summary: Upgrade an AKS cluster to a target Kubernetes version and wait for completion.
+  description: >-
+    Calls ManagedClusters_GetUpgradeProfile, submits
+    ManagedClusters_CreateOrUpdate with the chosen kubernetesVersion, and polls
+    ManagedClusters_Get until provisioningState is Succeeded.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - resourceName
+    - targetKubernetesVersion
+    - accessToken
+    properties:
+      subscriptionId:
+        type: string
+        description: The ID of the target subscription (valid UUID).
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      resourceName:
+        type: string
+        description: The name of the managed cluster.
+      targetKubernetesVersion:
+        type: string
+        description: The Kubernetes version to upgrade the control plane to.
+      apiVersion:
+        type: string
+        description: The AKS REST API version to use.
+        default: '2025-10-01'
+      location:
+        type: string
+        description: The Azure region of the cluster (required on create-or-update).
+      accessToken:
+        type: string
+        description: An Azure AD bearer token with user_impersonation scope.
+  steps:
+  - stepId: getUpgradeProfile
+    description: >-
+      Read the cluster upgrade profile to confirm the current control-plane
+      version and the upgrades it offers before applying the target version.
+    operationId: ManagedClusters_GetUpgradeProfile
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      currentVersion: $response.body#/properties/controlPlaneProfile/kubernetesVersion
+  - stepId: applyUpgrade
+    description: >-
+      Submit a create-or-update setting the target kubernetesVersion under the
+      ARM properties object. A 200 indicates the upgrade request was accepted.
+    operationId: ManagedClusters_CreateOrUpdate
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        location: $inputs.location
+        properties:
+          kubernetesVersion: $inputs.targetKubernetesVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+  - stepId: pollCluster
+    description: >-
+      Read the cluster and inspect provisioningState. While the cluster is still
+      Upgrading the flow loops back to this step; once it reports Succeeded the
+      workflow ends.
+    operationId: ManagedClusters_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+      currentKubernetesVersion: $response.body#/properties/currentKubernetesVersion
+    onSuccess:
+    - name: upgradeComplete
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollCluster
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState != "Succeeded"
+        type: jsonpath
+  outputs:
+    previousVersion: $steps.getUpgradeProfile.outputs.currentVersion
+    provisioningState: $steps.pollCluster.outputs.provisioningState
+    currentKubernetesVersion: $steps.pollCluster.outputs.currentKubernetesVersion

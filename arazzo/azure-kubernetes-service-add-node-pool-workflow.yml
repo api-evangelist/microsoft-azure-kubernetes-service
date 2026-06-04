@@ -1,0 +1,152 @@
+arazzo: 1.0.1
+info:
+  title: Azure Kubernetes Service Add Node Pool and Poll
+  summary: Add a new agent (node) pool to an AKS cluster and poll until it finishes provisioning.
+  description: >-
+    Adds an additional agent pool to an existing managed cluster, then polls the
+    agent pool Get endpoint until its provisioningState reaches Succeeded,
+    branching back to keep polling while the pool is still Creating. Every step
+    inlines its request so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: aksApi
+  url: ../openapi/azure-kubernetes-service-openapi.yml
+  type: openapi
+workflows:
+- workflowId: add-node-pool-and-poll
+  summary: Create an agent pool on a cluster and wait until it is provisioned.
+  description: >-
+    Issues AgentPools_CreateOrUpdate and then loops on AgentPools_Get until
+    provisioningState is Succeeded.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - resourceName
+    - agentPoolName
+    - accessToken
+    properties:
+      subscriptionId:
+        type: string
+        description: The ID of the target subscription (valid UUID).
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      resourceName:
+        type: string
+        description: The name of the managed cluster.
+      agentPoolName:
+        type: string
+        description: The name of the agent pool to add (lowercase, max 12 chars).
+      apiVersion:
+        type: string
+        description: The AKS REST API version to use.
+        default: '2025-10-01'
+      nodeCount:
+        type: integer
+        description: The number of nodes to create in the new pool.
+        default: 3
+      vmSize:
+        type: string
+        description: The VM size for the new pool nodes.
+        default: Standard_DS2_v2
+      mode:
+        type: string
+        description: The pool mode (System or User).
+        default: User
+      orchestratorVersion:
+        type: string
+        description: The Kubernetes version for the pool.
+        default: '1.30'
+      accessToken:
+        type: string
+        description: An Azure AD bearer token with user_impersonation scope.
+  steps:
+  - stepId: createNodePool
+    description: >-
+      Submit an agent pool create-or-update. ARM wraps the pool configuration
+      under a properties object and returns 201 Created for an asynchronous add.
+    operationId: AgentPools_CreateOrUpdate
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: agentPoolName
+      in: path
+      value: $inputs.agentPoolName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        properties:
+          count: $inputs.nodeCount
+          vmSize: $inputs.vmSize
+          osType: Linux
+          mode: $inputs.mode
+          orchestratorVersion: $inputs.orchestratorVersion
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      agentPoolId: $response.body#/id
+      provisioningState: $response.body#/properties/provisioningState
+  - stepId: pollNodePool
+    description: >-
+      Read the agent pool and inspect provisioningState. While the pool is still
+      Creating the flow loops back to this step; once it reports Succeeded the
+      workflow ends.
+    operationId: AgentPools_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: agentPoolName
+      in: path
+      value: $inputs.agentPoolName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+      count: $response.body#/properties/count
+    onSuccess:
+    - name: poolReady
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollNodePool
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState != "Succeeded"
+        type: jsonpath
+  outputs:
+    agentPoolId: $steps.createNodePool.outputs.agentPoolId
+    provisioningState: $steps.pollNodePool.outputs.provisioningState
+    nodeCount: $steps.pollNodePool.outputs.count

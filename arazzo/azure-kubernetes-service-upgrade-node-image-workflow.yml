@@ -1,0 +1,154 @@
+arazzo: 1.0.1
+info:
+  title: Azure Kubernetes Service Upgrade Node Pool Image
+  summary: Discover the latest node image, trigger the node image upgrade, and poll until complete.
+  description: >-
+    Reads the agent pool upgrade profile to discover the latest available node
+    image version, triggers an upgrade of the pool node image to that latest
+    version, and then polls the agent pool Get endpoint until provisioningState
+    reports Succeeded, looping while it is still Upgrading. Every step inlines
+    its request so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: aksApi
+  url: ../openapi/azure-kubernetes-service-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upgrade-node-image
+  summary: Upgrade an agent pool node image to the latest version and wait for completion.
+  description: >-
+    Reads AgentPools_GetUpgradeProfile, triggers
+    AgentPools_UpgradeNodeImageVersion, then polls AgentPools_Get until
+    provisioningState is Succeeded.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - resourceName
+    - agentPoolName
+    - accessToken
+    properties:
+      subscriptionId:
+        type: string
+        description: The ID of the target subscription (valid UUID).
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      resourceName:
+        type: string
+        description: The name of the managed cluster.
+      agentPoolName:
+        type: string
+        description: The name of the agent pool to upgrade.
+      apiVersion:
+        type: string
+        description: The AKS REST API version to use.
+        default: '2025-10-01'
+      accessToken:
+        type: string
+        description: An Azure AD bearer token with user_impersonation scope.
+  steps:
+  - stepId: getUpgradeProfile
+    description: >-
+      Read the agent pool upgrade profile to capture the latest available node
+      image version before triggering the upgrade.
+    operationId: AgentPools_GetUpgradeProfile
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: agentPoolName
+      in: path
+      value: $inputs.agentPoolName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      latestNodeImageVersion: $response.body#/properties/latestNodeImageVersion
+  - stepId: triggerImageUpgrade
+    description: >-
+      Trigger the node image upgrade for the pool. AKS accepts the request
+      asynchronously and returns 202 Accepted.
+    operationId: AgentPools_UpgradeNodeImageVersion
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: agentPoolName
+      in: path
+      value: $inputs.agentPoolName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 202
+  - stepId: pollNodePool
+    description: >-
+      Read the agent pool and inspect provisioningState. While it is still
+      Upgrading the flow loops back to this step; once it reports Succeeded the
+      workflow ends.
+    operationId: AgentPools_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: agentPoolName
+      in: path
+      value: $inputs.agentPoolName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+      nodeImageVersion: $response.body#/properties/nodeImageVersion
+    onSuccess:
+    - name: upgradeComplete
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollNodePool
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState != "Succeeded"
+        type: jsonpath
+  outputs:
+    latestNodeImageVersion: $steps.getUpgradeProfile.outputs.latestNodeImageVersion
+    provisioningState: $steps.pollNodePool.outputs.provisioningState
+    nodeImageVersion: $steps.pollNodePool.outputs.nodeImageVersion

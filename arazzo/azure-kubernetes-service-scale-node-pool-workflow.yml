@@ -1,0 +1,166 @@
+arazzo: 1.0.1
+info:
+  title: Azure Kubernetes Service Scale Node Pool
+  summary: Read an agent pool, change its node count, and poll until the scale operation completes.
+  description: >-
+    Reads the current state of an agent pool, submits a create-or-update that
+    sets a new node count, and then polls the agent pool Get endpoint until
+    provisioningState reports Succeeded, looping while it is still Scaling.
+    Every step inlines its request so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: aksApi
+  url: ../openapi/azure-kubernetes-service-openapi.yml
+  type: openapi
+workflows:
+- workflowId: scale-node-pool
+  summary: Change the node count of an AKS agent pool and wait for the scale to finish.
+  description: >-
+    Reads AgentPools_Get for the current count, applies AgentPools_CreateOrUpdate
+    with the new count, then polls AgentPools_Get until provisioningState is
+    Succeeded.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - resourceName
+    - agentPoolName
+    - newNodeCount
+    - accessToken
+    properties:
+      subscriptionId:
+        type: string
+        description: The ID of the target subscription (valid UUID).
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      resourceName:
+        type: string
+        description: The name of the managed cluster.
+      agentPoolName:
+        type: string
+        description: The name of the agent pool to scale.
+      newNodeCount:
+        type: integer
+        description: The desired number of nodes after scaling.
+      apiVersion:
+        type: string
+        description: The AKS REST API version to use.
+        default: '2025-10-01'
+      accessToken:
+        type: string
+        description: An Azure AD bearer token with user_impersonation scope.
+  steps:
+  - stepId: readNodePool
+    description: >-
+      Read the agent pool to capture its current node count and VM size before
+      changing the count.
+    operationId: AgentPools_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: agentPoolName
+      in: path
+      value: $inputs.agentPoolName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      currentCount: $response.body#/properties/count
+      vmSize: $response.body#/properties/vmSize
+  - stepId: applyScale
+    description: >-
+      Submit a create-or-update setting the new count under the ARM properties
+      object. A 200 indicates the scale request was accepted.
+    operationId: AgentPools_CreateOrUpdate
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: agentPoolName
+      in: path
+      value: $inputs.agentPoolName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        properties:
+          count: $inputs.newNodeCount
+          vmSize: $steps.readNodePool.outputs.vmSize
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+  - stepId: pollNodePool
+    description: >-
+      Read the agent pool and inspect provisioningState. While it is still
+      Scaling the flow loops back to this step; once it reports Succeeded the
+      workflow ends.
+    operationId: AgentPools_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: agentPoolName
+      in: path
+      value: $inputs.agentPoolName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+      count: $response.body#/properties/count
+    onSuccess:
+    - name: scaleComplete
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollNodePool
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState != "Succeeded"
+        type: jsonpath
+  outputs:
+    previousCount: $steps.readNodePool.outputs.currentCount
+    provisioningState: $steps.pollNodePool.outputs.provisioningState
+    finalCount: $steps.pollNodePool.outputs.count

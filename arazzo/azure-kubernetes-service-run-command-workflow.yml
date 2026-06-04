@@ -1,0 +1,121 @@
+arazzo: 1.0.1
+info:
+  title: Azure Kubernetes Service Run Command on Cluster
+  summary: Confirm a cluster is provisioned, then run a kubectl command against it via the AKS command runner.
+  description: >-
+    Confirms the target cluster is in a Succeeded provisioning state and then
+    submits a command to the AKS command runner, which is the supported way to
+    run kubectl against private clusters. The run command request returns a
+    result whose provisioningState and exitCode report how the command finished.
+    Every step inlines its request so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: aksApi
+  url: ../openapi/azure-kubernetes-service-openapi.yml
+  type: openapi
+workflows:
+- workflowId: run-command-on-cluster
+  summary: Verify a cluster is ready, then run a command against it through the AKS command runner.
+  description: >-
+    Reads ManagedClusters_Get to confirm readiness, then submits
+    ManagedClusters_RunCommand and captures the command result.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - resourceName
+    - command
+    - accessToken
+    properties:
+      subscriptionId:
+        type: string
+        description: The ID of the target subscription (valid UUID).
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      resourceName:
+        type: string
+        description: The name of the managed cluster.
+      command:
+        type: string
+        description: The shell/kubectl command to run (e.g. "kubectl get pods -A").
+      context:
+        type: string
+        description: A base64 encoded zip of files required by the command.
+        default: ''
+      apiVersion:
+        type: string
+        description: The AKS REST API version to use.
+        default: '2025-10-01'
+      accessToken:
+        type: string
+        description: An Azure AD bearer token with user_impersonation scope.
+  steps:
+  - stepId: confirmReady
+    description: >-
+      Read the cluster and confirm provisioningState is Succeeded before
+      attempting to run a command against it.
+    operationId: ManagedClusters_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.properties.provisioningState == "Succeeded"
+      type: jsonpath
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+  - stepId: runCommand
+    description: >-
+      Submit the command to the AKS command runner. The command field is
+      required; a 200 indicates the command completed synchronously and the
+      result carries exitCode and logs.
+    operationId: ManagedClusters_RunCommand
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        command: $inputs.command
+        context: $inputs.context
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      commandId: $response.body#/id
+      commandState: $response.body#/properties/provisioningState
+      exitCode: $response.body#/properties/exitCode
+      logs: $response.body#/properties/logs
+  outputs:
+    commandId: $steps.runCommand.outputs.commandId
+    exitCode: $steps.runCommand.outputs.exitCode
+    logs: $steps.runCommand.outputs.logs

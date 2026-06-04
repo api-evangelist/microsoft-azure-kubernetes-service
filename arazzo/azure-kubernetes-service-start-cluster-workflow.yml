@@ -1,0 +1,142 @@
+arazzo: 1.0.1
+info:
+  title: Azure Kubernetes Service Start Cluster
+  summary: Start a stopped AKS cluster, poll until provisioned, then fetch user credentials.
+  description: >-
+    Starts a previously stopped managed cluster, polls the cluster Get endpoint
+    until provisioningState reports Succeeded (looping while it is still
+    Starting), and then lists the cluster user credentials so a kubeconfig is
+    ready as soon as the cluster is back online. Every step inlines its request
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: aksApi
+  url: ../openapi/azure-kubernetes-service-openapi.yml
+  type: openapi
+workflows:
+- workflowId: start-cluster-and-fetch-credentials
+  summary: Start an AKS cluster, wait until it is running, and pull user credentials.
+  description: >-
+    Calls ManagedClusters_Start, polls ManagedClusters_Get until
+    provisioningState is Succeeded, then calls
+    ManagedClusters_ListClusterUserCredentials.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - resourceName
+    - accessToken
+    properties:
+      subscriptionId:
+        type: string
+        description: The ID of the target subscription (valid UUID).
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      resourceName:
+        type: string
+        description: The name of the managed cluster.
+      apiVersion:
+        type: string
+        description: The AKS REST API version to use.
+        default: '2025-10-01'
+      accessToken:
+        type: string
+        description: An Azure AD bearer token with user_impersonation scope.
+  steps:
+  - stepId: startCluster
+    description: >-
+      Request the cluster start. AKS accepts the request asynchronously and
+      returns 202 Accepted.
+    operationId: ManagedClusters_Start
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 202
+  - stepId: pollCluster
+    description: >-
+      Read the cluster and inspect provisioningState. While the cluster is still
+      Starting the flow loops back to this step; once it reports Succeeded the
+      flow advances to fetch credentials.
+    operationId: ManagedClusters_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+      fqdn: $response.body#/properties/fqdn
+    onSuccess:
+    - name: clusterRunning
+      type: goto
+      stepId: listUserCredentials
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollCluster
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState != "Succeeded"
+        type: jsonpath
+  - stepId: listUserCredentials
+    description: >-
+      List the cluster user credentials. The response carries a kubeconfigs
+      array whose first entry holds the base64-encoded kubeconfig.
+    operationId: ManagedClusters_ListClusterUserCredentials
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      kubeconfig: $response.body#/kubeconfigs/0/value
+  outputs:
+    provisioningState: $steps.pollCluster.outputs.provisioningState
+    fqdn: $steps.pollCluster.outputs.fqdn
+    kubeconfig: $steps.listUserCredentials.outputs.kubeconfig

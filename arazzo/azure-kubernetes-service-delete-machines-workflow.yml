@@ -1,0 +1,134 @@
+arazzo: 1.0.1
+info:
+  title: Azure Kubernetes Service Delete Node Pool Machines
+  summary: Delete specific machines from an agent pool and poll until the operation completes.
+  description: >-
+    Targets specific underlying machines in an agent pool for deletion (for
+    cordoning off unhealthy nodes), then polls the agent pool Get endpoint until
+    provisioningState reports Succeeded, looping while it is still Deleting.
+    Every step inlines its request so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: aksApi
+  url: ../openapi/azure-kubernetes-service-openapi.yml
+  type: openapi
+workflows:
+- workflowId: delete-node-pool-machines
+  summary: Delete named machines from an AKS agent pool and wait for the operation to settle.
+  description: >-
+    Calls AgentPools_DeleteMachines with the machine names to remove, then polls
+    AgentPools_Get until provisioningState is Succeeded.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - resourceName
+    - agentPoolName
+    - machineNames
+    - accessToken
+    properties:
+      subscriptionId:
+        type: string
+        description: The ID of the target subscription (valid UUID).
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      resourceName:
+        type: string
+        description: The name of the managed cluster.
+      agentPoolName:
+        type: string
+        description: The name of the agent pool.
+      machineNames:
+        type: array
+        description: The list of machine names to delete from the pool.
+        items:
+          type: string
+      apiVersion:
+        type: string
+        description: The AKS REST API version to use.
+        default: '2025-10-01'
+      accessToken:
+        type: string
+        description: An Azure AD bearer token with user_impersonation scope.
+  steps:
+  - stepId: deleteMachines
+    description: >-
+      Submit the list of machine names to delete. The required machineNames
+      array is sent as the request body; AKS accepts the request asynchronously
+      and returns 202 Accepted.
+    operationId: AgentPools_DeleteMachines
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: agentPoolName
+      in: path
+      value: $inputs.agentPoolName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        machineNames: $inputs.machineNames
+    successCriteria:
+    - condition: $statusCode == 202
+  - stepId: pollNodePool
+    description: >-
+      Read the agent pool and inspect provisioningState. While it is still
+      Deleting the flow loops back to this step; once it reports Succeeded the
+      workflow ends.
+    operationId: AgentPools_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: agentPoolName
+      in: path
+      value: $inputs.agentPoolName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+      count: $response.body#/properties/count
+    onSuccess:
+    - name: deleteComplete
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollNodePool
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState != "Succeeded"
+        type: jsonpath
+  outputs:
+    provisioningState: $steps.pollNodePool.outputs.provisioningState
+    remainingCount: $steps.pollNodePool.outputs.count

@@ -1,0 +1,183 @@
+arazzo: 1.0.1
+info:
+  title: Azure Kubernetes Service Provision Cluster and Fetch Credentials
+  summary: Create a managed AKS cluster, poll until it is provisioned, then retrieve admin kubeconfig.
+  description: >-
+    Drives the canonical day-one AKS flow: submit a managed cluster create
+    request, poll the cluster Get endpoint until its provisioningState reports
+    Succeeded (branching back to keep polling while it is still Creating), and
+    then list the cluster admin credentials so the resulting kubeconfig can be
+    used to connect to the new cluster. Every step inlines its request so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: aksApi
+  url: ../openapi/azure-kubernetes-service-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-cluster-and-fetch-credentials
+  summary: Create an AKS managed cluster, wait for it to finish provisioning, and pull admin credentials.
+  description: >-
+    Issues a ManagedClusters_CreateOrUpdate, then loops on ManagedClusters_Get
+    until provisioningState is Succeeded, and finally calls
+    ManagedClusters_ListClusterAdminCredentials to obtain the kubeconfig.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - resourceName
+    - location
+    - accessToken
+    properties:
+      subscriptionId:
+        type: string
+        description: The ID of the target subscription (valid UUID).
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      resourceName:
+        type: string
+        description: The name of the managed cluster to create.
+      location:
+        type: string
+        description: The Azure region for the cluster (e.g. eastus).
+      apiVersion:
+        type: string
+        description: The AKS REST API version to use.
+        default: '2025-10-01'
+      dnsPrefix:
+        type: string
+        description: The DNS prefix for the cluster API server.
+        default: aks
+      kubernetesVersion:
+        type: string
+        description: The Kubernetes version to deploy.
+        default: '1.30'
+      nodeCount:
+        type: integer
+        description: The initial node count for the default system pool.
+        default: 3
+      vmSize:
+        type: string
+        description: The VM size for the default system pool nodes.
+        default: Standard_DS2_v2
+      accessToken:
+        type: string
+        description: An Azure AD bearer token with user_impersonation scope.
+  steps:
+  - stepId: createCluster
+    description: >-
+      Submit a managed cluster create-or-update request. ARM wraps cluster
+      configuration under a properties object and returns 201 Created for an
+      asynchronous provision.
+    operationId: ManagedClusters_CreateOrUpdate
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        location: $inputs.location
+        properties:
+          dnsPrefix: $inputs.dnsPrefix
+          kubernetesVersion: $inputs.kubernetesVersion
+          agentPoolProfiles:
+          - name: systempool
+            count: $inputs.nodeCount
+            vmSize: $inputs.vmSize
+            osType: Linux
+            mode: System
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      clusterId: $response.body#/id
+      provisioningState: $response.body#/properties/provisioningState
+  - stepId: pollCluster
+    description: >-
+      Read the cluster and inspect provisioningState. While the cluster is still
+      Creating the flow loops back to this step; once it reports Succeeded the
+      flow advances to retrieve credentials.
+    operationId: ManagedClusters_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+      fqdn: $response.body#/properties/fqdn
+    onSuccess:
+    - name: clusterReady
+      type: goto
+      stepId: listAdminCredentials
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollCluster
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState != "Succeeded"
+        type: jsonpath
+  - stepId: listAdminCredentials
+    description: >-
+      List the cluster admin credentials. The response carries a kubeconfigs
+      array whose first entry holds the base64-encoded kubeconfig for the new
+      cluster.
+    operationId: ManagedClusters_ListClusterAdminCredentials
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      kubeconfigName: $response.body#/kubeconfigs/0/name
+      kubeconfig: $response.body#/kubeconfigs/0/value
+  outputs:
+    clusterId: $steps.createCluster.outputs.clusterId
+    provisioningState: $steps.pollCluster.outputs.provisioningState
+    fqdn: $steps.pollCluster.outputs.fqdn
+    kubeconfig: $steps.listAdminCredentials.outputs.kubeconfig

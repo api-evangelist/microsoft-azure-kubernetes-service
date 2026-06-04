@@ -1,0 +1,111 @@
+arazzo: 1.0.1
+info:
+  title: Azure Kubernetes Service Stop Cluster
+  summary: Stop a running AKS cluster and poll until the stop operation finishes provisioning.
+  description: >-
+    Stops a previously running managed cluster (supported on Virtual Machine
+    Scale Set backed clusters) to pause compute spend, then polls the cluster
+    Get endpoint until provisioningState reports Succeeded, looping while the
+    cluster is still Stopping. Every step inlines its request so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: aksApi
+  url: ../openapi/azure-kubernetes-service-openapi.yml
+  type: openapi
+workflows:
+- workflowId: stop-cluster
+  summary: Stop an AKS cluster and wait until the stop operation settles.
+  description: >-
+    Calls ManagedClusters_Stop and then polls ManagedClusters_Get until
+    provisioningState is Succeeded.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - resourceName
+    - accessToken
+    properties:
+      subscriptionId:
+        type: string
+        description: The ID of the target subscription (valid UUID).
+      resourceGroupName:
+        type: string
+        description: The name of the resource group.
+      resourceName:
+        type: string
+        description: The name of the managed cluster.
+      apiVersion:
+        type: string
+        description: The AKS REST API version to use.
+        default: '2025-10-01'
+      accessToken:
+        type: string
+        description: An Azure AD bearer token with user_impersonation scope.
+  steps:
+  - stepId: stopCluster
+    description: >-
+      Request the cluster stop. AKS accepts the request asynchronously and
+      returns 202 Accepted.
+    operationId: ManagedClusters_Stop
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 202
+  - stepId: pollCluster
+    description: >-
+      Read the cluster and inspect provisioningState. While the cluster is still
+      Stopping the flow loops back to this step; once it reports Succeeded the
+      workflow ends.
+    operationId: ManagedClusters_Get
+    parameters:
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: resourceName
+      in: path
+      value: $inputs.resourceName
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      provisioningState: $response.body#/properties/provisioningState
+    onSuccess:
+    - name: stopComplete
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState == "Succeeded"
+        type: jsonpath
+    - name: keepPolling
+      type: goto
+      stepId: pollCluster
+      criteria:
+      - context: $response.body
+        condition: $.properties.provisioningState != "Succeeded"
+        type: jsonpath
+  outputs:
+    provisioningState: $steps.pollCluster.outputs.provisioningState
