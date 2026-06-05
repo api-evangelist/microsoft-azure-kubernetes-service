@@ -1,244 +1,244 @@
 # Azure Kubernetes Service (azure-kubernetes-service)
+
 Azure Kubernetes Service (AKS) simplifies deploying a managed Kubernetes cluster in Azure by offloading the operational overhead to Azure. As a hosted Kubernetes service, Azure handles critical tasks, like health monitoring and maintenance.
 
-**URL:** [Visit APIs.json URL](https://azure.microsoft.com/en-us/services/kubernetes-service/)
+**APIs.json:** [https://azure.microsoft.com/en-us/services/kubernetes-service/](https://azure.microsoft.com/en-us/services/kubernetes-service/)
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Tags
 
-## Tags:
-
- - Azure, Cloud, Containers, DevOps, Kubernetes, Orchestration
+- Azure
+- Cloud
+- Containers
+- DevOps
+- Kubernetes
+- Orchestration
 
 ## Timestamps
 
 - **Created:** 2024-01-15
-- **Modified:** 2026-04-28
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Azure Kubernetes Service REST API
+
 REST API for managing Azure Kubernetes Service clusters.
 
-**Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/](https://learn.microsoft.com/en-us/rest/api/aks/)
+- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/](https://learn.microsoft.com/en-us/rest/api/aks/)
+- **Base URL:** `https://management.azure.com`
 
-#### Tags:
+#### Tags
 
- - Containers, Kubernetes, Management
+- Containers
+- Kubernetes
+- Management
 
 #### Properties
 
 - [Documentation](https://learn.microsoft.com/en-us/azure/aks/)
-- [OpenAPI](openapi/azure-kubernetes-service-openapi.yml)
-- [JSONSchema](json-schema/azure-kubernetes-service-cluster-schema.json)
-- [JSONLD](json-ld/azure-kubernetes-service-context.jsonld)
+- [OpenAPI](openapi/azure-kubernetes-service-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/azure-kubernetes-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/azure-kubernetes-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/azure-kubernetes-service-cluster-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON-LD](json-ld/azure-kubernetes-service-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
 - [Authentication](https://learn.microsoft.com/en-us/azure/aks/concepts-identity)
 - [Pricing](https://azure.microsoft.com/en-us/pricing/details/kubernetes-service/)
-- [RateLimits](https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions)
-- [GettingStarted](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal)
-- [ChangeLog](https://github.com/Azure/AKS/blob/master/CHANGELOG.md)
-- [ReleaseNotes](https://learn.microsoft.com/en-us/azure/aks/release-tracker)
-- [SDK - Python](https://learn.microsoft.com/en-us/python/api/overview/azure/mgmt-containerservice-readme)
-- [SDK - JavaScript](https://learn.microsoft.com/en-us/javascript/api/overview/azure/container-service)
-- [SDK - .NET](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/resourcemanager.containerservice-readme)
-- [SDK - Java](https://learn.microsoft.com/en-us/java/api/overview/azure/resourcemanager-containerservice-readme)
-- [SDK - Go](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/containerservice/armcontainerservice/v6)
+- [Rate Limits](https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions)
+- [Getting Started](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal)
+- [Changelog](https://github.com/Azure/AKS/blob/master/CHANGELOG.md)
+- [Release Notes](https://learn.microsoft.com/en-us/azure/aks/release-tracker)
+- [SDK](https://learn.microsoft.com/en-us/python/api/overview/azure/mgmt-containerservice-readme)
+- [SDK](https://learn.microsoft.com/en-us/javascript/api/overview/azure/container-service)
+- [SDK](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/resourcemanager.containerservice-readme)
+- [SDK](https://learn.microsoft.com/en-us/java/api/overview/azure/resourcemanager-containerservice-readme)
+- [SDK](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/containerservice/armcontainerservice/v6)
 
 ### Azure Kubernetes Service Managed Clusters API
-REST API for creating, updating, deleting, and managing AKS managed clusters.
 
-**Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/managed-clusters](https://learn.microsoft.com/en-us/rest/api/aks/managed-clusters)
+REST API for creating, updating, deleting, and managing AKS managed clusters including cluster configuration, upgrades, credentials, and run commands.
 
-#### Tags:
+- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/managed-clusters](https://learn.microsoft.com/en-us/rest/api/aks/managed-clusters)
+- **Base URL:** `https://management.azure.com`
 
- - Clusters, Kubernetes, Management
+#### Tags
+
+- Clusters
+- Kubernetes
+- Management
 
 #### Properties
 
 - [Documentation](https://learn.microsoft.com/en-us/azure/aks/)
-- [APIReference](https://learn.microsoft.com/en-us/rest/api/aks/managed-clusters)
-- [OpenAPI](openapi/azure-kubernetes-service-openapi.yml)
-- [JSONSchema](json-schema/azure-kubernetes-service-cluster-schema.json)
-- [JSONLD](json-ld/azure-kubernetes-service-context.jsonld)
+- [API Reference](https://learn.microsoft.com/en-us/rest/api/aks/managed-clusters)
+- [OpenAPI](openapi/azure-kubernetes-service-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/azure-kubernetes-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/azure-kubernetes-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/azure-kubernetes-service-cluster-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON-LD](json-ld/azure-kubernetes-service-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
 - [Authentication](https://learn.microsoft.com/en-us/azure/aks/concepts-identity)
-- [GettingStarted](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli)
+- [Getting Started](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli)
 - [Pricing](https://azure.microsoft.com/en-us/pricing/details/kubernetes-service/)
 
 ### Azure Kubernetes Service Agent Pools API
-REST API for managing agent pools (node pools) within AKS managed clusters.
 
-**Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/agent-pools](https://learn.microsoft.com/en-us/rest/api/aks/agent-pools)
+REST API for creating, updating, deleting, and managing agent pools (node pools) within AKS managed clusters, including scaling and configuration.
 
-#### Tags:
+- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/agent-pools](https://learn.microsoft.com/en-us/rest/api/aks/agent-pools)
+- **Base URL:** `https://management.azure.com`
 
- - Agent Pools, Kubernetes, Node Pools
+#### Tags
+
+- Agent Pools
+- Kubernetes
+- Node Pools
 
 #### Properties
 
 - [Documentation](https://learn.microsoft.com/en-us/azure/aks/create-node-pools)
-- [APIReference](https://learn.microsoft.com/en-us/rest/api/aks/agent-pools)
-- [OpenAPI](openapi/azure-kubernetes-service-openapi.yml)
+- [API Reference](https://learn.microsoft.com/en-us/rest/api/aks/agent-pools)
+- [OpenAPI](openapi/azure-kubernetes-service-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/azure-kubernetes-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/azure-kubernetes-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/azure-kubernetes-service-cluster-schema.json) — [JSON Schema](https://json-schema.org/specification)
 - [Authentication](https://learn.microsoft.com/en-us/azure/aks/concepts-identity)
-- [GettingStarted](https://learn.microsoft.com/en-us/azure/aks/create-node-pools)
+- [Getting Started](https://learn.microsoft.com/en-us/azure/aks/create-node-pools)
 
 ### Azure Kubernetes Service Maintenance Configurations API
-REST API for managing planned maintenance configurations for AKS clusters.
 
-**Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/maintenance-configurations](https://learn.microsoft.com/en-us/rest/api/aks/maintenance-configurations)
+REST API for managing planned maintenance configurations, used to configure when updates can be deployed to an AKS managed cluster.
 
-#### Tags:
+- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/maintenance-configurations](https://learn.microsoft.com/en-us/rest/api/aks/maintenance-configurations)
+- **Base URL:** `https://management.azure.com`
 
- - Configuration, Kubernetes, Maintenance
+#### Tags
+
+- Configuration
+- Kubernetes
+- Maintenance
 
 #### Properties
 
 - [Documentation](https://learn.microsoft.com/en-us/azure/aks/planned-maintenance)
-- [APIReference](https://learn.microsoft.com/en-us/rest/api/aks/maintenance-configurations)
+- [API Reference](https://learn.microsoft.com/en-us/rest/api/aks/maintenance-configurations)
 - [Authentication](https://learn.microsoft.com/en-us/azure/aks/concepts-identity)
+- [Postman Collection](collections/azure-kubernetes-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/azure-kubernetes-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Azure Kubernetes Service Snapshots API
-REST API for managing node pool snapshots in AKS.
 
-**Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/snapshots](https://learn.microsoft.com/en-us/rest/api/aks/snapshots)
+REST API for creating, updating, deleting, and managing node pool snapshots in AKS, including listing snapshots by resource group.
 
-#### Tags:
+- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/snapshots](https://learn.microsoft.com/en-us/rest/api/aks/snapshots)
+- **Base URL:** `https://management.azure.com`
 
- - Backup, Kubernetes, Snapshots
+#### Tags
+
+- Backup
+- Kubernetes
+- Snapshots
 
 #### Properties
 
 - [Documentation](https://learn.microsoft.com/en-us/azure/aks/node-pool-snapshot)
-- [APIReference](https://learn.microsoft.com/en-us/rest/api/aks/snapshots)
+- [API Reference](https://learn.microsoft.com/en-us/rest/api/aks/snapshots)
 - [Authentication](https://learn.microsoft.com/en-us/azure/aks/concepts-identity)
+- [Postman Collection](collections/azure-kubernetes-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/azure-kubernetes-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Azure Kubernetes Service Private Endpoint Connections API
-REST API for managing private endpoint connections for AKS clusters.
 
-**Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/private-endpoint-connections](https://learn.microsoft.com/en-us/rest/api/aks/private-endpoint-connections)
+REST API for managing private endpoint connections for AKS clusters, enabling secure private network access to the cluster API server.
 
-#### Tags:
+- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/private-endpoint-connections](https://learn.microsoft.com/en-us/rest/api/aks/private-endpoint-connections)
+- **Base URL:** `https://management.azure.com`
 
- - Kubernetes, Networking, Private Endpoints
+#### Tags
+
+- Kubernetes
+- Networking
+- Private Endpoints
 
 #### Properties
 
 - [Documentation](https://learn.microsoft.com/en-us/azure/aks/private-clusters)
-- [APIReference](https://learn.microsoft.com/en-us/rest/api/aks/private-endpoint-connections)
+- [API Reference](https://learn.microsoft.com/en-us/rest/api/aks/private-endpoint-connections)
 - [Authentication](https://learn.microsoft.com/en-us/azure/aks/concepts-identity)
+- [Postman Collection](collections/azure-kubernetes-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/azure-kubernetes-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Azure Kubernetes Service Trusted Access Role Bindings API
-REST API for managing trusted access role bindings for AKS clusters.
 
-**Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/trusted-access-role-bindings](https://learn.microsoft.com/en-us/rest/api/aks/trusted-access-role-bindings)
+REST API for managing trusted access role bindings that give Azure services secure access to AKS API server using system-assigned managed identities.
 
-#### Tags:
+- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/trusted-access-role-bindings](https://learn.microsoft.com/en-us/rest/api/aks/trusted-access-role-bindings)
+- **Base URL:** `https://management.azure.com`
 
- - Kubernetes, Security, Trusted Access
+#### Tags
+
+- Kubernetes
+- Security
+- Trusted Access
 
 #### Properties
 
 - [Documentation](https://learn.microsoft.com/en-us/azure/aks/trusted-access-feature)
-- [APIReference](https://learn.microsoft.com/en-us/rest/api/aks/trusted-access-role-bindings)
+- [API Reference](https://learn.microsoft.com/en-us/rest/api/aks/trusted-access-role-bindings)
 - [Authentication](https://learn.microsoft.com/en-us/azure/aks/concepts-identity)
+- [Postman Collection](collections/azure-kubernetes-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/azure-kubernetes-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Azure Kubernetes Service kubectl API
+
 Kubernetes API accessible via kubectl for cluster operations.
 
-**Human URL:** [https://kubernetes.io/docs/reference/](https://kubernetes.io/docs/reference/)
+- **Human URL:** [https://kubernetes.io/docs/reference/](https://kubernetes.io/docs/reference/)
+- **Base URL:** `https://{cluster-name}.{region}.azmk8s.io`
 
-#### Tags:
+#### Tags
 
- - Cluster Management, Kubectl, Kubernetes
+- Cluster Management
+- Kubectl
+- Kubernetes
 
 #### Properties
 
 - [Documentation](https://learn.microsoft.com/en-us/azure/aks/kubernetes-walkthrough)
-- [APIReference](https://kubernetes.io/docs/reference/kubernetes-api/)
+- [API Reference](https://kubernetes.io/docs/reference/kubernetes-api/)
 - [Authentication](https://learn.microsoft.com/en-us/azure/aks/control-kubeconfig-access)
-- [GettingStarted](https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-deploy-cluster)
+- [Getting Started](https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-deploy-cluster)
+- [Postman Collection](collections/azure-kubernetes-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/azure-kubernetes-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
+- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
 - [Portal](https://portal.azure.com/)
-- [GettingStarted](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal)
-- [CLI](https://learn.microsoft.com/en-us/cli/azure/aks)
-- [StatusPage](https://status.azure.com/)
+- [Getting Started](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal)
+- [C L I](https://learn.microsoft.com/en-us/cli/azure/aks)
+- [Status Page](https://status.azure.com/)
 - [Support](https://azure.microsoft.com/en-us/support/options/)
 - [Blog](https://azure.microsoft.com/en-us/blog/topics/kubernetes/)
-- [GitHubRepository](https://github.com/Azure/AKS)
-- [StackOverflow](https://stackoverflow.com/questions/tagged/azure-aks)
+- [GitHub Repository](https://github.com/Azure/AKS)
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-aks)
 - [Security](https://learn.microsoft.com/en-us/azure/aks/concepts-security)
 - [Compliance](https://learn.microsoft.com/en-us/azure/aks/concepts-security#azure-policy)
 - [Documentation](https://learn.microsoft.com/en-us/azure/aks/)
 - [Pricing](https://azure.microsoft.com/en-us/pricing/details/kubernetes-service/)
-- [SignUp](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account)
+- [Sign Up](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account)
 - [Login](https://portal.azure.com/)
-- [TermsOfService](https://azure.microsoft.com/en-us/support/legal/)
-- [PrivacyPolicy](https://privacy.microsoft.com/en-us/privacystatement)
-- [ChangeLog](https://github.com/Azure/AKS/blob/master/CHANGELOG.md)
-- [ReleaseNotes](https://learn.microsoft.com/en-us/azure/aks/release-tracker)
-- [FAQ](https://learn.microsoft.com/en-us/azure/aks/faq)
+- [Terms of Service](https://azure.microsoft.com/en-us/support/legal/)
+- [Privacy Policy](https://privacy.microsoft.com/en-us/privacystatement)
+- [Changelog](https://github.com/Azure/AKS/blob/master/CHANGELOG.md)
+- [Release Notes](https://learn.microsoft.com/en-us/azure/aks/release-tracker)
+- [F A Q](https://learn.microsoft.com/en-us/azure/aks/faq)
 - [Training](https://learn.microsoft.com/en-us/training/modules/intro-to-azure-kubernetes-service/)
 - [YouTube](https://www.youtube.com/c/MicrosoftAzure)
-
-## Features
-
-| Name | Description |
-|------|-------------|
-| Managed Cluster Lifecycle | Create, update, delete, start, and stop AKS managed clusters with full lifecycle management. |
-| Agent Pool Management | Create and manage node pools with configurable VM sizes, scaling, and upgrade policies. |
-| Cluster Upgrades | Upgrade Kubernetes versions and node images with controlled rollout and upgrade profiles. |
-| Credential Management | Retrieve admin, user, and monitoring credentials for cluster access and authentication. |
-| Private Clusters | Deploy private AKS clusters with private endpoint connections for secure API server access. |
-| Maintenance Windows | Configure planned maintenance windows to control when updates are applied to clusters. |
-| Node Pool Snapshots | Create and manage snapshots of node pools for backup and recovery scenarios. |
-| Trusted Access | Grant Azure services secure access to AKS API server using managed identities and role bindings. |
-| Run Commands | Execute commands on cluster nodes remotely through the AKS API without direct SSH access. |
-| Auto-Scaling | Automatically scale node pools based on workload demands with configurable auto-scaler profiles. |
-
-## Use Cases
-
-| Name | Description |
-|------|-------------|
-| Microservices Deployment | Deploy and manage microservices architectures with container orchestration and service mesh capabilities. |
-| CI/CD Pipelines | Integrate AKS with Azure DevOps and GitHub Actions for automated build, test, and deployment workflows. |
-| Hybrid Cloud | Run Kubernetes workloads across on-premises and Azure environments with Azure Arc integration. |
-| Machine Learning | Deploy and scale ML model serving infrastructure using AKS with GPU-enabled node pools. |
-| Edge Computing | Deploy containerized workloads to edge locations using AKS Edge Essentials and Azure IoT. |
-
-## Integrations
-
-| Name | Description |
-|------|-------------|
-| Azure Container Registry | Pull container images from Azure Container Registry with managed identity authentication. |
-| Azure Monitor | Monitor cluster health, performance, and logs with Azure Monitor and Container Insights. |
-| Azure Policy | Enforce organizational standards and compliance with Azure Policy for Kubernetes. |
-| Azure Active Directory | Integrate with Azure AD for cluster authentication and role-based access control. |
-| Azure DevOps | Automate deployments to AKS using Azure Pipelines with native Kubernetes tasks. |
-
-## Artifacts
-
-Machine-readable API specifications organized by format.
-
-### OpenAPI
-
-- [Azure Kubernetes Service REST API](openapi/azure-kubernetes-service-openapi.yml)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [AKS REST API](capabilities/shared/aks-rest.yaml) — 12 operations for cluster and agent pool management
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Cluster Management](capabilities/cluster-management.yaml) | AKS REST | 11 | DevOps Engineer / Platform Admin |
+- [Spectral Rules](rules/azure-kubernetes-service-spectral-rules.yml)
+- [Features](undefined)
+- [Use Cases](undefined)
+- [Integrations](undefined)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com
