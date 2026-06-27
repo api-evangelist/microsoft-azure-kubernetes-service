@@ -1,10 +1,10 @@
 [
   {
-    "repo": "azure-kubernetes-service",
-    "captured_at": "2026-06-20T172902",
+    "repo": "microsoft-azure-kubernetes-service",
+    "captured_at": "2026-06-20T185419",
     "source_url": "https://portal.azure.com/",
     "source_type": "Portal",
-    "file": "azure-kubernetes-service-2026-06-20T172902.png",
-    "bytes": 232204
+    "file": "microsoft-azure-kubernetes-service-2026-06-20T185419.png",
+    "bytes": 232235
   }
 ]
