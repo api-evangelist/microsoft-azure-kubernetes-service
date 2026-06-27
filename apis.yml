@@ -46,19 +46,19 @@ apis:
         url: https://github.com/Azure/AKS/blob/master/CHANGELOG.md
       - type: ReleaseNotes
         url: https://learn.microsoft.com/en-us/azure/aks/release-tracker
-      - type: SDK
+      - type: SDKs
         url: https://learn.microsoft.com/en-us/python/api/overview/azure/mgmt-containerservice-readme
         title: Python SDK
-      - type: SDK
+      - type: SDKs
         url: https://learn.microsoft.com/en-us/javascript/api/overview/azure/container-service
         title: JavaScript SDK
-      - type: SDK
+      - type: SDKs
         url: https://learn.microsoft.com/en-us/dotnet/api/overview/azure/resourcemanager.containerservice-readme
         title: .NET SDK
-      - type: SDK
+      - type: SDKs
         url: https://learn.microsoft.com/en-us/java/api/overview/azure/resourcemanager-containerservice-readme
         title: Java SDK
-      - type: SDK
+      - type: SDKs
         url: >-
           https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/containerservice/armcontainerservice/v6
         title: Go SDK
@@ -209,39 +209,36 @@ maintainers:
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/azure-kubernetes-service/overview
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-      - url: arazzo/azure-kubernetes-service-add-node-pool-workflow.yml
-        name: Azure Kubernetes Service Add Node Pool and Poll
-        summary: Add a new agent (node) pool to an AKS cluster and poll until it finishes provisioning.
-      - url: arazzo/azure-kubernetes-service-delete-machines-workflow.yml
-        name: Azure Kubernetes Service Delete Node Pool Machines
-        summary: Delete specific machines from an agent pool and poll until the operation completes.
-      - url: arazzo/azure-kubernetes-service-provision-cluster-workflow.yml
-        name: Azure Kubernetes Service Provision Cluster and Fetch Credentials
-        summary: Create a managed AKS cluster, poll until it is provisioned, then retrieve admin kubeconfig.
-      - url: arazzo/azure-kubernetes-service-rotate-certificates-workflow.yml
-        name: Azure Kubernetes Service Rotate Cluster Certificates
-        summary: Trigger certificate rotation on a cluster, poll until provisioned, and refresh user credentials.
-      - url: arazzo/azure-kubernetes-service-run-command-workflow.yml
-        name: Azure Kubernetes Service Run Command on Cluster
-        summary: Confirm a cluster is provisioned, then run a kubectl command against it via the AKS command runner.
-      - url: arazzo/azure-kubernetes-service-scale-node-pool-workflow.yml
-        name: Azure Kubernetes Service Scale Node Pool
-        summary: Read an agent pool, change its node count, and poll until the scale operation completes.
-      - url: arazzo/azure-kubernetes-service-start-cluster-workflow.yml
-        name: Azure Kubernetes Service Start Cluster
-        summary: Start a stopped AKS cluster, poll until provisioned, then fetch user credentials.
-      - url: arazzo/azure-kubernetes-service-stop-cluster-workflow.yml
-        name: Azure Kubernetes Service Stop Cluster
-        summary: Stop a running AKS cluster and poll until the stop operation finishes provisioning.
-      - url: arazzo/azure-kubernetes-service-upgrade-cluster-workflow.yml
-        name: Azure Kubernetes Service Upgrade Cluster Control Plane
-        summary: Discover an available Kubernetes version, upgrade the cluster, and poll until provisioned.
-      - url: arazzo/azure-kubernetes-service-upgrade-node-image-workflow.yml
-        name: Azure Kubernetes Service Upgrade Node Pool Image
-        summary: Discover the latest node image, trigger the node image upgrade, and poll until complete.
+  - type: Arazzo
+    url: arazzo/azure-kubernetes-service-add-node-pool-workflow.yml
+    name: Azure Kubernetes Service Add Node Pool and Poll
+  - type: Arazzo
+    url: arazzo/azure-kubernetes-service-delete-machines-workflow.yml
+    name: Azure Kubernetes Service Delete Node Pool Machines
+  - type: Arazzo
+    url: arazzo/azure-kubernetes-service-provision-cluster-workflow.yml
+    name: Azure Kubernetes Service Provision Cluster and Fetch Credentials
+  - type: Arazzo
+    url: arazzo/azure-kubernetes-service-rotate-certificates-workflow.yml
+    name: Azure Kubernetes Service Rotate Cluster Certificates
+  - type: Arazzo
+    url: arazzo/azure-kubernetes-service-run-command-workflow.yml
+    name: Azure Kubernetes Service Run Command on Cluster
+  - type: Arazzo
+    url: arazzo/azure-kubernetes-service-scale-node-pool-workflow.yml
+    name: Azure Kubernetes Service Scale Node Pool
+  - type: Arazzo
+    url: arazzo/azure-kubernetes-service-start-cluster-workflow.yml
+    name: Azure Kubernetes Service Start Cluster
+  - type: Arazzo
+    url: arazzo/azure-kubernetes-service-stop-cluster-workflow.yml
+    name: Azure Kubernetes Service Stop Cluster
+  - type: Arazzo
+    url: arazzo/azure-kubernetes-service-upgrade-cluster-workflow.yml
+    name: Azure Kubernetes Service Upgrade Cluster Control Plane
+  - type: Arazzo
+    url: arazzo/azure-kubernetes-service-upgrade-node-image-workflow.yml
+    name: Azure Kubernetes Service Upgrade Node Pool Image
   - type: Portal
     url: https://portal.azure.com/
   - type: GettingStarted
@@ -266,7 +263,7 @@ common:
     url: https://learn.microsoft.com/en-us/azure/aks/
   - type: Pricing
     url: https://azure.microsoft.com/en-us/pricing/details/kubernetes-service/
-  - type: SignUp
+  - type: Signup
     url: https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account
   - type: Login
     url: https://portal.azure.com/

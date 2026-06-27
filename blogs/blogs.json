@@ -2,17 +2,11 @@
   "repo": "azure-kubernetes-service",
   "feeds": [
     {
-      "source": "https://azure.microsoft.com/en-us/blog/topics/kubernetes/feed/",
-      "error": "HTTPError"
-    },
-    {
-      "source": "https://azure.microsoft.com/en-us/support/options/",
-      "feed_url": "https://azure.microsoft.com/en-us/support/options/",
-      "title": "",
+      "source": "https://azure.microsoft.com/en-us/blog/topics/kubernetes/",
       "saved": 0,
-      "method": "none"
+      "error": "timeout - 2 fetch attempts exceeded 60s"
     }
   ],
   "post_count": 25,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:27:09Z"
 }
