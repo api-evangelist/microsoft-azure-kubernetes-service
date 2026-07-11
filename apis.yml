@@ -207,6 +207,8 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: OAuthScopes
+    url: scopes/microsoft-azure-kubernetes-service-scopes.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/azure-kubernetes-service/overview
   - type: Arazzo
