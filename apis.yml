@@ -207,6 +207,10 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: DomainSecurity
+    url: security/microsoft-azure-kubernetes-service-domain-security.yml
+  - type: Authentication
+    url: authentication/microsoft-azure-kubernetes-service-authentication.yml
   - type: OAuthScopes
     url: scopes/microsoft-azure-kubernetes-service-scopes.yml
   - type: PostmanWorkspace
