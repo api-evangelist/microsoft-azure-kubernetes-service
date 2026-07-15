@@ -207,6 +207,8 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: AgenticAccess
+    url: agentic-access/microsoft-azure-kubernetes-service-agentic-access.yml
   - type: DomainSecurity
     url: security/microsoft-azure-kubernetes-service-domain-security.yml
   - type: Authentication
