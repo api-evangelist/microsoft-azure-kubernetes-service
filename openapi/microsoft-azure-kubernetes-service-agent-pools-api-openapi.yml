@@ -1,0 +1,1189 @@
+openapi: 3.1.0
+info:
+  title: Azure Kubernetes Service REST Agent Pools API
+  description: REST API for managing Azure Kubernetes Service (AKS) resources including managed clusters, agent pools, maintenance configurations, snapshots, private endpoint connections, and trusted access role bindings. AKS simplifies deploying a managed Kubernetes cluster in Azure by offloading operational overhead such as health monitoring and maintenance.
+  version: '2025-10-01'
+  contact:
+    name: Microsoft Azure Support
+    url: https://azure.microsoft.com/en-us/support/options/
+  license:
+    name: Microsoft API License
+    url: https://azure.microsoft.com/en-us/support/legal/
+  x-apisguru-categories:
+  - cloud
+  - containers
+  - kubernetes
+  x-logo:
+    url: https://azure.microsoft.com/images/aks-icon.png
+servers:
+- url: https://management.azure.com
+  description: Azure Resource Manager
+security:
+- azure_auth:
+  - user_impersonation
+tags:
+- name: Agent Pools
+  description: Operations for managing agent pools (node pools) within AKS clusters
+  externalDocs:
+    url: https://learn.microsoft.com/en-us/rest/api/aks/agent-pools
+paths:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools
+  : get:
+      operationId: AgentPools_List
+      summary: Azure Kubernetes Service List Agent Pools
+      description: Gets a list of agent pools in the specified managed cluster.
+      tags:
+      - Agent Pools
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/ResourceNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: OK. The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentPoolListResult'
+              examples:
+                AgentpoolsList200Example:
+                  summary: Default AgentPools_List 200 response
+                  x-microcks-default: true
+                  value:
+                    value:
+                    - id: abc123
+                      name: Example Title
+                      type: example_value
+                    nextLink: example_value
+        default:
+          description: Error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudError'
+              examples:
+                AgentpoolsListdefaultExample:
+                  summary: Default AgentPools_List default response
+                  x-microcks-default: true
+                  value:
+                    error:
+                      code: example_value
+                      message: example_value
+                      target: example_value
+                      details:
+                      - code: example_value
+                        message: example_value
+                        target: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}
+  : get:
+      operationId: AgentPools_Get
+      summary: Azure Kubernetes Service Get an Agent Pool
+      description: Gets the specified managed cluster agent pool.
+      tags:
+      - Agent Pools
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/ResourceNameParameter'
+      - $ref: '#/components/parameters/AgentPoolNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: OK. The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentPool'
+              examples:
+                AgentpoolsGet200Example:
+                  summary: Default AgentPools_Get 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    type: example_value
+                    properties:
+                      provisioningState: example_value
+                      count: 10
+                      vmSize: example_value
+                      osDiskSizeGB: 10
+                      osDiskType: Managed
+                      kubeletDiskType: OS
+                      maxPods: 10
+                      osType: Linux
+                      osSKU: Ubuntu
+                      type: VirtualMachineScaleSets
+                      mode: System
+                      orchestratorVersion: example_value
+                      currentOrchestratorVersion: example_value
+                      nodeImageVersion: example_value
+                      enableAutoScaling: true
+                      minCount: 10
+                      maxCount: 10
+                      scaleSetPriority: Spot
+                      scaleSetEvictionPolicy: Delete
+                      spotMaxPrice: 42.5
+                      scaleDownMode: Delete
+                      vnetSubnetID: '500123'
+                      podSubnetID: '500123'
+                      enableNodePublicIP: true
+                      nodePublicIPPrefixID: '500123'
+                      enableEncryptionAtHost: true
+                      enableFIPS: true
+                      enableUltraSSD: true
+                      nodeLabels: example_value
+                      nodeTaints:
+                      - {}
+                      tags: example_value
+                      proximityPlacementGroupID: '500123'
+                      availabilityZones:
+                      - {}
+                      workloadRuntime: OCIContainer
+                      messageOfTheDay: example_value
+        default:
+          description: Error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudError'
+              examples:
+                AgentpoolsGetdefaultExample:
+                  summary: Default AgentPools_Get default response
+                  x-microcks-default: true
+                  value:
+                    error:
+                      code: example_value
+                      message: example_value
+                      target: example_value
+                      details:
+                      - code: example_value
+                        message: example_value
+                        target: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: AgentPools_CreateOrUpdate
+      summary: Azure Kubernetes Service Create or Update an Agent Pool
+      description: Creates or updates an agent pool in the specified managed cluster.
+      tags:
+      - Agent Pools
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/ResourceNameParameter'
+      - $ref: '#/components/parameters/AgentPoolNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      - name: if-match
+        in: header
+        description: The request should only proceed if an entity matches this string.
+        schema:
+          type: string
+        example: example_value
+      - name: if-none-match
+        in: header
+        description: The request should only proceed if no entity matches this string.
+        schema:
+          type: string
+        example: example_value
+      requestBody:
+        required: true
+        description: The agent pool to create or update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentPool'
+            examples:
+              AgentpoolsCreateorupdateRequestExample:
+                summary: Default AgentPools_CreateOrUpdate request
+                x-microcks-default: true
+                value:
+                  id: abc123
+                  name: Example Title
+                  type: example_value
+                  properties:
+                    provisioningState: example_value
+                    count: 10
+                    vmSize: example_value
+                    osDiskSizeGB: 10
+                    osDiskType: Managed
+                    kubeletDiskType: OS
+                    maxPods: 10
+                    osType: Linux
+                    osSKU: Ubuntu
+                    type: VirtualMachineScaleSets
+                    mode: System
+                    orchestratorVersion: example_value
+                    currentOrchestratorVersion: example_value
+                    nodeImageVersion: example_value
+                    enableAutoScaling: true
+                    minCount: 10
+                    maxCount: 10
+                    scaleSetPriority: Spot
+                    scaleSetEvictionPolicy: Delete
+                    spotMaxPrice: 42.5
+                    scaleDownMode: Delete
+                    vnetSubnetID: '500123'
+                    podSubnetID: '500123'
+                    enableNodePublicIP: true
+                    nodePublicIPPrefixID: '500123'
+                    enableEncryptionAtHost: true
+                    enableFIPS: true
+                    enableUltraSSD: true
+                    nodeLabels: example_value
+                    nodeTaints:
+                    - {}
+                    tags: example_value
+                    proximityPlacementGroupID: '500123'
+                    availabilityZones:
+                    - {}
+                    workloadRuntime: OCIContainer
+                    messageOfTheDay: example_value
+      responses:
+        '200':
+          description: OK. The update operation has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentPool'
+              examples:
+                AgentpoolsCreateorupdate200Example:
+                  summary: Default AgentPools_CreateOrUpdate 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    type: example_value
+                    properties:
+                      provisioningState: example_value
+                      count: 10
+                      vmSize: example_value
+                      osDiskSizeGB: 10
+                      osDiskType: Managed
+                      kubeletDiskType: OS
+                      maxPods: 10
+                      osType: Linux
+                      osSKU: Ubuntu
+                      type: VirtualMachineScaleSets
+                      mode: System
+                      orchestratorVersion: example_value
+                      currentOrchestratorVersion: example_value
+                      nodeImageVersion: example_value
+                      enableAutoScaling: true
+                      minCount: 10
+                      maxCount: 10
+                      scaleSetPriority: Spot
+                      scaleSetEvictionPolicy: Delete
+                      spotMaxPrice: 42.5
+                      scaleDownMode: Delete
+                      vnetSubnetID: '500123'
+                      podSubnetID: '500123'
+                      enableNodePublicIP: true
+                      nodePublicIPPrefixID: '500123'
+                      enableEncryptionAtHost: true
+                      enableFIPS: true
+                      enableUltraSSD: true
+                      nodeLabels: example_value
+                      nodeTaints:
+                      - {}
+                      tags: example_value
+                      proximityPlacementGroupID: '500123'
+                      availabilityZones:
+                      - {}
+                      workloadRuntime: OCIContainer
+                      messageOfTheDay: example_value
+        '201':
+          description: Created. The create operation has succeeded.
+          headers:
+            Azure-AsyncOperation:
+              description: URL to query for status of the asynchronous operation.
+              schema:
+                type: string
+            Retry-After:
+              description: Suggested delay in seconds to check on operation status.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentPool'
+              examples:
+                AgentpoolsCreateorupdate201Example:
+                  summary: Default AgentPools_CreateOrUpdate 201 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    type: example_value
+                    properties:
+                      provisioningState: example_value
+                      count: 10
+                      vmSize: example_value
+                      osDiskSizeGB: 10
+                      osDiskType: Managed
+                      kubeletDiskType: OS
+                      maxPods: 10
+                      osType: Linux
+                      osSKU: Ubuntu
+                      type: VirtualMachineScaleSets
+                      mode: System
+                      orchestratorVersion: example_value
+                      currentOrchestratorVersion: example_value
+                      nodeImageVersion: example_value
+                      enableAutoScaling: true
+                      minCount: 10
+                      maxCount: 10
+                      scaleSetPriority: Spot
+                      scaleSetEvictionPolicy: Delete
+                      spotMaxPrice: 42.5
+                      scaleDownMode: Delete
+                      vnetSubnetID: '500123'
+                      podSubnetID: '500123'
+                      enableNodePublicIP: true
+                      nodePublicIPPrefixID: '500123'
+                      enableEncryptionAtHost: true
+                      enableFIPS: true
+                      enableUltraSSD: true
+                      nodeLabels: example_value
+                      nodeTaints:
+                      - {}
+                      tags: example_value
+                      proximityPlacementGroupID: '500123'
+                      availabilityZones:
+                      - {}
+                      workloadRuntime: OCIContainer
+                      messageOfTheDay: example_value
+        default:
+          description: Error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudError'
+              examples:
+                AgentpoolsCreateorupdatedefaultExample:
+                  summary: Default AgentPools_CreateOrUpdate default response
+                  x-microcks-default: true
+                  value:
+                    error:
+                      code: example_value
+                      message: example_value
+                      target: example_value
+                      details:
+                      - code: example_value
+                        message: example_value
+                        target: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: AgentPools_Delete
+      summary: Azure Kubernetes Service Delete an Agent Pool
+      description: Deletes an agent pool in the specified managed cluster.
+      tags:
+      - Agent Pools
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/ResourceNameParameter'
+      - $ref: '#/components/parameters/AgentPoolNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '202':
+          description: Accepted. The delete operation will complete asynchronously.
+          headers:
+            Azure-AsyncOperation:
+              description: URL to query for status of the asynchronous operation.
+              schema:
+                type: string
+            Location:
+              description: URL to query for the operation result.
+              schema:
+                type: string
+            Retry-After:
+              description: Suggested delay in seconds to check on operation status.
+              schema:
+                type: integer
+        '204':
+          description: No Content. The resource does not exist.
+        default:
+          description: Error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudError'
+              examples:
+                AgentpoolsDeletedefaultExample:
+                  summary: Default AgentPools_Delete default response
+                  x-microcks-default: true
+                  value:
+                    error:
+                      code: example_value
+                      message: example_value
+                      target: example_value
+                      details:
+                      - code: example_value
+                        message: example_value
+                        target: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/upgradeProfiles/default
+  : get:
+      operationId: AgentPools_GetUpgradeProfile
+      summary: Azure Kubernetes Service Get the Upgrade Profile for an Agent Pool
+      description: Gets the upgrade profile for an agent pool.
+      tags:
+      - Agent Pools
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/ResourceNameParameter'
+      - $ref: '#/components/parameters/AgentPoolNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: OK. The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentPoolUpgradeProfile'
+              examples:
+                AgentpoolsGetupgradeprofile200Example:
+                  summary: Default AgentPools_GetUpgradeProfile 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    type: example_value
+                    properties:
+                      kubernetesVersion: example_value
+                      osType: Linux
+                      upgrades:
+                      - kubernetesVersion: example_value
+                        isPreview: true
+                      latestNodeImageVersion: example_value
+        default:
+          description: Error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudError'
+              examples:
+                AgentpoolsGetupgradeprofiledefaultExample:
+                  summary: Default AgentPools_GetUpgradeProfile default response
+                  x-microcks-default: true
+                  value:
+                    error:
+                      code: example_value
+                      message: example_value
+                      target: example_value
+                      details:
+                      - code: example_value
+                        message: example_value
+                        target: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/availableAgentPoolVersions
+  : get:
+      operationId: AgentPools_GetAvailableAgentPoolVersions
+      summary: Azure Kubernetes Service Get Available Agent Pool Versions
+      description: Gets a list of supported Kubernetes versions for the specified agent pool.
+      tags:
+      - Agent Pools
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/ResourceNameParameter'
+      - $ref: '#/components/parameters/AgentPoolNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: OK. The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentPoolAvailableVersions'
+              examples:
+                AgentpoolsGetavailableagentpoolversions200Example:
+                  summary: Default AgentPools_GetAvailableAgentPoolVersions 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    type: example_value
+                    properties:
+                      agentPoolVersions:
+                      - default: true
+                        kubernetesVersion: example_value
+                        isPreview: true
+        default:
+          description: Error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudError'
+              examples:
+                AgentpoolsGetavailableagentpoolversionsdefaultExample:
+                  summary: Default AgentPools_GetAvailableAgentPoolVersions default response
+                  x-microcks-default: true
+                  value:
+                    error:
+                      code: example_value
+                      message: example_value
+                      target: example_value
+                      details:
+                      - code: example_value
+                        message: example_value
+                        target: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/upgradeNodeImageVersion
+  : post:
+      operationId: AgentPools_UpgradeNodeImageVersion
+      summary: Azure Kubernetes Service Upgrade Node Image Version
+      description: Upgrades the node image version of an agent pool to the latest.
+      tags:
+      - Agent Pools
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/ResourceNameParameter'
+      - $ref: '#/components/parameters/AgentPoolNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '200':
+          description: OK. The agent pool node image has been upgraded.
+        '202':
+          description: Accepted. The operation will complete asynchronously.
+          headers:
+            Azure-AsyncOperation:
+              description: URL to query for status of the asynchronous operation.
+              schema:
+                type: string
+            Location:
+              description: URL to query for the operation result.
+              schema:
+                type: string
+            Retry-After:
+              description: Suggested delay in seconds.
+              schema:
+                type: integer
+        default:
+          description: Error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudError'
+              examples:
+                AgentpoolsUpgradenodeimageversiondefaultExample:
+                  summary: Default AgentPools_UpgradeNodeImageVersion default response
+                  x-microcks-default: true
+                  value:
+                    error:
+                      code: example_value
+                      message: example_value
+                      target: example_value
+                      details:
+                      - code: example_value
+                        message: example_value
+                        target: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/abort
+  : post:
+      operationId: AgentPools_AbortLatestOperation
+      summary: Azure Kubernetes Service Abort Latest Operation on an Agent Pool
+      description: Aborts the currently running operation on the agent pool.
+      tags:
+      - Agent Pools
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/ResourceNameParameter'
+      - $ref: '#/components/parameters/AgentPoolNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      responses:
+        '202':
+          description: Accepted. The operation will complete asynchronously.
+          headers:
+            Azure-AsyncOperation:
+              description: URL to query for status of the asynchronous operation.
+              schema:
+                type: string
+            Location:
+              description: URL to query for the operation result.
+              schema:
+                type: string
+            Retry-After:
+              description: Suggested delay in seconds.
+              schema:
+                type: integer
+        '204':
+          description: No Content. No operation running.
+        default:
+          description: Error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudError'
+              examples:
+                AgentpoolsAbortlatestoperationdefaultExample:
+                  summary: Default AgentPools_AbortLatestOperation default response
+                  x-microcks-default: true
+                  value:
+                    error:
+                      code: example_value
+                      message: example_value
+                      target: example_value
+                      details:
+                      - code: example_value
+                        message: example_value
+                        target: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/deleteMachines
+  : post:
+      operationId: AgentPools_DeleteMachines
+      summary: Azure Kubernetes Service Delete Specific Machines in an Agent Pool
+      description: Deletes specific machines in an agent pool.
+      tags:
+      - Agent Pools
+      parameters:
+      - $ref: '#/components/parameters/SubscriptionIdParameter'
+      - $ref: '#/components/parameters/ResourceGroupNameParameter'
+      - $ref: '#/components/parameters/ResourceNameParameter'
+      - $ref: '#/components/parameters/AgentPoolNameParameter'
+      - $ref: '#/components/parameters/ApiVersionParameter'
+      requestBody:
+        required: true
+        description: The machine names to delete.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentPoolDeleteMachinesParameter'
+            examples:
+              AgentpoolsDeletemachinesRequestExample:
+                summary: Default AgentPools_DeleteMachines request
+                x-microcks-default: true
+                value:
+                  machineNames:
+                  - example_value
+      responses:
+        '202':
+          description: Accepted. The operation will complete asynchronously.
+          headers:
+            Azure-AsyncOperation:
+              description: URL to query for status of the asynchronous operation.
+              schema:
+                type: string
+            Location:
+              description: URL to query for the operation result.
+              schema:
+                type: string
+            Retry-After:
+              description: Suggested delay in seconds.
+              schema:
+                type: integer
+        default:
+          description: Error response describing why the operation failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudError'
+              examples:
+                AgentpoolsDeletemachinesdefaultExample:
+                  summary: Default AgentPools_DeleteMachines default response
+                  x-microcks-default: true
+                  value:
+                    error:
+                      code: example_value
+                      message: example_value
+                      target: example_value
+                      details:
+                      - code: example_value
+                        message: example_value
+                        target: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    AgentPoolAvailableVersions:
+      type: object
+      description: The available agent pool versions.
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: The ID of the agent pool version list.
+          example: abc123
+        name:
+          type: string
+          readOnly: true
+          description: The name of the agent pool version list.
+          example: Example Title
+        type:
+          type: string
+          readOnly: true
+          description: The resource type.
+          example: example_value
+        properties:
+          type: object
+          properties:
+            agentPoolVersions:
+              type: array
+              items:
+                type: object
+                properties:
+                  default:
+                    type: boolean
+                    description: Whether this version is the default.
+                  kubernetesVersion:
+                    type: string
+                    description: The Kubernetes version.
+                  isPreview:
+                    type: boolean
+                    description: Whether this version is in preview.
+          example: example_value
+    AgentPoolDeleteMachinesParameter:
+      type: object
+      description: The parameters for deleting machines in an agent pool.
+      required:
+      - machineNames
+      properties:
+        machineNames:
+          type: array
+          items:
+            type: string
+          description: The list of machine names to delete.
+          example: []
+    CloudError:
+      type: object
+      description: An error response from the Container service.
+      properties:
+        error:
+          type: object
+          description: Details about the error.
+          properties:
+            code:
+              type: string
+              description: An identifier for the error. Codes are invariant and are intended to be consumed programmatically.
+            message:
+              type: string
+              description: A message describing the error, intended to be suitable for display in a user interface.
+            target:
+              type: string
+              description: The target of the particular error. For example, the name of the property in error.
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  target:
+                    type: string
+              description: A list of additional details about the error.
+          example: example_value
+    AgentPoolUpgradeSettings:
+      type: object
+      description: Settings for upgrading an agentpool.
+      properties:
+        maxSurge:
+          type: string
+          description: The maximum number or percentage of nodes that are surged during upgrade. This can either be set to an integer (e.g. 5) or a percentage (e.g. 50%). If a percentage is specified, it is the percentage of the total agent pool size at the time of the upgrade.
+          example: example_value
+        drainTimeoutInMinutes:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 1440
+          description: The amount of time (in minutes) to wait on eviction of pods and graceful termination per node.
+          example: 10
+        nodeSoakDurationInMinutes:
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 30
+          description: The amount of time (in minutes) to wait after draining a node and before reimaging it and moving on to the next node.
+          example: 10
+    CreationData:
+      type: object
+      description: Data used when creating a target resource from a source resource.
+      properties:
+        sourceResourceId:
+          type: string
+          description: This is the ARM ID of the source object to be used to create the target object.
+          example: '500123'
+    AgentPool:
+      type: object
+      description: Agent pool resource within a managed cluster.
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: Resource ID.
+          example: abc123
+        name:
+          type: string
+          readOnly: true
+          description: The name of the resource that is unique within a resource group.
+          example: Example Title
+        type:
+          type: string
+          readOnly: true
+          description: Resource type.
+          example: example_value
+        properties:
+          $ref: '#/components/schemas/AgentPoolProperties'
+    AgentPoolListResult:
+      type: object
+      description: The response from the List Agent Pools operation.
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentPool'
+          description: The list of agent pools.
+          example: []
+        nextLink:
+          type: string
+          readOnly: true
+          description: The URL to get the next set of agent pool results.
+          example: example_value
+    AgentPoolProperties:
+      type: object
+      description: Properties for the container service agent pool profile.
+      properties:
+        provisioningState:
+          type: string
+          readOnly: true
+          description: The current deployment or provisioning state.
+          example: example_value
+        count:
+          type: integer
+          format: int32
+          description: Number of agents (VMs) to host docker containers. Allowed values must be in the range of 0 to 1000 (inclusive) for user pools and in the range of 1 to 1000 (inclusive) for system pools. The default value is 1.
+          example: 10
+        vmSize:
+          type: string
+          description: The size of the agent VMs.
+          example: example_value
+        osDiskSizeGB:
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 2048
+          description: OS Disk Size in GB.
+          example: 10
+        osDiskType:
+          type: string
+          enum:
+          - Managed
+          - Ephemeral
+          description: The OS disk type.
+          example: Managed
+        kubeletDiskType:
+          type: string
+          enum:
+          - OS
+          - Temporary
+          description: Kubelet disk type.
+          example: OS
+        maxPods:
+          type: integer
+          format: int32
+          description: The maximum number of pods that can run on a node.
+          example: 10
+        osType:
+          type: string
+          enum:
+          - Linux
+          - Windows
+          default: Linux
+          description: The operating system type.
+          example: Linux
+        osSKU:
+          type: string
+          enum:
+          - Ubuntu
+          - AzureLinux
+          - CBLMariner
+          - Windows2019
+          - Windows2022
+          - WindowsAnnual
+          description: Specifies the OS SKU used by the agent pool.
+          example: Ubuntu
+        type:
+          type: string
+          enum:
+          - VirtualMachineScaleSets
+          - AvailabilitySet
+          - VirtualMachines
+          description: The type of Agent Pool.
+          example: VirtualMachineScaleSets
+        mode:
+          type: string
+          enum:
+          - System
+          - User
+          - Gateway
+          description: A cluster must have at least one System agent pool at all times.
+          example: System
+        orchestratorVersion:
+          type: string
+          description: The version of Kubernetes running on the Agent Pool.
+          example: example_value
+        currentOrchestratorVersion:
+          type: string
+          readOnly: true
+          description: The running Kubernetes version on the Agent Pool.
+          example: example_value
+        nodeImageVersion:
+          type: string
+          readOnly: true
+          description: The version of node image.
+          example: example_value
+        enableAutoScaling:
+          type: boolean
+          description: Whether to enable auto-scaler.
+          example: true
+        minCount:
+          type: integer
+          format: int32
+          description: The minimum number of nodes for auto-scaling.
+          example: 10
+        maxCount:
+          type: integer
+          format: int32
+          description: The maximum number of nodes for auto-scaling.
+          example: 10
+        scaleSetPriority:
+          type: string
+          enum:
+          - Spot
+          - Regular
+          default: Regular
+          description: The Virtual Machine Scale Set priority.
+          example: Spot
+        scaleSetEvictionPolicy:
+          type: string
+          enum:
+          - Delete
+          - Deallocate
+          default: Delete
+          description: The Virtual Machine Scale Set eviction policy.
+          example: Delete
+        spotMaxPrice:
+          type: number
+          format: float
+          description: The maximum price for spot instances.
+          example: 42.5
+        scaleDownMode:
+          type: string
+          enum:
+          - Delete
+          - Deallocate
+          default: Delete
+          description: Describes how VMs are added to or removed from Agent Pools.
+          example: Delete
+        vnetSubnetID:
+          type: string
+          description: The ID of the subnet for agent pool nodes.
+          example: '500123'
+        podSubnetID:
+          type: string
+          description: The ID of the subnet for pods.
+          example: '500123'
+        enableNodePublicIP:
+          type: boolean
+          description: Whether each node gets its own public IP.
+          example: true
+        nodePublicIPPrefixID:
+          type: string
+          description: The public IP prefix ID for the nodes.
+          example: '500123'
+        enableEncryptionAtHost:
+          type: boolean
+          description: Whether to enable host-based encryption.
+          example: true
+        enableFIPS:
+          type: boolean
+          description: Whether to use FIPS-enabled OS.
+          example: true
+        enableUltraSSD:
+          type: boolean
+          description: Whether to enable UltraSSD.
+          example: true
+        nodeLabels:
+          type: object
+          additionalProperties:
+            type: string
+          description: The node labels to be persisted across all nodes.
+          example: example_value
+        nodeTaints:
+          type: array
+          items:
+            type: string
+          description: The taints added to new nodes.
+          example: []
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: The tags to persist on the VMSS.
+          example: example_value
+        proximityPlacementGroupID:
+          type: string
+          description: The ID for Proximity Placement Group.
+          example: '500123'
+        upgradeSettings:
+          $ref: '#/components/schemas/AgentPoolUpgradeSettings'
+        powerState:
+          $ref: '#/components/schemas/PowerState'
+        availabilityZones:
+          type: array
+          items:
+            type: string
+          description: The list of Availability zones to use for nodes.
+          example: []
+        creationData:
+          $ref: '#/components/schemas/CreationData'
+        workloadRuntime:
+          type: string
+          enum:
+          - OCIContainer
+          - WasmWasi
+          - KataMshvVmIsolation
+          description: The type of workload a node can run.
+          example: OCIContainer
+        messageOfTheDay:
+          type: string
+          description: A base64-encoded message of the day for Linux nodes.
+          example: example_value
+    AgentPoolUpgradeProfile:
+      type: object
+      description: The list of available upgrades for an agent pool.
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: The ID of the agent pool upgrade profile.
+          example: abc123
+        name:
+          type: string
+          readOnly: true
+          description: The name of the agent pool upgrade profile.
+          example: Example Title
+        type:
+          type: string
+          readOnly: true
+          description: The type of the agent pool upgrade profile.
+          example: example_value
+        properties:
+          type: object
+          required:
+          - kubernetesVersion
+          - osType
+          properties:
+            kubernetesVersion:
+              type: string
+              description: The Kubernetes version.
+            osType:
+              type: string
+              enum:
+              - Linux
+              - Windows
+              default: Linux
+            upgrades:
+              type: array
+              items:
+                type: object
+                properties:
+                  kubernetesVersion:
+                    type: string
+                  isPreview:
+                    type: boolean
+            latestNodeImageVersion:
+              type: string
+              description: The latest node image version available for the agent pool.
+          example: example_value
+    PowerState:
+      type: object
+      description: Describes the Power State of the cluster.
+      properties:
+        code:
+          type: string
+          description: Tells whether the cluster is Running or Stopped.
+          enum:
+          - Running
+          - Stopped
+          example: Running
+  parameters:
+    AgentPoolNameParameter:
+      name: agentPoolName
+      in: path
+      required: true
+      description: The name of the agent pool.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 12
+        pattern: ^[a-z][a-z0-9]{0,11}$
+    SubscriptionIdParameter:
+      name: subscriptionId
+      in: path
+      required: true
+      description: The ID of the target subscription. Must be a valid UUID.
+      schema:
+        type: string
+        format: uuid
+    ResourceNameParameter:
+      name: resourceName
+      in: path
+      required: true
+      description: The name of the managed cluster resource.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 63
+        pattern: ^[a-zA-Z0-9]$|^[a-zA-Z0-9][-_a-zA-Z0-9]{0,61}[a-zA-Z0-9]$
+    ApiVersionParameter:
+      name: api-version
+      in: query
+      required: true
+      description: The API version to use for this operation.
+      schema:
+        type: string
+        default: '2025-10-01'
+    ResourceGroupNameParameter:
+      name: resourceGroupName
+      in: path
+      required: true
+      description: The name of the resource group. The name is case insensitive.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 90
+  securitySchemes:
+    azure_auth:
+      type: oauth2
+      description: Azure Active Directory OAuth2 Flow.
+      flows:
+        implicit:
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+          scopes:
+            user_impersonation: Impersonate your user account
+externalDocs:
+  description: Azure Kubernetes Service REST API Reference
+  url: https://learn.microsoft.com/en-us/rest/api/aks/
