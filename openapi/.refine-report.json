@@ -1,0 +1,16 @@
+{
+  "provider": "microsoft-azure-kubernetes-service",
+  "sources": [
+    "microsoft-azure-kubernetes-service-agent-pools-api-openapi.yml",
+    "microsoft-azure-kubernetes-service-managed-clusters-api-openapi.yml"
+  ],
+  "outputs": [
+    "microsoft-azure-kubernetes-service-agent-pools-api-openapi.yml",
+    "microsoft-azure-kubernetes-service-managed-clusters-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
