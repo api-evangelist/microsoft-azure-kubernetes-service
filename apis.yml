@@ -225,6 +225,19 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: IssueTracker
+    url: https://github.com/Azure/AKS/issues
+  - type: Releases
+    url: https://github.com/Azure/AKS/releases
+  - type: SecurityPolicy
+    url: https://github.com/Azure/AKS/blob/master/SECURITY.md
+  - type: CodeOfConduct
+    url: https://github.com/Azure/.github/blob/main/CODE_OF_CONDUCT.md
+  - type: ContributionGuide
+    url: https://github.com/Azure/AKS/blob/master/.github/CONTRIBUTING.md
+  - type: License
+    name: MIT
+    url: https://github.com/Azure/AKS/blob/master/LICENSE
   - type: AgenticAccess
     url: agentic-access/microsoft-azure-kubernetes-service-agentic-access.yml
   - type: DomainSecurity
