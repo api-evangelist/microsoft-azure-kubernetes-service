@@ -1,0 +1,427 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Azure Kubernetes Service REST Agent Pools API",
+    "version": "2025-10-01"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Agent Pools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Azure Kubernetes Service List Agent Pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/agentPools",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Gets a list of agent pools in the specified managed cluster."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Get an Agent Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/agentPools/:agentPoolName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "agentPoolName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the agent pool."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Gets the specified managed cluster agent pool."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Create or Update an Agent Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/agentPools/:agentPoolName",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": "example_value"
+              },
+              {
+                "name": "if-none-match",
+                "value": "example_value"
+              }
+            ],
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "agentPoolName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the agent pool."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates an agent pool in the specified managed cluster."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Delete an Agent Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/agentPools/:agentPoolName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "agentPoolName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the agent pool."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Deletes an agent pool in the specified managed cluster."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Get the Upgrade Profile for an Agent Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/agentPools/:agentPoolName/upgradeProfiles/default",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "agentPoolName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the agent pool."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Gets the upgrade profile for an agent pool."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Get Available Agent Pool Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/agentPools/:agentPoolName/availableAgentPoolVersions",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "agentPoolName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the agent pool."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Gets a list of supported Kubernetes versions for the specified agent pool."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Upgrade Node Image Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/agentPools/:agentPoolName/upgradeNodeImageVersion",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "agentPoolName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the agent pool."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Upgrades the node image version of an agent pool to the latest."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Abort Latest Operation on an Agent Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/agentPools/:agentPoolName/abort",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "agentPoolName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the agent pool."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Aborts the currently running operation on the agent pool."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Delete Specific Machines in an Agent Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/agentPools/:agentPoolName/deleteMachines",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "agentPoolName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the agent pool."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes specific machines in an agent pool."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

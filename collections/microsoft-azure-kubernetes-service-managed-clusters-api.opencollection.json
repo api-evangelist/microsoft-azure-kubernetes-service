@@ -1,0 +1,587 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Azure Kubernetes Service REST Agent Pools Managed Clusters API",
+    "version": "2025-10-01"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Managed Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Azure Kubernetes Service List Managed Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/providers/Microsoft.ContainerService/managedClusters",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Gets a list of managed clusters in the specified subscription."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service List Managed Clusters by Resource Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Lists managed clusters in the specified subscription and resource group."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Get a Managed Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Gets the details of the managed cluster with a specified resource group and name."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Create or Update a Managed Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": "example_value"
+              },
+              {
+                "name": "if-none-match",
+                "value": "example_value"
+              }
+            ],
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates a managed cluster."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Update Managed Cluster Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates tags on a managed cluster."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Delete a Managed Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Deletes a managed cluster."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Get Upgrade Profile for a Managed Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/upgradeProfiles/default",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Gets the upgrade profile of a managed cluster."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service List Cluster Admin Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/listClusterAdminCredential",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Lists the admin credentials of a managed cluster."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service List Cluster User Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/listClusterUserCredential",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Lists the user credentials of a managed cluster."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service List Cluster Monitoring User Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/listClusterMonitoringUserCredential",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Lists the cluster monitoring user credentials of a managed cluster."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Rotate Cluster Certificates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/rotateClusterCertificates",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Rotates the certificates of a managed cluster."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Stop a Managed Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/stop",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Stops a previously running managed cluster. This can only be performed on Azure Virtual Machine Scale Set backed clusters. Stopping a cluster stops the control plane and agent nodes entirely while maintaining all object and cluster state."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Start a Managed Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/start",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Starts a previously stopped managed cluster."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Run a Command on a Managed Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/runCommand",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a command to run against the Managed Cluster. This is useful for running kubectl commands on a private cluster."
+        },
+        {
+          "info": {
+            "name": "Azure Kubernetes Service Abort the Latest Operation on a Managed Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://management.azure.com/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.ContainerService/managedClusters/:resourceName/abort",
+            "params": [
+              {
+                "name": "subscriptionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the target subscription. Must be a valid UUID."
+              },
+              {
+                "name": "resourceGroupName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the resource group. The name is case insensitive."
+              },
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the managed cluster resource."
+              },
+              {
+                "name": "api-version",
+                "value": "",
+                "type": "query",
+                "description": "The API version to use for this operation."
+              }
+            ]
+          },
+          "docs": "Aborts the currently running operation on the managed cluster. The Managed Cluster will be moved to a Canceling state and eventually to a Canceled state when cancellation finishes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

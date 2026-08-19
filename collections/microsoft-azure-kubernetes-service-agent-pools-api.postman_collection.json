@@ -1,0 +1,2827 @@
+{
+  "item": [
+    {
+      "id": "96f65ce8-e22f-4803-a1c2-387dca333deb",
+      "name": "Agent Pools",
+      "description": {
+        "content": "Operations for managing agent pools (node pools) within AKS clusters",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "116426f8-efce-47da-9cef-63bfb95be552",
+          "name": "Azure Kubernetes Service List Agent Pools",
+          "request": {
+            "name": "Azure Kubernetes Service List Agent Pools",
+            "description": {
+              "content": "Gets a list of agent pools in the specified managed cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.ContainerService",
+                "managedClusters",
+                ":resourceName",
+                "agentPools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2025-10-01",
+                  "description": "(Required) The API version to use for this operation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) The name of the resource group. The name is case insensitive."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceName",
+                  "description": "(Required) The name of the managed cluster resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3f12ec0-c813-41b0-b207-e6f44bbd7a92",
+              "name": "OK. The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\"\n    }\n  ],\n  \"nextLink\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e72a9bb-0856-421f-8b22-f3b8a65d2828",
+              "name": "Error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"example_value\",\n    \"message\": \"example_value\",\n    \"target\": \"example_value\",\n    \"details\": [\n      {\n        \"code\": \"example_value\",\n        \"message\": \"example_value\",\n        \"target\": \"example_value\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41f212e7-4a93-40bd-a28b-f8da4165e38a",
+          "name": "Azure Kubernetes Service Get an Agent Pool",
+          "request": {
+            "name": "Azure Kubernetes Service Get an Agent Pool",
+            "description": {
+              "content": "Gets the specified managed cluster agent pool.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.ContainerService",
+                "managedClusters",
+                ":resourceName",
+                "agentPools",
+                ":agentPoolName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2025-10-01",
+                  "description": "(Required) The API version to use for this operation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) The name of the resource group. The name is case insensitive."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceName",
+                  "description": "(Required) The name of the managed cluster resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agentPoolName",
+                  "description": "(Required) The name of the agent pool."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1a0b8e0-128c-4ac9-92b2-89374315624f",
+              "name": "OK. The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"type\": \"example_value\",\n  \"properties\": {\n    \"provisioningState\": \"example_value\",\n    \"count\": 10,\n    \"vmSize\": \"example_value\",\n    \"osDiskSizeGB\": 10,\n    \"osDiskType\": \"Managed\",\n    \"kubeletDiskType\": \"OS\",\n    \"maxPods\": 10,\n    \"osType\": \"Linux\",\n    \"osSKU\": \"Ubuntu\",\n    \"type\": \"VirtualMachineScaleSets\",\n    \"mode\": \"System\",\n    \"orchestratorVersion\": \"example_value\",\n    \"currentOrchestratorVersion\": \"example_value\",\n    \"nodeImageVersion\": \"example_value\",\n    \"enableAutoScaling\": true,\n    \"minCount\": 10,\n    \"maxCount\": 10,\n    \"scaleSetPriority\": \"Spot\",\n    \"scaleSetEvictionPolicy\": \"Delete\",\n    \"spotMaxPrice\": 42.5,\n    \"scaleDownMode\": \"Delete\",\n    \"vnetSubnetID\": \"500123\",\n    \"podSubnetID\": \"500123\",\n    \"enableNodePublicIP\": true,\n    \"nodePublicIPPrefixID\": \"500123\",\n    \"enableEncryptionAtHost\": true,\n    \"enableFIPS\": true,\n    \"enableUltraSSD\": true,\n    \"nodeLabels\": \"example_value\",\n    \"nodeTaints\": [\n      {}\n    ],\n    \"tags\": \"example_value\",\n    \"proximityPlacementGroupID\": \"500123\",\n    \"availabilityZones\": [\n      {}\n    ],\n    \"workloadRuntime\": \"OCIContainer\",\n    \"messageOfTheDay\": \"example_value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85e2bf9d-dd0f-4525-8f9b-1f2763f93080",
+              "name": "Error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"example_value\",\n    \"message\": \"example_value\",\n    \"target\": \"example_value\",\n    \"details\": [\n      {\n        \"code\": \"example_value\",\n        \"message\": \"example_value\",\n        \"target\": \"example_value\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b2e1fce-a05d-4033-ac2c-667e2209c5f5",
+          "name": "Azure Kubernetes Service Create or Update an Agent Pool",
+          "request": {
+            "name": "Azure Kubernetes Service Create or Update an Agent Pool",
+            "description": {
+              "content": "Creates or updates an agent pool in the specified managed cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.ContainerService",
+                "managedClusters",
+                ":resourceName",
+                "agentPools",
+                ":agentPoolName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2025-10-01",
+                  "description": "(Required) The API version to use for this operation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) The name of the resource group. The name is case insensitive."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceName",
+                  "description": "(Required) The name of the managed cluster resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agentPoolName",
+                  "description": "(Required) The name of the agent pool."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The request should only proceed if an entity matches this string.",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "The request should only proceed if no entity matches this string.",
+                "key": "if-none-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"properties\": {\n    \"count\": \"<integer>\",\n    \"vmSize\": \"<string>\",\n    \"osDiskSizeGB\": \"<integer>\",\n    \"osDiskType\": \"<string>\",\n    \"kubeletDiskType\": \"<string>\",\n    \"maxPods\": \"<integer>\",\n    \"osType\": \"Linux\",\n    \"osSKU\": \"<string>\",\n    \"type\": \"<string>\",\n    \"mode\": \"<string>\",\n    \"orchestratorVersion\": \"<string>\",\n    \"enableAutoScaling\": \"<boolean>\",\n    \"minCount\": \"<integer>\",\n    \"maxCount\": \"<integer>\",\n    \"scaleSetPriority\": \"Regular\",\n    \"scaleSetEvictionPolicy\": \"Delete\",\n    \"spotMaxPrice\": \"<float>\",\n    \"scaleDownMode\": \"Delete\",\n    \"vnetSubnetID\": \"<string>\",\n    \"podSubnetID\": \"<string>\",\n    \"enableNodePublicIP\": \"<boolean>\",\n    \"nodePublicIPPrefixID\": \"<string>\",\n    \"enableEncryptionAtHost\": \"<boolean>\",\n    \"enableFIPS\": \"<boolean>\",\n    \"enableUltraSSD\": \"<boolean>\",\n    \"nodeLabels\": {\n      \"key_0\": \"<string>\"\n    },\n    \"nodeTaints\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"tags\": {\n      \"key_0\": \"<string>\"\n    },\n    \"proximityPlacementGroupID\": \"<string>\",\n    \"upgradeSettings\": {\n      \"maxSurge\": \"<string>\",\n      \"drainTimeoutInMinutes\": \"<integer>\",\n      \"nodeSoakDurationInMinutes\": \"<integer>\"\n    },\n    \"powerState\": {\n      \"code\": \"<string>\"\n    },\n    \"availabilityZones\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"creationData\": {\n      \"sourceResourceId\": \"<string>\"\n    },\n    \"workloadRuntime\": \"<string>\",\n    \"messageOfTheDay\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e3117c52-2f6b-4fcd-ad55-2ad57d681358",
+              "name": "OK. The update operation has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The request should only proceed if an entity matches this string.",
+                    "key": "if-match",
+                    "value": "example_value"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The request should only proceed if no entity matches this string.",
+                    "key": "if-none-match",
+                    "value": "example_value"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"type\": \"example_value\",\n  \"properties\": {\n    \"provisioningState\": \"example_value\",\n    \"count\": 10,\n    \"vmSize\": \"example_value\",\n    \"osDiskSizeGB\": 10,\n    \"osDiskType\": \"Managed\",\n    \"kubeletDiskType\": \"OS\",\n    \"maxPods\": 10,\n    \"osType\": \"Linux\",\n    \"osSKU\": \"Ubuntu\",\n    \"type\": \"VirtualMachineScaleSets\",\n    \"mode\": \"System\",\n    \"orchestratorVersion\": \"example_value\",\n    \"currentOrchestratorVersion\": \"example_value\",\n    \"nodeImageVersion\": \"example_value\",\n    \"enableAutoScaling\": true,\n    \"minCount\": 10,\n    \"maxCount\": 10,\n    \"scaleSetPriority\": \"Spot\",\n    \"scaleSetEvictionPolicy\": \"Delete\",\n    \"spotMaxPrice\": 42.5,\n    \"scaleDownMode\": \"Delete\",\n    \"vnetSubnetID\": \"500123\",\n    \"podSubnetID\": \"500123\",\n    \"enableNodePublicIP\": true,\n    \"nodePublicIPPrefixID\": \"500123\",\n    \"enableEncryptionAtHost\": true,\n    \"enableFIPS\": true,\n    \"enableUltraSSD\": true,\n    \"nodeLabels\": \"example_value\",\n    \"nodeTaints\": [\n      {}\n    ],\n    \"tags\": \"example_value\",\n    \"proximityPlacementGroupID\": \"500123\",\n    \"availabilityZones\": [\n      {}\n    ],\n    \"workloadRuntime\": \"OCIContainer\",\n    \"messageOfTheDay\": \"example_value\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"type\": \"example_value\",\n  \"properties\": {\n    \"provisioningState\": \"example_value\",\n    \"count\": 10,\n    \"vmSize\": \"example_value\",\n    \"osDiskSizeGB\": 10,\n    \"osDiskType\": \"Managed\",\n    \"kubeletDiskType\": \"OS\",\n    \"maxPods\": 10,\n    \"osType\": \"Linux\",\n    \"osSKU\": \"Ubuntu\",\n    \"type\": \"VirtualMachineScaleSets\",\n    \"mode\": \"System\",\n    \"orchestratorVersion\": \"example_value\",\n    \"currentOrchestratorVersion\": \"example_value\",\n    \"nodeImageVersion\": \"example_value\",\n    \"enableAutoScaling\": true,\n    \"minCount\": 10,\n    \"maxCount\": 10,\n    \"scaleSetPriority\": \"Spot\",\n    \"scaleSetEvictionPolicy\": \"Delete\",\n    \"spotMaxPrice\": 42.5,\n    \"scaleDownMode\": \"Delete\",\n    \"vnetSubnetID\": \"500123\",\n    \"podSubnetID\": \"500123\",\n    \"enableNodePublicIP\": true,\n    \"nodePublicIPPrefixID\": \"500123\",\n    \"enableEncryptionAtHost\": true,\n    \"enableFIPS\": true,\n    \"enableUltraSSD\": true,\n    \"nodeLabels\": \"example_value\",\n    \"nodeTaints\": [\n      {}\n    ],\n    \"tags\": \"example_value\",\n    \"proximityPlacementGroupID\": \"500123\",\n    \"availabilityZones\": [\n      {}\n    ],\n    \"workloadRuntime\": \"OCIContainer\",\n    \"messageOfTheDay\": \"example_value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a193c053-8497-4032-bb05-1580bbcfdc92",
+              "name": "Created. The create operation has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The request should only proceed if an entity matches this string.",
+                    "key": "if-match",
+                    "value": "example_value"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The request should only proceed if no entity matches this string.",
+                    "key": "if-none-match",
+                    "value": "example_value"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"type\": \"example_value\",\n  \"properties\": {\n    \"provisioningState\": \"example_value\",\n    \"count\": 10,\n    \"vmSize\": \"example_value\",\n    \"osDiskSizeGB\": 10,\n    \"osDiskType\": \"Managed\",\n    \"kubeletDiskType\": \"OS\",\n    \"maxPods\": 10,\n    \"osType\": \"Linux\",\n    \"osSKU\": \"Ubuntu\",\n    \"type\": \"VirtualMachineScaleSets\",\n    \"mode\": \"System\",\n    \"orchestratorVersion\": \"example_value\",\n    \"currentOrchestratorVersion\": \"example_value\",\n    \"nodeImageVersion\": \"example_value\",\n    \"enableAutoScaling\": true,\n    \"minCount\": 10,\n    \"maxCount\": 10,\n    \"scaleSetPriority\": \"Spot\",\n    \"scaleSetEvictionPolicy\": \"Delete\",\n    \"spotMaxPrice\": 42.5,\n    \"scaleDownMode\": \"Delete\",\n    \"vnetSubnetID\": \"500123\",\n    \"podSubnetID\": \"500123\",\n    \"enableNodePublicIP\": true,\n    \"nodePublicIPPrefixID\": \"500123\",\n    \"enableEncryptionAtHost\": true,\n    \"enableFIPS\": true,\n    \"enableUltraSSD\": true,\n    \"nodeLabels\": \"example_value\",\n    \"nodeTaints\": [\n      {}\n    ],\n    \"tags\": \"example_value\",\n    \"proximityPlacementGroupID\": \"500123\",\n    \"availabilityZones\": [\n      {}\n    ],\n    \"workloadRuntime\": \"OCIContainer\",\n    \"messageOfTheDay\": \"example_value\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URL to query for status of the asynchronous operation.",
+                  "key": "Azure-AsyncOperation",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Suggested delay in seconds to check on operation status.",
+                  "key": "Retry-After",
+                  "value": "1725"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"type\": \"example_value\",\n  \"properties\": {\n    \"provisioningState\": \"example_value\",\n    \"count\": 10,\n    \"vmSize\": \"example_value\",\n    \"osDiskSizeGB\": 10,\n    \"osDiskType\": \"Managed\",\n    \"kubeletDiskType\": \"OS\",\n    \"maxPods\": 10,\n    \"osType\": \"Linux\",\n    \"osSKU\": \"Ubuntu\",\n    \"type\": \"VirtualMachineScaleSets\",\n    \"mode\": \"System\",\n    \"orchestratorVersion\": \"example_value\",\n    \"currentOrchestratorVersion\": \"example_value\",\n    \"nodeImageVersion\": \"example_value\",\n    \"enableAutoScaling\": true,\n    \"minCount\": 10,\n    \"maxCount\": 10,\n    \"scaleSetPriority\": \"Spot\",\n    \"scaleSetEvictionPolicy\": \"Delete\",\n    \"spotMaxPrice\": 42.5,\n    \"scaleDownMode\": \"Delete\",\n    \"vnetSubnetID\": \"500123\",\n    \"podSubnetID\": \"500123\",\n    \"enableNodePublicIP\": true,\n    \"nodePublicIPPrefixID\": \"500123\",\n    \"enableEncryptionAtHost\": true,\n    \"enableFIPS\": true,\n    \"enableUltraSSD\": true,\n    \"nodeLabels\": \"example_value\",\n    \"nodeTaints\": [\n      {}\n    ],\n    \"tags\": \"example_value\",\n    \"proximityPlacementGroupID\": \"500123\",\n    \"availabilityZones\": [\n      {}\n    ],\n    \"workloadRuntime\": \"OCIContainer\",\n    \"messageOfTheDay\": \"example_value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a604f992-76c6-4ec8-bbca-fa28a7892da8",
+              "name": "Error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The request should only proceed if an entity matches this string.",
+                    "key": "if-match",
+                    "value": "example_value"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The request should only proceed if no entity matches this string.",
+                    "key": "if-none-match",
+                    "value": "example_value"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"type\": \"example_value\",\n  \"properties\": {\n    \"provisioningState\": \"example_value\",\n    \"count\": 10,\n    \"vmSize\": \"example_value\",\n    \"osDiskSizeGB\": 10,\n    \"osDiskType\": \"Managed\",\n    \"kubeletDiskType\": \"OS\",\n    \"maxPods\": 10,\n    \"osType\": \"Linux\",\n    \"osSKU\": \"Ubuntu\",\n    \"type\": \"VirtualMachineScaleSets\",\n    \"mode\": \"System\",\n    \"orchestratorVersion\": \"example_value\",\n    \"currentOrchestratorVersion\": \"example_value\",\n    \"nodeImageVersion\": \"example_value\",\n    \"enableAutoScaling\": true,\n    \"minCount\": 10,\n    \"maxCount\": 10,\n    \"scaleSetPriority\": \"Spot\",\n    \"scaleSetEvictionPolicy\": \"Delete\",\n    \"spotMaxPrice\": 42.5,\n    \"scaleDownMode\": \"Delete\",\n    \"vnetSubnetID\": \"500123\",\n    \"podSubnetID\": \"500123\",\n    \"enableNodePublicIP\": true,\n    \"nodePublicIPPrefixID\": \"500123\",\n    \"enableEncryptionAtHost\": true,\n    \"enableFIPS\": true,\n    \"enableUltraSSD\": true,\n    \"nodeLabels\": \"example_value\",\n    \"nodeTaints\": [\n      {}\n    ],\n    \"tags\": \"example_value\",\n    \"proximityPlacementGroupID\": \"500123\",\n    \"availabilityZones\": [\n      {}\n    ],\n    \"workloadRuntime\": \"OCIContainer\",\n    \"messageOfTheDay\": \"example_value\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"example_value\",\n    \"message\": \"example_value\",\n    \"target\": \"example_value\",\n    \"details\": [\n      {\n        \"code\": \"example_value\",\n        \"message\": \"example_value\",\n        \"target\": \"example_value\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f90b9471-93ff-466a-82b0-ea1a7351134b",
+          "name": "Azure Kubernetes Service Delete an Agent Pool",
+          "request": {
+            "name": "Azure Kubernetes Service Delete an Agent Pool",
+            "description": {
+              "content": "Deletes an agent pool in the specified managed cluster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.ContainerService",
+                "managedClusters",
+                ":resourceName",
+                "agentPools",
+                ":agentPoolName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2025-10-01",
+                  "description": "(Required) The API version to use for this operation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) The name of the resource group. The name is case insensitive."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceName",
+                  "description": "(Required) The name of the managed cluster resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agentPoolName",
+                  "description": "(Required) The name of the agent pool."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "143649d6-60f6-4a9f-8629-978b36deb62a",
+              "name": "Accepted. The delete operation will complete asynchronously.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URL to query for status of the asynchronous operation.",
+                  "key": "Azure-AsyncOperation",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "URL to query for the operation result.",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Suggested delay in seconds to check on operation status.",
+                  "key": "Retry-After",
+                  "value": "1725"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7dc8df4f-26dd-4b2e-b52e-beb13b24b922",
+              "name": "No Content. The resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5a109b8c-336a-4cc4-9806-1b1acb628fe7",
+              "name": "Error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"example_value\",\n    \"message\": \"example_value\",\n    \"target\": \"example_value\",\n    \"details\": [\n      {\n        \"code\": \"example_value\",\n        \"message\": \"example_value\",\n        \"target\": \"example_value\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d65bde91-bd5b-4ada-aa67-32c2b3520ccd",
+          "name": "Azure Kubernetes Service Get the Upgrade Profile for an Agent Pool",
+          "request": {
+            "name": "Azure Kubernetes Service Get the Upgrade Profile for an Agent Pool",
+            "description": {
+              "content": "Gets the upgrade profile for an agent pool.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.ContainerService",
+                "managedClusters",
+                ":resourceName",
+                "agentPools",
+                ":agentPoolName",
+                "upgradeProfiles",
+                "default"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2025-10-01",
+                  "description": "(Required) The API version to use for this operation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) The name of the resource group. The name is case insensitive."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceName",
+                  "description": "(Required) The name of the managed cluster resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agentPoolName",
+                  "description": "(Required) The name of the agent pool."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51641f69-9bce-40e4-94cd-510f466985ea",
+              "name": "OK. The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName",
+                    "upgradeProfiles",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"type\": \"example_value\",\n  \"properties\": {\n    \"kubernetesVersion\": \"example_value\",\n    \"osType\": \"Linux\",\n    \"upgrades\": [\n      {\n        \"kubernetesVersion\": \"example_value\",\n        \"isPreview\": true\n      }\n    ],\n    \"latestNodeImageVersion\": \"example_value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31eeb156-c432-40b1-a3f8-326a28ae03ea",
+              "name": "Error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName",
+                    "upgradeProfiles",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"example_value\",\n    \"message\": \"example_value\",\n    \"target\": \"example_value\",\n    \"details\": [\n      {\n        \"code\": \"example_value\",\n        \"message\": \"example_value\",\n        \"target\": \"example_value\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e53b44ba-3aaa-44d3-9f06-0345a072c556",
+          "name": "Azure Kubernetes Service Get Available Agent Pool Versions",
+          "request": {
+            "name": "Azure Kubernetes Service Get Available Agent Pool Versions",
+            "description": {
+              "content": "Gets a list of supported Kubernetes versions for the specified agent pool.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.ContainerService",
+                "managedClusters",
+                ":resourceName",
+                "agentPools",
+                ":agentPoolName",
+                "availableAgentPoolVersions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2025-10-01",
+                  "description": "(Required) The API version to use for this operation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) The name of the resource group. The name is case insensitive."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceName",
+                  "description": "(Required) The name of the managed cluster resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agentPoolName",
+                  "description": "(Required) The name of the agent pool."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25f5bc23-ce92-4c54-9520-ff309e04e19e",
+              "name": "OK. The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName",
+                    "availableAgentPoolVersions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"type\": \"example_value\",\n  \"properties\": {\n    \"agentPoolVersions\": [\n      {\n        \"default\": true,\n        \"kubernetesVersion\": \"example_value\",\n        \"isPreview\": true\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c074941e-66b7-4bb9-93e5-7fa80540a5d9",
+              "name": "Error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName",
+                    "availableAgentPoolVersions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"example_value\",\n    \"message\": \"example_value\",\n    \"target\": \"example_value\",\n    \"details\": [\n      {\n        \"code\": \"example_value\",\n        \"message\": \"example_value\",\n        \"target\": \"example_value\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d19210a5-df09-4866-a35b-1c4a9f339a20",
+          "name": "Azure Kubernetes Service Upgrade Node Image Version",
+          "request": {
+            "name": "Azure Kubernetes Service Upgrade Node Image Version",
+            "description": {
+              "content": "Upgrades the node image version of an agent pool to the latest.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.ContainerService",
+                "managedClusters",
+                ":resourceName",
+                "agentPools",
+                ":agentPoolName",
+                "upgradeNodeImageVersion"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2025-10-01",
+                  "description": "(Required) The API version to use for this operation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) The name of the resource group. The name is case insensitive."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceName",
+                  "description": "(Required) The name of the managed cluster resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agentPoolName",
+                  "description": "(Required) The name of the agent pool."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b28778ad-60ba-4620-940b-04a5260f0785",
+              "name": "OK. The agent pool node image has been upgraded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName",
+                    "upgradeNodeImageVersion"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d5dd59f-66f2-48f0-b1eb-19a8653623e3",
+              "name": "Accepted. The operation will complete asynchronously.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName",
+                    "upgradeNodeImageVersion"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URL to query for status of the asynchronous operation.",
+                  "key": "Azure-AsyncOperation",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "URL to query for the operation result.",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Suggested delay in seconds.",
+                  "key": "Retry-After",
+                  "value": "1725"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "48af6200-a56f-4a80-a413-23a92e1c178c",
+              "name": "Error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName",
+                    "upgradeNodeImageVersion"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"example_value\",\n    \"message\": \"example_value\",\n    \"target\": \"example_value\",\n    \"details\": [\n      {\n        \"code\": \"example_value\",\n        \"message\": \"example_value\",\n        \"target\": \"example_value\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea346cc8-0298-44dc-834a-8216efea6c91",
+          "name": "Azure Kubernetes Service Abort Latest Operation on an Agent Pool",
+          "request": {
+            "name": "Azure Kubernetes Service Abort Latest Operation on an Agent Pool",
+            "description": {
+              "content": "Aborts the currently running operation on the agent pool.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.ContainerService",
+                "managedClusters",
+                ":resourceName",
+                "agentPools",
+                ":agentPoolName",
+                "abort"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2025-10-01",
+                  "description": "(Required) The API version to use for this operation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) The name of the resource group. The name is case insensitive."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceName",
+                  "description": "(Required) The name of the managed cluster resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agentPoolName",
+                  "description": "(Required) The name of the agent pool."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a534ff2e-62be-4f76-b2e4-3c9b0fce0e63",
+              "name": "Accepted. The operation will complete asynchronously.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName",
+                    "abort"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URL to query for status of the asynchronous operation.",
+                  "key": "Azure-AsyncOperation",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "URL to query for the operation result.",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Suggested delay in seconds.",
+                  "key": "Retry-After",
+                  "value": "1725"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e308dc6b-72f2-4426-a468-9e863ecd1440",
+              "name": "No Content. No operation running.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName",
+                    "abort"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "146b45ee-1e83-44c5-80b9-1340f39ff722",
+              "name": "Error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName",
+                    "abort"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"example_value\",\n    \"message\": \"example_value\",\n    \"target\": \"example_value\",\n    \"details\": [\n      {\n        \"code\": \"example_value\",\n        \"message\": \"example_value\",\n        \"target\": \"example_value\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00ddee5f-f23c-4567-b011-d5ecb609b014",
+          "name": "Azure Kubernetes Service Delete Specific Machines in an Agent Pool",
+          "request": {
+            "name": "Azure Kubernetes Service Delete Specific Machines in an Agent Pool",
+            "description": {
+              "content": "Deletes specific machines in an agent pool.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.ContainerService",
+                "managedClusters",
+                ":resourceName",
+                "agentPools",
+                ":agentPoolName",
+                "deleteMachines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api-version",
+                  "value": "2025-10-01",
+                  "description": "(Required) The API version to use for this operation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "subscriptionId",
+                  "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceGroupName",
+                  "description": "(Required) The name of the resource group. The name is case insensitive."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceName",
+                  "description": "(Required) The name of the managed cluster resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agentPoolName",
+                  "description": "(Required) The name of the agent pool."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"machineNames\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5cff00a8-5f60-4144-b309-351e09bb2f6a",
+              "name": "Accepted. The operation will complete asynchronously.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName",
+                    "deleteMachines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"machineNames\": [\n    \"example_value\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URL to query for status of the asynchronous operation.",
+                  "key": "Azure-AsyncOperation",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "URL to query for the operation result.",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Suggested delay in seconds.",
+                  "key": "Retry-After",
+                  "value": "1725"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "88ae03df-38ed-4dfa-be7f-bbed1707e7db",
+              "name": "Error response describing why the operation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.ContainerService",
+                    "managedClusters",
+                    ":resourceName",
+                    "agentPools",
+                    ":agentPoolName",
+                    "deleteMachines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api-version",
+                      "value": "2025-10-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "subscriptionId",
+                      "description": "(Required) The ID of the target subscription. Must be a valid UUID."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceGroupName",
+                      "description": "(Required) The name of the resource group. The name is case insensitive."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceName",
+                      "description": "(Required) The name of the managed cluster resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agentPoolName",
+                      "description": "(Required) The name of the agent pool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"machineNames\": [\n    \"example_value\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"example_value\",\n    \"message\": \"example_value\",\n    \"target\": \"example_value\",\n    \"details\": [\n      {\n        \"code\": \"example_value\",\n        \"message\": \"example_value\",\n        \"target\": \"example_value\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://management.azure.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "user_impersonation"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "86d22dfe-91fa-47f8-b4a6-426067d9e256",
+    "name": "Azure Kubernetes Service REST Agent Pools API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing Azure Kubernetes Service (AKS) resources including managed clusters, agent pools, maintenance configurations, snapshots, private endpoint connections, and trusted access role bindings. AKS simplifies deploying a managed Kubernetes cluster in Azure by offloading operational overhead such as health monitoring and maintenance.\n\nContact Support:\n Name: Microsoft Azure Support",
+      "type": "text/plain"
+    }
+  }
+}
