@@ -10,8 +10,8 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: aksApi
-  url: ../openapi/azure-kubernetes-service-openapi.yml
+- name: agentPoolsApi
+  url: ../openapi/microsoft-azure-kubernetes-service-agent-pools-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: delete-node-pool-machines
