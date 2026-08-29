@@ -3,6 +3,20 @@ description: >-
   Azure Kubernetes Service (AKS) simplifies deploying a managed Kubernetes cluster in Azure by offloading the
   operational overhead to Azure. As a hosted Kubernetes service, Azure handles critical tasks, like health monitoring
   and maintenance.
+deliveryModel:
+  model: open-core
+  license: MIT
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
