@@ -1,8 +1,7 @@
 {
   "provider": "microsoft-azure-kubernetes-service",
   "sources": [
-    "microsoft-azure-kubernetes-service-agent-pools-api-openapi.yml",
-    "microsoft-azure-kubernetes-service-managed-clusters-api-openapi.yml"
+    "_original/azure-kubernetes-service-openapi.yml"
   ],
   "outputs": [
     "microsoft-azure-kubernetes-service-agent-pools-api-openapi.yml",
@@ -12,9 +11,12 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "microsoft-azure-kubernetes-service-agent-pools-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "microsoft-azure-kubernetes-service-managed-clusters-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "azure-kubernetes-service-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "microsoft-azure-kubernetes-service-agent-pools-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-azure-kubernetes-service-managed-clusters-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

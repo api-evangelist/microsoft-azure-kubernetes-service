@@ -715,53 +715,37 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    ApiVersionParameter:
-      name: api-version
-      in: query
-      required: true
-      description: The API version to use for this operation.
-      schema:
-        type: string
-        default: '2025-10-01'
-    ResourceGroupNameParameter:
-      name: resourceGroupName
-      in: path
-      required: true
-      description: The name of the resource group. The name is case insensitive.
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 90
-    SubscriptionIdParameter:
-      name: subscriptionId
-      in: path
-      required: true
-      description: The ID of the target subscription. Must be a valid UUID.
-      schema:
-        type: string
-        format: uuid
-    AgentPoolNameParameter:
-      name: agentPoolName
-      in: path
-      required: true
-      description: The name of the agent pool.
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 12
-        pattern: ^[a-z][a-z0-9]{0,11}$
-    ResourceNameParameter:
-      name: resourceName
-      in: path
-      required: true
-      description: The name of the managed cluster resource.
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 63
-        pattern: ^[a-zA-Z0-9]$|^[a-zA-Z0-9][-_a-zA-Z0-9]{0,61}[a-zA-Z0-9]$
   schemas:
+    CloudError:
+      type: object
+      description: An error response from the Container service.
+      properties:
+        error:
+          type: object
+          description: Details about the error.
+          properties:
+            code:
+              type: string
+              description: An identifier for the error. Codes are invariant and are intended to be consumed programmatically.
+            message:
+              type: string
+              description: A message describing the error, intended to be suitable for display in a user interface.
+            target:
+              type: string
+              description: The target of the particular error. For example, the name of the property in error.
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  target:
+                    type: string
+              description: A list of additional details about the error.
+          example: example_value
     AgentPoolProperties:
       type: object
       description: Properties for the container service agent pool profile.
@@ -972,18 +956,27 @@ components:
           type: string
           description: A base64-encoded message of the day for Linux nodes.
           example: example_value
-    AgentPoolDeleteMachinesParameter:
+    AgentPool:
       type: object
-      description: The parameters for deleting machines in an agent pool.
-      required:
-      - machineNames
+      description: Agent pool resource within a managed cluster.
       properties:
-        machineNames:
-          type: array
-          items:
-            type: string
-          description: The list of machine names to delete.
-          example: []
+        id:
+          type: string
+          readOnly: true
+          description: Resource ID.
+          example: abc123
+        name:
+          type: string
+          readOnly: true
+          description: The name of the resource that is unique within a resource group.
+          example: Example Title
+        type:
+          type: string
+          readOnly: true
+          description: Resource type.
+          example: example_value
+        properties:
+          $ref: '#/components/schemas/AgentPoolProperties'
     AgentPoolUpgradeSettings:
       type: object
       description: Settings for upgrading an agentpool.
@@ -1006,36 +999,6 @@ components:
           maximum: 30
           description: The amount of time (in minutes) to wait after draining a node and before reimaging it and moving on to the next node.
           example: 10
-    CloudError:
-      type: object
-      description: An error response from the Container service.
-      properties:
-        error:
-          type: object
-          description: Details about the error.
-          properties:
-            code:
-              type: string
-              description: An identifier for the error. Codes are invariant and are intended to be consumed programmatically.
-            message:
-              type: string
-              description: A message describing the error, intended to be suitable for display in a user interface.
-            target:
-              type: string
-              description: The target of the particular error. For example, the name of the property in error.
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  code:
-                    type: string
-                  message:
-                    type: string
-                  target:
-                    type: string
-              description: A list of additional details about the error.
-          example: example_value
     AgentPoolUpgradeProfile:
       type: object
       description: The list of available upgrades for an agent pool.
@@ -1083,6 +1046,17 @@ components:
               type: string
               description: The latest node image version available for the agent pool.
           example: example_value
+    PowerState:
+      type: object
+      description: Describes the Power State of the cluster.
+      properties:
+        code:
+          type: string
+          description: Tells whether the cluster is Running or Stopped.
+          enum:
+          - Running
+          - Stopped
+          example: Running
     AgentPoolAvailableVersions:
       type: object
       description: The available agent pool versions.
@@ -1120,6 +1094,14 @@ components:
                     type: boolean
                     description: Whether this version is in preview.
           example: example_value
+    CreationData:
+      type: object
+      description: Data used when creating a target resource from a source resource.
+      properties:
+        sourceResourceId:
+          type: string
+          description: This is the ARM ID of the source object to be used to create the target object.
+          example: '500123'
     AgentPoolListResult:
       type: object
       description: The response from the List Agent Pools operation.
@@ -1135,46 +1117,64 @@ components:
           readOnly: true
           description: The URL to get the next set of agent pool results.
           example: example_value
-    AgentPool:
+    AgentPoolDeleteMachinesParameter:
       type: object
-      description: Agent pool resource within a managed cluster.
+      description: The parameters for deleting machines in an agent pool.
+      required:
+      - machineNames
       properties:
-        id:
-          type: string
-          readOnly: true
-          description: Resource ID.
-          example: abc123
-        name:
-          type: string
-          readOnly: true
-          description: The name of the resource that is unique within a resource group.
-          example: Example Title
-        type:
-          type: string
-          readOnly: true
-          description: Resource type.
-          example: example_value
-        properties:
-          $ref: '#/components/schemas/AgentPoolProperties'
-    CreationData:
-      type: object
-      description: Data used when creating a target resource from a source resource.
-      properties:
-        sourceResourceId:
-          type: string
-          description: This is the ARM ID of the source object to be used to create the target object.
-          example: '500123'
-    PowerState:
-      type: object
-      description: Describes the Power State of the cluster.
-      properties:
-        code:
-          type: string
-          description: Tells whether the cluster is Running or Stopped.
-          enum:
-          - Running
-          - Stopped
-          example: Running
+        machineNames:
+          type: array
+          items:
+            type: string
+          description: The list of machine names to delete.
+          example: []
+  parameters:
+    ResourceNameParameter:
+      name: resourceName
+      in: path
+      required: true
+      description: The name of the managed cluster resource.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 63
+        pattern: ^[a-zA-Z0-9]$|^[a-zA-Z0-9][-_a-zA-Z0-9]{0,61}[a-zA-Z0-9]$
+    AgentPoolNameParameter:
+      name: agentPoolName
+      in: path
+      required: true
+      description: The name of the agent pool.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 12
+        pattern: ^[a-z][a-z0-9]{0,11}$
+    ApiVersionParameter:
+      name: api-version
+      in: query
+      required: true
+      description: The API version to use for this operation.
+      schema:
+        type: string
+        default: '2025-10-01'
+    SubscriptionIdParameter:
+      name: subscriptionId
+      in: path
+      required: true
+      description: The ID of the target subscription. Must be a valid UUID.
+      schema:
+        type: string
+        format: uuid
+    ResourceGroupNameParameter:
+      name: resourceGroupName
+      in: path
+      required: true
+      description: The name of the resource group. The name is case insensitive.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 90
   securitySchemes:
     azure_auth:
       type: oauth2
