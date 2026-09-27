@@ -115,7 +115,7 @@ apis:
     url: https://learn.microsoft.com/en-us/rest/api/aks/trusted-access-role-bindings
   - type: Authentication
     url: https://learn.microsoft.com/en-us/azure/aks/concepts-identity
-- name: Azure Kubernetes Service kubectl API
+- name: Azure Kubernetes Service Kubectl API
   description: Kubernetes API accessible via kubectl for cluster operations.
   humanURL: https://kubernetes.io/docs/reference/
   baseURL: https://{cluster-name}.{region}.azmk8s.io
