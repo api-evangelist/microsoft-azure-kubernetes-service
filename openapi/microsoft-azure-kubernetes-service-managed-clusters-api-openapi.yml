@@ -1091,175 +1091,151 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ManagedClusterLoadBalancerProfile:
+    ManagedCluster:
       type: object
-      description: Profile of the managed cluster load balancer.
+      description: Managed cluster resource representing an Azure Kubernetes Service cluster.
+      required:
+      - location
       properties:
-        managedOutboundIPs:
+        id:
+          type: string
+          readOnly: true
+          description: 'Fully qualified resource ID for the resource. Example: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}'
+          example: abc123
+        name:
+          type: string
+          readOnly: true
+          description: The name of the resource.
+          example: Example Title
+        type:
+          type: string
+          readOnly: true
+          description: 'The type of the resource. Example: Microsoft.ContainerService/managedClusters'
+          example: example_value
+        location:
+          type: string
+          description: The geo-location where the resource lives.
+          example: example_value
+        tags:
           type: object
+          additionalProperties:
+            type: string
+          description: Resource tags.
+          example: example_value
+        sku:
+          $ref: '#/components/schemas/ManagedClusterSKU'
+        kind:
+          type: string
+          description: This is primarily used to expose different UI experiences in the portal for different kinds.
+          example: example_value
+        identity:
+          $ref: '#/components/schemas/ManagedClusterIdentity'
+        extendedLocation:
+          $ref: '#/components/schemas/ExtendedLocation'
+        systemData:
+          $ref: '#/components/schemas/SystemData'
+          readOnly: true
+        properties:
+          $ref: '#/components/schemas/ManagedClusterProperties'
+    ManagedClusterWorkloadAutoScalerProfile:
+      type: object
+      description: Workload Auto-scaler profile for the managed cluster.
+      properties:
+        keda:
+          type: object
+          description: KEDA (Kubernetes Event-driven Autoscaling) settings.
           properties:
-            count:
+            enabled:
+              type: boolean
+              description: Whether to enable KEDA.
+          example: example_value
+        verticalPodAutoscaler:
+          type: object
+          description: VPA (Vertical Pod Autoscaler) settings.
+          properties:
+            enabled:
+              type: boolean
+              description: Whether to enable VPA.
+            controlledValues:
+              type: string
+              description: Controls which resource value autoscaler acts on.
+              enum:
+              - RequestsAndLimits
+              - RequestsOnly
+          example: example_value
+    ManagedClusterSecurityProfile:
+      type: object
+      description: Security profile for the container service cluster.
+      properties:
+        defender:
+          type: object
+          description: Microsoft Defender settings for the security profile.
+          properties:
+            logAnalyticsWorkspaceResourceId:
+              type: string
+              description: Resource ID of the Log Analytics workspace.
+            securityMonitoring:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                  description: Whether to enable Defender threat detection.
+          example: example_value
+        workloadIdentity:
+          type: object
+          description: Workload identity settings for the security profile.
+          properties:
+            enabled:
+              type: boolean
+              description: Whether to enable workload identity.
+          example: example_value
+        imageCleaner:
+          type: object
+          description: Image Cleaner settings for the security profile.
+          properties:
+            enabled:
+              type: boolean
+              description: Whether to enable Image Cleaner.
+            intervalHours:
               type: integer
               format: int32
-              minimum: 1
-              maximum: 100
-              default: 1
-              description: The desired number of outbound IPs created/managed by Azure for the cluster load balancer.
-          description: Desired managed outbound IPs for the cluster load balancer.
+              description: Image Cleaner scanning interval in hours.
           example: example_value
-        outboundIPPrefixes:
-          type: object
-          properties:
-            publicIPPrefixes:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: The fully qualified Azure resource id.
-          description: Desired outbound IP Prefix resources for the cluster load balancer.
-          example: example_value
-        outboundIPs:
-          type: object
-          properties:
-            publicIPs:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: The fully qualified Azure resource id.
-          description: Desired outbound IP resources for the cluster load balancer.
-          example: example_value
-        effectiveOutboundIPs:
-          type: array
-          readOnly: true
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: The fully qualified Azure resource id.
-          description: The effective outbound IP resources of the cluster load balancer.
-          example: []
-        allocatedOutboundPorts:
-          type: integer
-          format: int32
-          minimum: 0
-          maximum: 64000
-          default: 0
-          description: The desired number of allocated SNAT ports per VM.
-          example: 10
-        idleTimeoutInMinutes:
-          type: integer
-          format: int32
-          minimum: 4
-          maximum: 120
-          default: 30
-          description: Desired outbound flow idle timeout in minutes.
-          example: 10
-    ManagedClusterAutoScalerProfile:
+    ServiceMeshProfile:
       type: object
-      description: Parameters to be applied to the cluster-autoscaler.
+      description: Service mesh profile for a managed cluster.
       properties:
-        balance-similar-node-groups:
+        mode:
           type: string
-          description: Detects similar node pools and balances the number of nodes between them.
-          example: example_value
-        daemonset-eviction-for-empty-nodes:
-          type: boolean
-          description: If set to true, all daemonset pods on empty nodes will be evicted before deletion of the node.
-          example: true
-        daemonset-eviction-for-occupied-nodes:
-          type: boolean
-          description: If set to true, all daemonset pods on occupied nodes will be evicted before deletion of the node.
-          example: true
-        expander:
-          type: string
-          description: The expander to use when scaling up.
+          description: Mode of the service mesh.
           enum:
-          - least-waste
-          - most-pods
-          - priority
-          - random
-          default: random
-          example: least-waste
-        max-empty-bulk-delete:
-          type: string
-          description: The maximum number of empty nodes that can be deleted at the same time.
-          default: '10'
+          - Istio
+          - Disabled
+          example: Istio
+        istio:
+          type: object
+          description: Istio service mesh configuration.
+          properties:
+            revisions:
+              type: array
+              items:
+                type: string
+              description: The list of revisions of the Istio control plane.
           example: example_value
-        max-graceful-termination-sec:
+    ManagedClusterServicePrincipalProfile:
+      type: object
+      description: Information about a service principal identity for the cluster to use for manipulating Azure APIs.
+      required:
+      - clientId
+      properties:
+        clientId:
           type: string
-          description: Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node.
-          default: '600'
-          example: example_value
-        max-node-provision-time:
+          description: The ID for the service principal.
+          example: '500123'
+        secret:
           type: string
-          description: The maximum time the autoscaler waits for a node to be provisioned.
-          default: 15m
-          example: example_value
-        max-total-unready-percentage:
-          type: string
-          description: Maximum percentage of unready nodes in the cluster. After this percentage is exceeded, the cluster autoscaler halts operations.
-          default: '45'
-          example: example_value
-        new-pod-scale-up-delay:
-          type: string
-          description: For scenarios like burst/batch scale where you do not want CA to act before the kubernetes scheduler could schedule all the pods.
-          default: 0s
-          example: example_value
-        ok-total-unready-count:
-          type: string
-          description: Number of allowed unready nodes, irrespective of max-total-unready-percentage.
-          default: '3'
-          example: example_value
-        scan-interval:
-          type: string
-          description: How often the cluster is reevaluated for scale up or down.
-          default: 10s
-          example: example_value
-        scale-down-delay-after-add:
-          type: string
-          description: How long after scale up that scale down evaluation resumes.
-          default: 10m
-          example: example_value
-        scale-down-delay-after-delete:
-          type: string
-          description: How long after node deletion that scale down evaluation resumes.
-          default: scan-interval
-          example: example_value
-        scale-down-delay-after-failure:
-          type: string
-          description: How long after scale down failure that scale down evaluation resumes.
-          default: 3m
-          example: example_value
-        scale-down-unneeded-time:
-          type: string
-          description: How long a node should be unneeded before it is eligible for scale down.
-          default: 10m
-          example: example_value
-        scale-down-unready-time:
-          type: string
-          description: How long an unready node should be unneeded before it is eligible for scale down.
-          default: 20m
-          example: example_value
-        scale-down-utilization-threshold:
-          type: string
-          description: Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down.
-          default: '0.5'
-          example: example_value
-        skip-nodes-with-local-storage:
-          type: string
-          description: Whether the cluster autoscaler will skip deleting nodes with pods with local storage.
-          default: 'true'
-          example: example_value
-        skip-nodes-with-system-pods:
-          type: string
-          description: Whether the cluster autoscaler will skip deleting nodes with pods from kube-system (except for DaemonSet or mirror pods).
-          default: 'true'
+          format: password
+          description: The secret password associated with the service principal.
           example: example_value
     PowerState:
       type: object
@@ -1272,82 +1248,35 @@ components:
           - Running
           - Stopped
           example: Running
-    ManagedClusterMetricsProfile:
+    ContainerServiceLinuxProfile:
       type: object
-      description: The metrics profile for the ManagedCluster.
+      description: Profile for Linux VMs in the container service cluster.
+      required:
+      - adminUsername
+      - ssh
       properties:
-        costAnalysis:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-              description: Whether the cost analysis add-on is enabled.
-          example: example_value
-    ManagedClusterAADProfile:
-      type: object
-      description: Azure Active Directory configuration for integration with AKS.
-      properties:
-        managed:
-          type: boolean
-          description: Whether to enable managed AAD.
-          example: true
-        enableAzureRBAC:
-          type: boolean
-          description: Whether to enable Azure RBAC for Kubernetes authorization.
-          example: true
-        adminGroupObjectIDs:
-          type: array
-          items:
-            type: string
-          description: The list of AAD group object IDs that will have admin role of the cluster.
-          example: []
-        clientAppID:
+        adminUsername:
           type: string
-          description: (DEPRECATED) The client AAD application ID. Used for legacy/non-managed AAD.
-          example: '500123'
-        serverAppID:
-          type: string
-          description: (DEPRECATED) The server AAD application ID. Used for legacy/non-managed AAD.
-          example: '500123'
-        serverAppSecret:
-          type: string
-          description: (DEPRECATED) The server AAD application secret. Used for legacy/non-managed AAD.
+          description: The administrator username to use for Linux VMs.
+          pattern: ^[A-Za-z][-A-Za-z0-9_]*$
           example: example_value
-        tenantID:
-          type: string
-          description: The AAD tenant ID to use for authentication. If not specified, will use the tenant of the deployment subscription.
-          example: '500123'
-    ManagedClusterStorageProfile:
-      type: object
-      description: Storage profile for the container service cluster.
-      properties:
-        diskCSIDriver:
+        ssh:
           type: object
+          description: The SSH configuration for Linux-based VMs running on Azure.
+          required:
+          - publicKeys
           properties:
-            enabled:
-              type: boolean
-              description: Whether to enable AzureDisk CSI Driver.
-          example: example_value
-        fileCSIDriver:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-              description: Whether to enable AzureFile CSI Driver.
-          example: example_value
-        snapshotController:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-              description: Whether to enable Snapshot Controller.
-          example: example_value
-        blobCSIDriver:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-              description: Whether to enable AzureBlob CSI Driver.
+            publicKeys:
+              type: array
+              items:
+                type: object
+                required:
+                - keyData
+                properties:
+                  keyData:
+                    type: string
+                    description: Certificate public key used to authenticate with VMs through SSH. The certificate must be in PEM format with or without headers.
+              description: The list of SSH public keys used to authenticate with Linux-based VMs.
           example: example_value
     ManagedClusterAgentPoolProfile:
       type: object
@@ -1563,121 +1492,73 @@ components:
           type: string
           description: A base64-encoded string which will be written to /etc/motd after decoding. Applicable only for Linux nodes.
           example: example_value
-    ClusterUpgradeSettings:
+    ManagedClusterStorageProfile:
       type: object
-      description: Settings for upgrading a cluster.
+      description: Storage profile for the container service cluster.
       properties:
-        overrideSettings:
+        diskCSIDriver:
           type: object
-          description: Settings for overrides during upgrade.
           properties:
-            forceUpgrade:
+            enabled:
               type: boolean
-              description: Whether to force upgrade the cluster. Note that this option instructs the upgrade operation to bypass upgrade protections.
-            until:
-              type: string
-              format: date-time
-              description: Until when the overrides are effective.
+              description: Whether to enable AzureDisk CSI Driver.
           example: example_value
-    CreationData:
-      type: object
-      description: Data used when creating a target resource from a source resource.
-      properties:
-        sourceResourceId:
-          type: string
-          description: This is the ARM ID of the source object to be used to create the target object.
-          example: '500123'
-    UserAssignedIdentity:
-      type: object
-      description: Details about a user assigned identity.
-      properties:
-        resourceId:
-          type: string
-          description: The resource ID of the user assigned identity.
-          example: '500123'
-        clientId:
-          type: string
-          description: The client ID of the user assigned identity.
-          example: '500123'
-        objectId:
-          type: string
-          description: The object ID of the user assigned identity.
-          example: '500123'
-    SystemData:
-      type: object
-      description: Metadata pertaining to creation and last modification of the resource.
-      properties:
-        createdBy:
-          type: string
-          description: The identity that created the resource.
-          example: example_value
-        createdByType:
-          type: string
-          description: The type of identity that created the resource.
-          enum:
-          - User
-          - Application
-          - ManagedIdentity
-          - Key
-          example: User
-        createdAt:
-          type: string
-          format: date-time
-          description: The timestamp of resource creation (UTC).
-          example: '2026-01-15T10:30:00Z'
-        lastModifiedBy:
-          type: string
-          description: The identity that last modified the resource.
-          example: example_value
-        lastModifiedByType:
-          type: string
-          description: The type of identity that last modified the resource.
-          enum:
-          - User
-          - Application
-          - ManagedIdentity
-          - Key
-          example: User
-        lastModifiedAt:
-          type: string
-          format: date-time
-          description: The timestamp of resource last modification (UTC).
-          example: '2026-01-15T10:30:00Z'
-    ManagedClusterNATGatewayProfile:
-      type: object
-      description: Profile of the managed cluster NAT gateway.
-      properties:
-        managedOutboundIPProfile:
+        fileCSIDriver:
           type: object
           properties:
-            count:
-              type: integer
-              format: int32
-              minimum: 1
-              maximum: 16
-              default: 1
-              description: The desired number of outbound IPs for the NAT gateway.
-          description: The managed outbound IP profile of the NAT gateway.
+            enabled:
+              type: boolean
+              description: Whether to enable AzureFile CSI Driver.
           example: example_value
-        effectiveOutboundIPs:
-          type: array
-          readOnly: true
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: The fully qualified Azure resource id.
-          description: The effective outbound IP resources of the NAT gateway.
-          example: []
-        idleTimeoutInMinutes:
+        snapshotController:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              description: Whether to enable Snapshot Controller.
+          example: example_value
+        blobCSIDriver:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              description: Whether to enable AzureBlob CSI Driver.
+          example: example_value
+    AgentPoolUpgradeSettings:
+      type: object
+      description: Settings for upgrading an agentpool.
+      properties:
+        maxSurge:
+          type: string
+          description: The maximum number or percentage of nodes that are surged during upgrade. This can either be set to an integer (e.g. 5) or a percentage (e.g. 50%). If a percentage is specified, it is the percentage of the total agent pool size at the time of the upgrade.
+          example: example_value
+        drainTimeoutInMinutes:
           type: integer
           format: int32
-          minimum: 4
-          maximum: 120
-          default: 4
-          description: Desired outbound flow idle timeout in minutes.
+          minimum: 1
+          maximum: 1440
+          description: The amount of time (in minutes) to wait on eviction of pods and graceful termination per node.
           example: 10
+        nodeSoakDurationInMinutes:
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 30
+          description: The amount of time (in minutes) to wait after draining a node and before reimaging it and moving on to the next node.
+          example: 10
+    ManagedClusterOIDCIssuerProfile:
+      type: object
+      description: The OIDC issuer profile of the Managed Cluster.
+      properties:
+        issuerURL:
+          type: string
+          readOnly: true
+          description: The OIDC issuer url of the Managed Cluster.
+          example: https://www.example.com
+        enabled:
+          type: boolean
+          description: Whether the OIDC issuer is enabled.
+          example: true
     ManagedClusterWindowsProfile:
       type: object
       description: Profile for Windows VMs in the managed cluster.
@@ -1704,6 +1585,249 @@ components:
           type: boolean
           description: Whether to enable CSI proxy.
           example: true
+    ManagedClusterLoadBalancerProfile:
+      type: object
+      description: Profile of the managed cluster load balancer.
+      properties:
+        managedOutboundIPs:
+          type: object
+          properties:
+            count:
+              type: integer
+              format: int32
+              minimum: 1
+              maximum: 100
+              default: 1
+              description: The desired number of outbound IPs created/managed by Azure for the cluster load balancer.
+          description: Desired managed outbound IPs for the cluster load balancer.
+          example: example_value
+        outboundIPPrefixes:
+          type: object
+          properties:
+            publicIPPrefixes:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The fully qualified Azure resource id.
+          description: Desired outbound IP Prefix resources for the cluster load balancer.
+          example: example_value
+        outboundIPs:
+          type: object
+          properties:
+            publicIPs:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The fully qualified Azure resource id.
+          description: Desired outbound IP resources for the cluster load balancer.
+          example: example_value
+        effectiveOutboundIPs:
+          type: array
+          readOnly: true
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The fully qualified Azure resource id.
+          description: The effective outbound IP resources of the cluster load balancer.
+          example: []
+        allocatedOutboundPorts:
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 64000
+          default: 0
+          description: The desired number of allocated SNAT ports per VM.
+          example: 10
+        idleTimeoutInMinutes:
+          type: integer
+          format: int32
+          minimum: 4
+          maximum: 120
+          default: 30
+          description: Desired outbound flow idle timeout in minutes.
+          example: 10
+    ManagedClusterListResult:
+      type: object
+      description: The response from the List Managed Clusters operation.
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedCluster'
+          description: The list of managed clusters.
+          example: []
+        nextLink:
+          type: string
+          readOnly: true
+          description: The URL to get the next set of managed cluster results.
+          example: example_value
+    ExtendedLocation:
+      type: object
+      description: The complex type of the extended location.
+      properties:
+        name:
+          type: string
+          description: The name of the extended location.
+          example: Example Title
+        type:
+          type: string
+          description: The type of the extended location.
+          enum:
+          - EdgeZone
+          example: EdgeZone
+    ManagedClusterAutoUpgradeProfile:
+      type: object
+      description: Auto upgrade profile for a managed cluster.
+      properties:
+        upgradeChannel:
+          type: string
+          description: The upgrade channel for auto upgrade.
+          enum:
+          - rapid
+          - stable
+          - patch
+          - node-image
+          - none
+          example: rapid
+        nodeOSUpgradeChannel:
+          type: string
+          description: The node OS upgrade channel. Manner in which the OS on your nodes is updated.
+          enum:
+          - None
+          - Unmanaged
+          - SecurityPatch
+          - NodeImage
+          example: None
+    CredentialResults:
+      type: object
+      description: The list of credential result response.
+      properties:
+        kubeconfigs:
+          type: array
+          readOnly: true
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                readOnly: true
+                description: The name of the credential.
+              value:
+                type: string
+                format: byte
+                readOnly: true
+                description: Base64-encoded Kubernetes configuration file.
+          description: Base64-encoded Kubernetes configuration file.
+          example: []
+    ManagedClusterAutoScalerProfile:
+      type: object
+      description: Parameters to be applied to the cluster-autoscaler.
+      properties:
+        balance-similar-node-groups:
+          type: string
+          description: Detects similar node pools and balances the number of nodes between them.
+          example: example_value
+        daemonset-eviction-for-empty-nodes:
+          type: boolean
+          description: If set to true, all daemonset pods on empty nodes will be evicted before deletion of the node.
+          example: true
+        daemonset-eviction-for-occupied-nodes:
+          type: boolean
+          description: If set to true, all daemonset pods on occupied nodes will be evicted before deletion of the node.
+          example: true
+        expander:
+          type: string
+          description: The expander to use when scaling up.
+          enum:
+          - least-waste
+          - most-pods
+          - priority
+          - random
+          default: random
+          example: least-waste
+        max-empty-bulk-delete:
+          type: string
+          description: The maximum number of empty nodes that can be deleted at the same time.
+          default: '10'
+          example: example_value
+        max-graceful-termination-sec:
+          type: string
+          description: Maximum number of seconds the cluster autoscaler waits for pod termination when trying to scale down a node.
+          default: '600'
+          example: example_value
+        max-node-provision-time:
+          type: string
+          description: The maximum time the autoscaler waits for a node to be provisioned.
+          default: 15m
+          example: example_value
+        max-total-unready-percentage:
+          type: string
+          description: Maximum percentage of unready nodes in the cluster. After this percentage is exceeded, the cluster autoscaler halts operations.
+          default: '45'
+          example: example_value
+        new-pod-scale-up-delay:
+          type: string
+          description: For scenarios like burst/batch scale where you do not want CA to act before the kubernetes scheduler could schedule all the pods.
+          default: 0s
+          example: example_value
+        ok-total-unready-count:
+          type: string
+          description: Number of allowed unready nodes, irrespective of max-total-unready-percentage.
+          default: '3'
+          example: example_value
+        scan-interval:
+          type: string
+          description: How often the cluster is reevaluated for scale up or down.
+          default: 10s
+          example: example_value
+        scale-down-delay-after-add:
+          type: string
+          description: How long after scale up that scale down evaluation resumes.
+          default: 10m
+          example: example_value
+        scale-down-delay-after-delete:
+          type: string
+          description: How long after node deletion that scale down evaluation resumes.
+          default: scan-interval
+          example: example_value
+        scale-down-delay-after-failure:
+          type: string
+          description: How long after scale down failure that scale down evaluation resumes.
+          default: 3m
+          example: example_value
+        scale-down-unneeded-time:
+          type: string
+          description: How long a node should be unneeded before it is eligible for scale down.
+          default: 10m
+          example: example_value
+        scale-down-unready-time:
+          type: string
+          description: How long an unready node should be unneeded before it is eligible for scale down.
+          default: 20m
+          example: example_value
+        scale-down-utilization-threshold:
+          type: string
+          description: Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down.
+          default: '0.5'
+          example: example_value
+        skip-nodes-with-local-storage:
+          type: string
+          description: Whether the cluster autoscaler will skip deleting nodes with pods with local storage.
+          default: 'true'
+          example: example_value
+        skip-nodes-with-system-pods:
+          type: string
+          description: Whether the cluster autoscaler will skip deleting nodes with pods from kube-system (except for DaemonSet or mirror pods).
+          default: 'true'
+          example: example_value
     ManagedClusterProperties:
       type: object
       description: Properties of the managed cluster.
@@ -1832,124 +1956,25 @@ components:
           $ref: '#/components/schemas/ServiceMeshProfile'
         workloadAutoScalerProfile:
           $ref: '#/components/schemas/ManagedClusterWorkloadAutoScalerProfile'
-    ManagedClusterAzureMonitorProfile:
+    ManagedClusterSKU:
       type: object
-      description: Azure Monitor addon profiles for monitoring the managed cluster.
-      properties:
-        metrics:
-          type: object
-          description: Metrics profile for the Azure Monitor managed service for Prometheus addon.
-          properties:
-            enabled:
-              type: boolean
-              description: Whether to enable the Prometheus collector.
-          example: example_value
-    ContainerServiceLinuxProfile:
-      type: object
-      description: Profile for Linux VMs in the container service cluster.
-      required:
-      - adminUsername
-      - ssh
-      properties:
-        adminUsername:
-          type: string
-          description: The administrator username to use for Linux VMs.
-          pattern: ^[A-Za-z][-A-Za-z0-9_]*$
-          example: example_value
-        ssh:
-          type: object
-          description: The SSH configuration for Linux-based VMs running on Azure.
-          required:
-          - publicKeys
-          properties:
-            publicKeys:
-              type: array
-              items:
-                type: object
-                required:
-                - keyData
-                properties:
-                  keyData:
-                    type: string
-                    description: Certificate public key used to authenticate with VMs through SSH. The certificate must be in PEM format with or without headers.
-              description: The list of SSH public keys used to authenticate with Linux-based VMs.
-          example: example_value
-    AgentPoolUpgradeSettings:
-      type: object
-      description: Settings for upgrading an agentpool.
-      properties:
-        maxSurge:
-          type: string
-          description: The maximum number or percentage of nodes that are surged during upgrade. This can either be set to an integer (e.g. 5) or a percentage (e.g. 50%). If a percentage is specified, it is the percentage of the total agent pool size at the time of the upgrade.
-          example: example_value
-        drainTimeoutInMinutes:
-          type: integer
-          format: int32
-          minimum: 1
-          maximum: 1440
-          description: The amount of time (in minutes) to wait on eviction of pods and graceful termination per node.
-          example: 10
-        nodeSoakDurationInMinutes:
-          type: integer
-          format: int32
-          minimum: 0
-          maximum: 30
-          description: The amount of time (in minutes) to wait after draining a node and before reimaging it and moving on to the next node.
-          example: 10
-    TagsObject:
-      type: object
-      description: Tags object for patch operations.
-      properties:
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-          description: Resource tags.
-          example: example_value
-    CloudError:
-      type: object
-      description: An error response from the Container service.
-      properties:
-        error:
-          type: object
-          description: Details about the error.
-          properties:
-            code:
-              type: string
-              description: An identifier for the error. Codes are invariant and are intended to be consumed programmatically.
-            message:
-              type: string
-              description: A message describing the error, intended to be suitable for display in a user interface.
-            target:
-              type: string
-              description: The target of the particular error. For example, the name of the property in error.
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  code:
-                    type: string
-                  message:
-                    type: string
-                  target:
-                    type: string
-              description: A list of additional details about the error.
-          example: example_value
-    ExtendedLocation:
-      type: object
-      description: The complex type of the extended location.
+      description: The SKU of a Managed Cluster.
       properties:
         name:
           type: string
-          description: The name of the extended location.
-          example: Example Title
-        type:
-          type: string
-          description: The type of the extended location.
+          description: The name of a managed cluster SKU.
           enum:
-          - EdgeZone
-          example: EdgeZone
+          - Base
+          - Automatic
+          example: Base
+        tier:
+          type: string
+          description: If not specified, the default is Free. See AKS Pricing Tier for more details.
+          enum:
+          - Free
+          - Standard
+          - Premium
+          example: Free
     ManagedClusterIdentity:
       type: object
       description: Identity for the managed cluster.
@@ -1978,25 +2003,6 @@ components:
             $ref: '#/components/schemas/UserAssignedIdentity'
           description: The keys must be ARM resource IDs in the form of /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}.
           example: example_value
-    ManagedClusterAddonProfile:
-      type: object
-      description: A Kubernetes add-on profile for a managed cluster.
-      required:
-      - enabled
-      properties:
-        enabled:
-          type: boolean
-          description: Whether the add-on is enabled or not.
-          example: true
-        config:
-          type: object
-          additionalProperties:
-            type: string
-          description: Key-value pairs for configuring an add-on.
-          example: example_value
-        identity:
-          $ref: '#/components/schemas/UserAssignedIdentity'
-          readOnly: true
     RunCommandResult:
       type: object
       description: Run command result.
@@ -2038,63 +2044,308 @@ components:
               readOnly: true
               description: An explanation of why provisioningState is set to failed.
           example: example_value
-    ManagedCluster:
+    ManagedClusterIngressProfile:
       type: object
-      description: Managed cluster resource representing an Azure Kubernetes Service cluster.
-      required:
-      - location
+      description: Ingress profile for the managed cluster.
       properties:
-        id:
-          type: string
-          readOnly: true
-          description: 'Fully qualified resource ID for the resource. Example: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}'
-          example: abc123
-        name:
-          type: string
-          readOnly: true
-          description: The name of the resource.
-          example: Example Title
-        type:
-          type: string
-          readOnly: true
-          description: 'The type of the resource. Example: Microsoft.ContainerService/managedClusters'
+        webAppRouting:
+          type: object
+          description: Web App Routing settings.
+          properties:
+            enabled:
+              type: boolean
+              description: Whether to enable Web App Routing.
+            dnsZoneResourceIds:
+              type: array
+              items:
+                type: string
+              description: Resource IDs of the DNS zones.
           example: example_value
-        location:
-          type: string
-          description: The geo-location where the resource lives.
+    ManagedClusterAzureMonitorProfile:
+      type: object
+      description: Azure Monitor addon profiles for monitoring the managed cluster.
+      properties:
+        metrics:
+          type: object
+          description: Metrics profile for the Azure Monitor managed service for Prometheus addon.
+          properties:
+            enabled:
+              type: boolean
+              description: Whether to enable the Prometheus collector.
           example: example_value
+    RunCommandRequest:
+      type: object
+      description: A run command request.
+      required:
+      - command
+      properties:
+        command:
+          type: string
+          description: The command to run.
+          example: example_value
+        context:
+          type: string
+          description: A base64 encoded zip file containing the files required by the command.
+          example: example_value
+        clusterToken:
+          type: string
+          description: AuthToken issued for AKS AAD Server App.
+          example: example_value
+    SystemData:
+      type: object
+      description: Metadata pertaining to creation and last modification of the resource.
+      properties:
+        createdBy:
+          type: string
+          description: The identity that created the resource.
+          example: example_value
+        createdByType:
+          type: string
+          description: The type of identity that created the resource.
+          enum:
+          - User
+          - Application
+          - ManagedIdentity
+          - Key
+          example: User
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp of resource creation (UTC).
+          example: '2026-01-15T10:30:00Z'
+        lastModifiedBy:
+          type: string
+          description: The identity that last modified the resource.
+          example: example_value
+        lastModifiedByType:
+          type: string
+          description: The type of identity that last modified the resource.
+          enum:
+          - User
+          - Application
+          - ManagedIdentity
+          - Key
+          example: User
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: The timestamp of resource last modification (UTC).
+          example: '2026-01-15T10:30:00Z'
+    CreationData:
+      type: object
+      description: Data used when creating a target resource from a source resource.
+      properties:
+        sourceResourceId:
+          type: string
+          description: This is the ARM ID of the source object to be used to create the target object.
+          example: '500123'
+    ManagedClusterAADProfile:
+      type: object
+      description: Azure Active Directory configuration for integration with AKS.
+      properties:
+        managed:
+          type: boolean
+          description: Whether to enable managed AAD.
+          example: true
+        enableAzureRBAC:
+          type: boolean
+          description: Whether to enable Azure RBAC for Kubernetes authorization.
+          example: true
+        adminGroupObjectIDs:
+          type: array
+          items:
+            type: string
+          description: The list of AAD group object IDs that will have admin role of the cluster.
+          example: []
+        clientAppID:
+          type: string
+          description: (DEPRECATED) The client AAD application ID. Used for legacy/non-managed AAD.
+          example: '500123'
+        serverAppID:
+          type: string
+          description: (DEPRECATED) The server AAD application ID. Used for legacy/non-managed AAD.
+          example: '500123'
+        serverAppSecret:
+          type: string
+          description: (DEPRECATED) The server AAD application secret. Used for legacy/non-managed AAD.
+          example: example_value
+        tenantID:
+          type: string
+          description: The AAD tenant ID to use for authentication. If not specified, will use the tenant of the deployment subscription.
+          example: '500123'
+    TagsObject:
+      type: object
+      description: Tags object for patch operations.
+      properties:
         tags:
           type: object
           additionalProperties:
             type: string
           description: Resource tags.
           example: example_value
-        sku:
-          $ref: '#/components/schemas/ManagedClusterSKU'
-        kind:
+    CloudError:
+      type: object
+      description: An error response from the Container service.
+      properties:
+        error:
+          type: object
+          description: Details about the error.
+          properties:
+            code:
+              type: string
+              description: An identifier for the error. Codes are invariant and are intended to be consumed programmatically.
+            message:
+              type: string
+              description: A message describing the error, intended to be suitable for display in a user interface.
+            target:
+              type: string
+              description: The target of the particular error. For example, the name of the property in error.
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  target:
+                    type: string
+              description: A list of additional details about the error.
+          example: example_value
+    ManagedClusterMetricsProfile:
+      type: object
+      description: The metrics profile for the ManagedCluster.
+      properties:
+        costAnalysis:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              description: Whether the cost analysis add-on is enabled.
+          example: example_value
+    UserAssignedIdentity:
+      type: object
+      description: Details about a user assigned identity.
+      properties:
+        resourceId:
           type: string
-          description: This is primarily used to expose different UI experiences in the portal for different kinds.
+          description: The resource ID of the user assigned identity.
+          example: '500123'
+        clientId:
+          type: string
+          description: The client ID of the user assigned identity.
+          example: '500123'
+        objectId:
+          type: string
+          description: The object ID of the user assigned identity.
+          example: '500123'
+    ManagedClusterAddonProfile:
+      type: object
+      description: A Kubernetes add-on profile for a managed cluster.
+      required:
+      - enabled
+      properties:
+        enabled:
+          type: boolean
+          description: Whether the add-on is enabled or not.
+          example: true
+        config:
+          type: object
+          additionalProperties:
+            type: string
+          description: Key-value pairs for configuring an add-on.
           example: example_value
         identity:
-          $ref: '#/components/schemas/ManagedClusterIdentity'
-        extendedLocation:
-          $ref: '#/components/schemas/ExtendedLocation'
-        systemData:
-          $ref: '#/components/schemas/SystemData'
+          $ref: '#/components/schemas/UserAssignedIdentity'
           readOnly: true
-        properties:
-          $ref: '#/components/schemas/ManagedClusterProperties'
-    ManagedClusterNodeResourceGroupProfile:
+    ManagedClusterUpgradeProfile:
       type: object
-      description: Node resource group lockdown profile for a managed cluster.
+      description: The list of available upgrades for compute pools.
       properties:
-        restrictionLevel:
+        id:
           type: string
-          description: The restriction level applied to the cluster node resource group.
-          enum:
-          - Unrestricted
-          - ReadOnly
-          example: Unrestricted
+          readOnly: true
+          description: The ID of the upgrade profile.
+          example: abc123
+        name:
+          type: string
+          readOnly: true
+          description: The name of the upgrade profile.
+          example: Example Title
+        type:
+          type: string
+          readOnly: true
+          description: The type of the upgrade profile.
+          example: example_value
+        properties:
+          type: object
+          required:
+          - controlPlaneProfile
+          - agentPoolProfiles
+          properties:
+            controlPlaneProfile:
+              type: object
+              description: The list of available upgrade versions for the control plane.
+              properties:
+                kubernetesVersion:
+                  type: string
+                  description: The Kubernetes version.
+                osType:
+                  type: string
+                  enum:
+                  - Linux
+                  - Windows
+                  default: Linux
+                upgrades:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      kubernetesVersion:
+                        type: string
+                      isPreview:
+                        type: boolean
+            agentPoolProfiles:
+              type: array
+              items:
+                type: object
+                properties:
+                  kubernetesVersion:
+                    type: string
+                  osType:
+                    type: string
+                    enum:
+                    - Linux
+                    - Windows
+                    default: Linux
+                  upgrades:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        kubernetesVersion:
+                          type: string
+                        isPreview:
+                          type: boolean
+              description: The list of available upgrade versions for agent pools.
+          example: example_value
+    ClusterUpgradeSettings:
+      type: object
+      description: Settings for upgrading a cluster.
+      properties:
+        overrideSettings:
+          type: object
+          description: Settings for overrides during upgrade.
+          properties:
+            forceUpgrade:
+              type: boolean
+              description: Whether to force upgrade the cluster. Note that this option instructs the upgrade operation to bypass upgrade protections.
+            until:
+              type: string
+              format: date-time
+              description: Until when the overrides are effective.
+          example: example_value
     ContainerServiceNetworkProfile:
       type: object
       description: Profile of network configuration.
@@ -2177,119 +2428,41 @@ components:
             - IPv6
           description: IP families used to specify IP versions available to the cluster.
           example: []
-    ManagedClusterWorkloadAutoScalerProfile:
+    ManagedClusterNATGatewayProfile:
       type: object
-      description: Workload Auto-scaler profile for the managed cluster.
+      description: Profile of the managed cluster NAT gateway.
       properties:
-        keda:
+        managedOutboundIPProfile:
           type: object
-          description: KEDA (Kubernetes Event-driven Autoscaling) settings.
           properties:
-            enabled:
-              type: boolean
-              description: Whether to enable KEDA.
-          example: example_value
-        verticalPodAutoscaler:
-          type: object
-          description: VPA (Vertical Pod Autoscaler) settings.
-          properties:
-            enabled:
-              type: boolean
-              description: Whether to enable VPA.
-            controlledValues:
-              type: string
-              description: Controls which resource value autoscaler acts on.
-              enum:
-              - RequestsAndLimits
-              - RequestsOnly
-          example: example_value
-    ManagedClusterServicePrincipalProfile:
-      type: object
-      description: Information about a service principal identity for the cluster to use for manipulating Azure APIs.
-      required:
-      - clientId
-      properties:
-        clientId:
-          type: string
-          description: The ID for the service principal.
-          example: '500123'
-        secret:
-          type: string
-          format: password
-          description: The secret password associated with the service principal.
-          example: example_value
-    ManagedClusterSKU:
-      type: object
-      description: The SKU of a Managed Cluster.
-      properties:
-        name:
-          type: string
-          description: The name of a managed cluster SKU.
-          enum:
-          - Base
-          - Automatic
-          example: Base
-        tier:
-          type: string
-          description: If not specified, the default is Free. See AKS Pricing Tier for more details.
-          enum:
-          - Free
-          - Standard
-          - Premium
-          example: Free
-    ManagedClusterListResult:
-      type: object
-      description: The response from the List Managed Clusters operation.
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagedCluster'
-          description: The list of managed clusters.
-          example: []
-        nextLink:
-          type: string
-          readOnly: true
-          description: The URL to get the next set of managed cluster results.
-          example: example_value
-    ManagedClusterSecurityProfile:
-      type: object
-      description: Security profile for the container service cluster.
-      properties:
-        defender:
-          type: object
-          description: Microsoft Defender settings for the security profile.
-          properties:
-            logAnalyticsWorkspaceResourceId:
-              type: string
-              description: Resource ID of the Log Analytics workspace.
-            securityMonitoring:
-              type: object
-              properties:
-                enabled:
-                  type: boolean
-                  description: Whether to enable Defender threat detection.
-          example: example_value
-        workloadIdentity:
-          type: object
-          description: Workload identity settings for the security profile.
-          properties:
-            enabled:
-              type: boolean
-              description: Whether to enable workload identity.
-          example: example_value
-        imageCleaner:
-          type: object
-          description: Image Cleaner settings for the security profile.
-          properties:
-            enabled:
-              type: boolean
-              description: Whether to enable Image Cleaner.
-            intervalHours:
+            count:
               type: integer
               format: int32
-              description: Image Cleaner scanning interval in hours.
+              minimum: 1
+              maximum: 16
+              default: 1
+              description: The desired number of outbound IPs for the NAT gateway.
+          description: The managed outbound IP profile of the NAT gateway.
           example: example_value
+        effectiveOutboundIPs:
+          type: array
+          readOnly: true
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The fully qualified Azure resource id.
+          description: The effective outbound IP resources of the NAT gateway.
+          example: []
+        idleTimeoutInMinutes:
+          type: integer
+          format: int32
+          minimum: 4
+          maximum: 120
+          default: 4
+          description: Desired outbound flow idle timeout in minutes.
+          example: 10
     ManagedClusterAPIServerAccessProfile:
       type: object
       description: Access profile for managed cluster API server.
@@ -2324,201 +2497,18 @@ components:
           type: string
           description: The subnet to be used when API server VNET integration is enabled.
           example: '500123'
-    ManagedClusterAutoUpgradeProfile:
+    ManagedClusterNodeResourceGroupProfile:
       type: object
-      description: Auto upgrade profile for a managed cluster.
+      description: Node resource group lockdown profile for a managed cluster.
       properties:
-        upgradeChannel:
+        restrictionLevel:
           type: string
-          description: The upgrade channel for auto upgrade.
+          description: The restriction level applied to the cluster node resource group.
           enum:
-          - rapid
-          - stable
-          - patch
-          - node-image
-          - none
-          example: rapid
-        nodeOSUpgradeChannel:
-          type: string
-          description: The node OS upgrade channel. Manner in which the OS on your nodes is updated.
-          enum:
-          - None
-          - Unmanaged
-          - SecurityPatch
-          - NodeImage
-          example: None
-    RunCommandRequest:
-      type: object
-      description: A run command request.
-      required:
-      - command
-      properties:
-        command:
-          type: string
-          description: The command to run.
-          example: example_value
-        context:
-          type: string
-          description: A base64 encoded zip file containing the files required by the command.
-          example: example_value
-        clusterToken:
-          type: string
-          description: AuthToken issued for AKS AAD Server App.
-          example: example_value
-    ManagedClusterUpgradeProfile:
-      type: object
-      description: The list of available upgrades for compute pools.
-      properties:
-        id:
-          type: string
-          readOnly: true
-          description: The ID of the upgrade profile.
-          example: abc123
-        name:
-          type: string
-          readOnly: true
-          description: The name of the upgrade profile.
-          example: Example Title
-        type:
-          type: string
-          readOnly: true
-          description: The type of the upgrade profile.
-          example: example_value
-        properties:
-          type: object
-          required:
-          - controlPlaneProfile
-          - agentPoolProfiles
-          properties:
-            controlPlaneProfile:
-              type: object
-              description: The list of available upgrade versions for the control plane.
-              properties:
-                kubernetesVersion:
-                  type: string
-                  description: The Kubernetes version.
-                osType:
-                  type: string
-                  enum:
-                  - Linux
-                  - Windows
-                  default: Linux
-                upgrades:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      kubernetesVersion:
-                        type: string
-                      isPreview:
-                        type: boolean
-            agentPoolProfiles:
-              type: array
-              items:
-                type: object
-                properties:
-                  kubernetesVersion:
-                    type: string
-                  osType:
-                    type: string
-                    enum:
-                    - Linux
-                    - Windows
-                    default: Linux
-                  upgrades:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        kubernetesVersion:
-                          type: string
-                        isPreview:
-                          type: boolean
-              description: The list of available upgrade versions for agent pools.
-          example: example_value
-    ManagedClusterIngressProfile:
-      type: object
-      description: Ingress profile for the managed cluster.
-      properties:
-        webAppRouting:
-          type: object
-          description: Web App Routing settings.
-          properties:
-            enabled:
-              type: boolean
-              description: Whether to enable Web App Routing.
-            dnsZoneResourceIds:
-              type: array
-              items:
-                type: string
-              description: Resource IDs of the DNS zones.
-          example: example_value
-    ServiceMeshProfile:
-      type: object
-      description: Service mesh profile for a managed cluster.
-      properties:
-        mode:
-          type: string
-          description: Mode of the service mesh.
-          enum:
-          - Istio
-          - Disabled
-          example: Istio
-        istio:
-          type: object
-          description: Istio service mesh configuration.
-          properties:
-            revisions:
-              type: array
-              items:
-                type: string
-              description: The list of revisions of the Istio control plane.
-          example: example_value
-    CredentialResults:
-      type: object
-      description: The list of credential result response.
-      properties:
-        kubeconfigs:
-          type: array
-          readOnly: true
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                readOnly: true
-                description: The name of the credential.
-              value:
-                type: string
-                format: byte
-                readOnly: true
-                description: Base64-encoded Kubernetes configuration file.
-          description: Base64-encoded Kubernetes configuration file.
-          example: []
-    ManagedClusterOIDCIssuerProfile:
-      type: object
-      description: The OIDC issuer profile of the Managed Cluster.
-      properties:
-        issuerURL:
-          type: string
-          readOnly: true
-          description: The OIDC issuer url of the Managed Cluster.
-          example: https://www.example.com
-        enabled:
-          type: boolean
-          description: Whether the OIDC issuer is enabled.
-          example: true
+          - Unrestricted
+          - ReadOnly
+          example: Unrestricted
   parameters:
-    ResourceNameParameter:
-      name: resourceName
-      in: path
-      required: true
-      description: The name of the managed cluster resource.
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 63
-        pattern: ^[a-zA-Z0-9]$|^[a-zA-Z0-9][-_a-zA-Z0-9]{0,61}[a-zA-Z0-9]$
     ResourceGroupNameParameter:
       name: resourceGroupName
       in: path
@@ -2544,6 +2534,16 @@ components:
       schema:
         type: string
         format: uuid
+    ResourceNameParameter:
+      name: resourceName
+      in: path
+      required: true
+      description: The name of the managed cluster resource.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 63
+        pattern: ^[a-zA-Z0-9]$|^[a-zA-Z0-9][-_a-zA-Z0-9]{0,61}[a-zA-Z0-9]$
   securitySchemes:
     azure_auth:
       type: oauth2
