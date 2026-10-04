@@ -41,7 +41,7 @@ tags:
   - Containers
   - DevOps
   - Kubernetes
-  - Orchestration
+  - Container Orchestration
 apis:
 - name: Azure Kubernetes Service Maintenance Configurations API
   description: >-
@@ -239,6 +239,9 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: CapabilityMap
+    url: capabilities/microsoft-azure-kubernetes-service-capability-edges.yml
+    name: Azure Kubernetes Service Business Capability Map
   - type: Website
     url: https://www.microsoft.com/
   - type: IssueTracker
@@ -391,3 +394,5 @@ include:
     url: https://apis.io/apis/azure-monitor
 x-parent: microsoft-azure
 x-relationship: product
+x-tags-removed:
+- Orchestration
