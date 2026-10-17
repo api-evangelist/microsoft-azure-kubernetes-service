@@ -716,68 +716,40 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AgentPoolUpgradeProfile:
+    AgentPoolUpgradeSettings:
       type: object
-      description: The list of available upgrades for an agent pool.
+      description: Settings for upgrading an agentpool.
       properties:
-        id:
+        maxSurge:
           type: string
-          readOnly: true
-          description: The ID of the agent pool upgrade profile.
-          example: abc123
-        name:
-          type: string
-          readOnly: true
-          description: The name of the agent pool upgrade profile.
-          example: Example Title
-        type:
-          type: string
-          readOnly: true
-          description: The type of the agent pool upgrade profile.
+          description: The maximum number or percentage of nodes that are surged during upgrade. This can either be set to an integer (e.g. 5) or a percentage (e.g. 50%). If a percentage is specified, it is the percentage of the total agent pool size at the time of the upgrade.
           example: example_value
-        properties:
-          type: object
-          required:
-          - kubernetesVersion
-          - osType
-          properties:
-            kubernetesVersion:
-              type: string
-              description: The Kubernetes version.
-            osType:
-              type: string
-              enum:
-              - Linux
-              - Windows
-              default: Linux
-            upgrades:
-              type: array
-              items:
-                type: object
-                properties:
-                  kubernetesVersion:
-                    type: string
-                  isPreview:
-                    type: boolean
-            latestNodeImageVersion:
-              type: string
-              description: The latest node image version available for the agent pool.
-          example: example_value
-    AgentPoolListResult:
+        drainTimeoutInMinutes:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 1440
+          description: The amount of time (in minutes) to wait on eviction of pods and graceful termination per node.
+          example: 10
+        nodeSoakDurationInMinutes:
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 30
+          description: The amount of time (in minutes) to wait after draining a node and before reimaging it and moving on to the next node.
+          example: 10
+    AgentPoolDeleteMachinesParameter:
       type: object
-      description: The response from the List Agent Pools operation.
+      description: The parameters for deleting machines in an agent pool.
+      required:
+      - machineNames
       properties:
-        value:
+        machineNames:
           type: array
           items:
-            $ref: '#/components/schemas/AgentPool'
-          description: The list of agent pools.
+            type: string
+          description: The list of machine names to delete.
           example: []
-        nextLink:
-          type: string
-          readOnly: true
-          description: The URL to get the next set of agent pool results.
-          example: example_value
     AgentPoolAvailableVersions:
       type: object
       description: The available agent pool versions.
@@ -826,69 +798,6 @@ components:
           - Running
           - Stopped
           example: Running
-    AgentPoolDeleteMachinesParameter:
-      type: object
-      description: The parameters for deleting machines in an agent pool.
-      required:
-      - machineNames
-      properties:
-        machineNames:
-          type: array
-          items:
-            type: string
-          description: The list of machine names to delete.
-          example: []
-    AgentPool:
-      type: object
-      description: Agent pool resource within a managed cluster.
-      properties:
-        id:
-          type: string
-          readOnly: true
-          description: Resource ID.
-          example: abc123
-        name:
-          type: string
-          readOnly: true
-          description: The name of the resource that is unique within a resource group.
-          example: Example Title
-        type:
-          type: string
-          readOnly: true
-          description: Resource type.
-          example: example_value
-        properties:
-          $ref: '#/components/schemas/AgentPoolProperties'
-    CreationData:
-      type: object
-      description: Data used when creating a target resource from a source resource.
-      properties:
-        sourceResourceId:
-          type: string
-          description: This is the ARM ID of the source object to be used to create the target object.
-          example: '500123'
-    AgentPoolUpgradeSettings:
-      type: object
-      description: Settings for upgrading an agentpool.
-      properties:
-        maxSurge:
-          type: string
-          description: The maximum number or percentage of nodes that are surged during upgrade. This can either be set to an integer (e.g. 5) or a percentage (e.g. 50%). If a percentage is specified, it is the percentage of the total agent pool size at the time of the upgrade.
-          example: example_value
-        drainTimeoutInMinutes:
-          type: integer
-          format: int32
-          minimum: 1
-          maximum: 1440
-          description: The amount of time (in minutes) to wait on eviction of pods and graceful termination per node.
-          example: 10
-        nodeSoakDurationInMinutes:
-          type: integer
-          format: int32
-          minimum: 0
-          maximum: 30
-          description: The amount of time (in minutes) to wait after draining a node and before reimaging it and moving on to the next node.
-          example: 10
     AgentPoolProperties:
       type: object
       description: Properties for the container service agent pool profile.
@@ -1099,6 +1008,74 @@ components:
           type: string
           description: A base64-encoded message of the day for Linux nodes.
           example: example_value
+    AgentPool:
+      type: object
+      description: Agent pool resource within a managed cluster.
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: Resource ID.
+          example: abc123
+        name:
+          type: string
+          readOnly: true
+          description: The name of the resource that is unique within a resource group.
+          example: Example Title
+        type:
+          type: string
+          readOnly: true
+          description: Resource type.
+          example: example_value
+        properties:
+          $ref: '#/components/schemas/AgentPoolProperties'
+    AgentPoolUpgradeProfile:
+      type: object
+      description: The list of available upgrades for an agent pool.
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: The ID of the agent pool upgrade profile.
+          example: abc123
+        name:
+          type: string
+          readOnly: true
+          description: The name of the agent pool upgrade profile.
+          example: Example Title
+        type:
+          type: string
+          readOnly: true
+          description: The type of the agent pool upgrade profile.
+          example: example_value
+        properties:
+          type: object
+          required:
+          - kubernetesVersion
+          - osType
+          properties:
+            kubernetesVersion:
+              type: string
+              description: The Kubernetes version.
+            osType:
+              type: string
+              enum:
+              - Linux
+              - Windows
+              default: Linux
+            upgrades:
+              type: array
+              items:
+                type: object
+                properties:
+                  kubernetesVersion:
+                    type: string
+                  isPreview:
+                    type: boolean
+            latestNodeImageVersion:
+              type: string
+              description: The latest node image version available for the agent pool.
+          example: example_value
     CloudError:
       type: object
       description: An error response from the Container service.
@@ -1129,7 +1106,38 @@ components:
                     type: string
               description: A list of additional details about the error.
           example: example_value
+    CreationData:
+      type: object
+      description: Data used when creating a target resource from a source resource.
+      properties:
+        sourceResourceId:
+          type: string
+          description: This is the ARM ID of the source object to be used to create the target object.
+          example: '500123'
+    AgentPoolListResult:
+      type: object
+      description: The response from the List Agent Pools operation.
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentPool'
+          description: The list of agent pools.
+          example: []
+        nextLink:
+          type: string
+          readOnly: true
+          description: The URL to get the next set of agent pool results.
+          example: example_value
   parameters:
+    ApiVersionParameter:
+      name: api-version
+      in: query
+      required: true
+      description: The API version to use for this operation.
+      schema:
+        type: string
+        default: '2025-10-01'
     AgentPoolNameParameter:
       name: agentPoolName
       in: path
@@ -1157,14 +1165,6 @@ components:
         type: string
         minLength: 1
         maxLength: 90
-    ApiVersionParameter:
-      name: api-version
-      in: query
-      required: true
-      description: The API version to use for this operation.
-      schema:
-        type: string
-        default: '2025-10-01'
     ResourceNameParameter:
       name: resourceName
       in: path
