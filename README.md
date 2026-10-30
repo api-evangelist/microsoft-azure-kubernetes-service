@@ -1,4 +1,4 @@
-# Azure Kubernetes Service (azure-kubernetes-service)
+# Azure Kubernetes Service
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,243 +66,279 @@
 
 Azure Kubernetes Service (AKS) simplifies deploying a managed Kubernetes cluster in Azure by offloading the operational overhead to Azure. As a hosted Kubernetes service, Azure handles critical tasks, like health monitoring and maintenance.
 
-**APIs.json:** [https://azure.microsoft.com/en-us/services/kubernetes-service/](https://azure.microsoft.com/en-us/services/kubernetes-service/)
+**Areas:** Microsoft Azure · Cloud · Containers · DevOps · Kubernetes · Container Orchestration
 
-## Tags
+## Azure Kubernetes Service on APIs.io
 
-- Azure
-- Cloud
-- Containers
-- DevOps
-- Kubernetes
-- Orchestration
+Everything profiled for Azure Kubernetes Service is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/microsoft-azure-kubernetes-service/](https://apis.io/providers/microsoft-azure-kubernetes-service/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (7)
 
-- **Created:** 2024-01-15
-- **Modified:** 2026-05-19
+- [Azure Kubernetes Service Maintenance Configurations API](https://apis.io/apis/microsoft-azure-kubernetes-service/azure-kubernetes-service-maintenance-configurations-api/) — REST API for managing planned maintenance configurations, used to configure when updates can be deployed to an AKS managed cluster.
+- [Azure Kubernetes Service Snapshots API](https://apis.io/apis/microsoft-azure-kubernetes-service/azure-kubernetes-service-snapshots-api/) — REST API for creating, updating, deleting, and managing node pool snapshots in AKS, including listing snapshots by resource group.
+- [Azure Kubernetes Service Private Endpoint Connections API](https://apis.io/apis/microsoft-azure-kubernetes-service/azure-kubernetes-service-private-endpoint-connections-api/) — REST API for managing private endpoint connections for AKS clusters, enabling secure private network access to the cluster API server.
+- [Azure Kubernetes Service Trusted Access Role Bindings API](https://apis.io/apis/microsoft-azure-kubernetes-service/azure-kubernetes-service-trusted-access-role-bindings-api/) — REST API for managing trusted access role bindings that give Azure services secure access to AKS API server using system-assigned managed identities.
+- [Azure Kubernetes Service Kubectl API](https://apis.io/apis/microsoft-azure-kubernetes-service/azure-kubernetes-service-kubectl-api/) — Kubernetes API accessible via kubectl for cluster operations.
+- [Azure Kubernetes Service Agent Pools API](https://apis.io/apis/microsoft-azure-kubernetes-service/microsoft-azure-kubernetes-service-agent-pools-api/) — Operations for managing agent pools (node pools) within AKS clusters
+- [Azure Kubernetes Service Managed Clusters API](https://apis.io/apis/microsoft-azure-kubernetes-service/microsoft-azure-kubernetes-service-managed-clusters-api/) — Operations for managing AKS managed clusters
 
-## APIs
+### Published properties
 
-### Azure Kubernetes Service REST API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-REST API for managing Azure Kubernetes Service clusters.
+#### Arazzo workflows (10)
 
-- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/](https://learn.microsoft.com/en-us/rest/api/aks/)
-- **Base URL:** `https://management.azure.com`
+Multi-step workflows that chain operations into a business task.
 
-#### Tags
+- [Azure Kubernetes Service Add Node Pool and Poll](https://apis.io/arazzos/microsoft-azure-kubernetes-service/azure-kubernetes-service-add-node-pool-workflow/)
+- [Azure Kubernetes Service Delete Node Pool Machines](https://apis.io/arazzos/microsoft-azure-kubernetes-service/azure-kubernetes-service-delete-machines-workflow/)
+- [Azure Kubernetes Service Provision Cluster and Fetch Credentials](https://apis.io/arazzos/microsoft-azure-kubernetes-service/azure-kubernetes-service-provision-cluster-workflow/)
+- [Azure Kubernetes Service Rotate Cluster Certificates](https://apis.io/arazzos/microsoft-azure-kubernetes-service/azure-kubernetes-service-rotate-certificates-workflow/)
+- [Azure Kubernetes Service Run Command on Cluster](https://apis.io/arazzos/microsoft-azure-kubernetes-service/azure-kubernetes-service-run-command-workflow/)
+- [Azure Kubernetes Service Scale Node Pool](https://apis.io/arazzos/microsoft-azure-kubernetes-service/azure-kubernetes-service-scale-node-pool-workflow/)
+- [Azure Kubernetes Service Start Cluster](https://apis.io/arazzos/microsoft-azure-kubernetes-service/azure-kubernetes-service-start-cluster-workflow/)
+- [Azure Kubernetes Service Stop Cluster](https://apis.io/arazzos/microsoft-azure-kubernetes-service/azure-kubernetes-service-stop-cluster-workflow/)
+- [Azure Kubernetes Service Upgrade Cluster Control Plane](https://apis.io/arazzos/microsoft-azure-kubernetes-service/azure-kubernetes-service-upgrade-cluster-workflow/)
+- [Azure Kubernetes Service Upgrade Node Pool Image](https://apis.io/arazzos/microsoft-azure-kubernetes-service/azure-kubernetes-service-upgrade-node-image-workflow/)
 
-- Containers
-- Kubernetes
-- Management
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
+- [Microsoft Azure Kubernetes Service Agentic Access](https://apis.io/agentic-access/microsoft-azure-kubernetes-service/microsoft-azure-kubernetes-service-agentic-access/)
+
+#### JSON Schema (91)
+
+The data models the API reads and writes.
+
+- [AgentPool](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool/)
+- [AgentPoolAvailableVersions](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-available-versions/)
+- [AgentPoolDeleteMachinesParameter](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-delete-machines-parameter/)
+- [AgentPoolListResult](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-list-result/)
+- [AgentPoolProperties](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-properties/)
+- [AgentPoolUpgradeProfile](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-upgrade-profile/)
+- [AgentPoolUpgradeSettings](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-upgrade-settings/)
+- [CloudError](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-cloud-error/)
+- [Azure Kubernetes Service Managed Cluster](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-cluster/)
+- [ClusterUpgradeSettings](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-cluster-upgrade-settings/)
+- [ContainerServiceLinuxProfile](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-container-service-linux-profile/)
+- [ContainerServiceNetworkProfile](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-container-service-network-profile/)
+- [CreationData](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-creation-data/)
+- [CredentialResults](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-credential-results/)
+- [ExtendedLocation](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-extended-location/)
+- [ManagedCluster](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster/)
+- [ManagedClusterAADProfile](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-aad-profile/)
+- [ManagedClusterAddonProfile](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-addon-profile/)
+- [ManagedClusterAgentPoolProfile](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-agent-pool-profile/)
+- [ManagedClusterAPIServerAccessProfile](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-api-server-access-profile/)
+- [ManagedClusterAutoScalerProfile](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-auto-scaler-profile/)
+- [ManagedClusterAutoUpgradeProfile](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-auto-upgrade-profile/)
+- [ManagedClusterAzureMonitorProfile](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-azure-monitor-profile/)
+- [ManagedClusterIdentity](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-identity/)
+- [ManagedClusterIngressProfile](https://apis.io/schemas/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-ingress-profile/)
+- …and 66 more published on APIs.io
+
+#### JSON Structure (46)
+
+Data models expressed in JSON Structure.
+
+- [Azure Kubernetes Service Agent Pool Available Versions Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-available-versions-structure/)
+- [Azure Kubernetes Service Agent Pool Delete Machines Parameter Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-delete-machines-parameter-structure/)
+- [Azure Kubernetes Service Agent Pool List Result Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-list-result-structure/)
+- [Azure Kubernetes Service Agent Pool Properties Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-properties-structure/)
+- [Azure Kubernetes Service Agent Pool Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-structure/)
+- [Azure Kubernetes Service Agent Pool Upgrade Profile Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-upgrade-profile-structure/)
+- [Azure Kubernetes Service Agent Pool Upgrade Settings Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-upgrade-settings-structure/)
+- [Azure Kubernetes Service Cloud Error Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-cloud-error-structure/)
+- [Azure Kubernetes Service Cluster Upgrade Settings Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-cluster-upgrade-settings-structure/)
+- [Azure Kubernetes Service Container Service Linux Profile Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-container-service-linux-profile-structure/)
+- [Azure Kubernetes Service Container Service Network Profile Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-container-service-network-profile-structure/)
+- [Azure Kubernetes Service Creation Data Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-creation-data-structure/)
+- [Azure Kubernetes Service Credential Results Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-credential-results-structure/)
+- [Azure Kubernetes Service Extended Location Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-extended-location-structure/)
+- [Azure Kubernetes Service Managed Cluster Aad Profile Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-aad-profile-structure/)
+- [Azure Kubernetes Service Managed Cluster Addon Profile Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-addon-profile-structure/)
+- [Azure Kubernetes Service Managed Cluster Agent Pool Profile Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-agent-pool-profile-structure/)
+- [Azure Kubernetes Service Managed Cluster Api Server Access Profile Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-api-server-access-profile-structure/)
+- [Azure Kubernetes Service Managed Cluster Auto Scaler Profile Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-auto-scaler-profile-structure/)
+- [Azure Kubernetes Service Managed Cluster Auto Upgrade Profile Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-auto-upgrade-profile-structure/)
+- [Azure Kubernetes Service Managed Cluster Azure Monitor Profile Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-azure-monitor-profile-structure/)
+- [Azure Kubernetes Service Managed Cluster Identity Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-identity-structure/)
+- [Azure Kubernetes Service Managed Cluster Ingress Profile Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-ingress-profile-structure/)
+- [Azure Kubernetes Service Managed Cluster List Result Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-list-result-structure/)
+- [Azure Kubernetes Service Managed Cluster Load Balancer Profile Structure](https://apis.io/json-structure/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-load-balancer-profile-structure/)
+- …and 21 more published on APIs.io
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Azure Kubernetes Service Context](https://apis.io/jsonld/microsoft-azure-kubernetes-service/azure-kubernetes-service-context/)
+
+#### Vocabulary (2)
+
+The provider's domain terms, defined.
+
+- [azure-kubernetes-service API Vocabulary](https://apis.io/vocabularies/microsoft-azure-kubernetes-service/azure-kubernetes-service-vocabulary/)
+- [Azure Kubernetes Service Domain Vocabulary](https://apis.io/vocabularies/microsoft-azure-kubernetes-service/microsoft-azure-kubernetes-service-vocabulary/)
+
+#### Examples (69)
+
+Example requests and responses.
+
+- [Azure Kubernetes Service Agent Pool Available Versions Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-available-versions-example/)
+- [Azure Kubernetes Service Agent Pool Delete Machines Parameter Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-delete-machines-parameter-example/)
+- [Azure Kubernetes Service Agent Pool Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-example/)
+- [Azure Kubernetes Service Agent Pool List Result Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-list-result-example/)
+- [Azure Kubernetes Service Agent Pool Properties Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-properties-example/)
+- [Azure Kubernetes Service Agent Pool Upgrade Profile Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-upgrade-profile-example/)
+- [Azure Kubernetes Service Agent Pool Upgrade Settings Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-agent-pool-upgrade-settings-example/)
+- [Azure Kubernetes Service Cloud Error Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-cloud-error-example/)
+- [Azure Kubernetes Service Cluster Upgrade Settings Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-cluster-upgrade-settings-example/)
+- [Azure Kubernetes Service Container Service Linux Profile Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-container-service-linux-profile-example/)
+- [Azure Kubernetes Service Container Service Network Profile Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-container-service-network-profile-example/)
+- [Azure Kubernetes Service Creation Data Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-creation-data-example/)
+- [Azure Kubernetes Service Credential Results Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-credential-results-example/)
+- [Azure Kubernetes Service Extended Location Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-extended-location-example/)
+- [Azure Kubernetes Service Managed Cluster Aad Profile Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-aad-profile-example/)
+- [Azure Kubernetes Service Managed Cluster Addon Profile Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-addon-profile-example/)
+- [Azure Kubernetes Service Managed Cluster Agent Pool Profile Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-agent-pool-profile-example/)
+- [Azure Kubernetes Service Managed Cluster Api Server Access Profile Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-api-server-access-profile-example/)
+- [Azure Kubernetes Service Managed Cluster Auto Scaler Profile Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-auto-scaler-profile-example/)
+- [Azure Kubernetes Service Managed Cluster Auto Upgrade Profile Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-auto-upgrade-profile-example/)
+- [Azure Kubernetes Service Managed Cluster Azure Monitor Profile Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-azure-monitor-profile-example/)
+- [Azure Kubernetes Service Managed Cluster Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-example/)
+- [Azure Kubernetes Service Managed Cluster Identity Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-identity-example/)
+- [Azure Kubernetes Service Managed Cluster Ingress Profile Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-ingress-profile-example/)
+- [Azure Kubernetes Service Managed Cluster List Result Example](https://apis.io/examples/microsoft-azure-kubernetes-service/azure-kubernetes-service-managed-cluster-list-result-example/)
+- …and 44 more published on APIs.io
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Azure Kubernetes Service REST API](https://apis.io/collections/microsoft-azure-kubernetes-service/open-azure-kubernetes-service/)
+- [Azure Kubernetes Service REST Agent Pools API](https://apis.io/collections/microsoft-azure-kubernetes-service/open-microsoft-azure-kubernetes-service-agent-pools-api/)
+- [Azure Kubernetes Service REST Agent Pools Managed Clusters API](https://apis.io/collections/microsoft-azure-kubernetes-service/open-microsoft-azure-kubernetes-service-managed-clusters-api/)
+- [Azure Kubernetes Service REST API](https://apis.io/collections/microsoft-azure-kubernetes-service/postman-azure-kubernetes-service/)
+
+#### Overlays (2)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Microsoft Azure Kubernetes Service Agent Pools Api Phrasing Overlay](https://apis.io/overlays/microsoft-azure-kubernetes-service/microsoft-azure-kubernetes-service-agent-pools-api-phrasing-overlay/)
+- [Microsoft Azure Kubernetes Service Managed Clusters Api Phrasing Overlay](https://apis.io/overlays/microsoft-azure-kubernetes-service/microsoft-azure-kubernetes-service-managed-clusters-api-phrasing-overlay/)
+
+#### Governance rules (3)
+
+Spectral rulesets for the provider's contracts.
+
+- [Azure Kubernetes Service — azure kubernetes service rules](https://apis.io/rules/microsoft-azure-kubernetes-service/azure-kubernetes-service-spectral-rules/)
+- [Azure Kubernetes Service — jsonschema rules](https://apis.io/rules/microsoft-azure-kubernetes-service/microsoft-azure-kubernetes-service-jsonschema-spectral-rules/)
+- [Azure Kubernetes Service API Rules](https://apis.io/rules/microsoft-azure-kubernetes-service/microsoft-azure-kubernetes-service-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Microsoft Azure Kubernetes Service Authentication](https://apis.io/security/microsoft-azure-kubernetes-service/microsoft-azure-kubernetes-service-authentication/)
+- [Microsoft Azure Kubernetes Service Domain Security](https://apis.io/security/microsoft-azure-kubernetes-service/microsoft-azure-kubernetes-service-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Microsoft Azure Kubernetes Service Scopes](https://apis.io/scopes/microsoft-azure-kubernetes-service/microsoft-azure-kubernetes-service-scopes/)
+
+#### Plans and pricing (2)
+
+Published plans, tiers and prices.
+
+- [Azure Kubernetes Service Plans Pricing](https://apis.io/plans/microsoft-azure-kubernetes-service/azure-kubernetes-service-plans-pricing/)
+- [Microsoft Azure Kubernetes Service Plans Pricing](https://apis.io/plans/microsoft-azure-kubernetes-service/microsoft-azure-kubernetes-service-plans-pricing/)
+
+#### Rate limits (2)
+
+Published request limits.
+
+- [Azure Kubernetes Service Rate Limits](https://apis.io/rate-limits/microsoft-azure-kubernetes-service/azure-kubernetes-service-rate-limits/)
+- [Microsoft Azure Kubernetes Service Rate Limits](https://apis.io/rate-limits/microsoft-azure-kubernetes-service/microsoft-azure-kubernetes-service-rate-limits/)
+
+#### FinOps (2)
+
+What the API costs to run, by operation.
+
+- [Azure Kubernetes Service Finops](https://apis.io/finops/microsoft-azure-kubernetes-service/azure-kubernetes-service-finops/)
+- [Microsoft Azure Kubernetes Service Finops](https://apis.io/finops/microsoft-azure-kubernetes-service/microsoft-azure-kubernetes-service-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.microsoft.com/)
 - [Documentation](https://learn.microsoft.com/en-us/azure/aks/)
-- [OpenAPI](openapi/azure-kubernetes-service-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/azure-kubernetes-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/azure-kubernetes-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/azure-kubernetes-service-cluster-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/azure-kubernetes-service-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Authentication](https://learn.microsoft.com/en-us/azure/aks/concepts-identity)
+- [Getting started](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal)
 - [Pricing](https://azure.microsoft.com/en-us/pricing/details/kubernetes-service/)
-- [Rate Limits](https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions)
-- [Getting Started](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal)
-- [Changelog](https://github.com/Azure/AKS/blob/master/CHANGELOG.md)
-- [Release Notes](https://learn.microsoft.com/en-us/azure/aks/release-tracker)
-- [SDK](https://learn.microsoft.com/en-us/python/api/overview/azure/mgmt-containerservice-readme)
-- [SDK](https://learn.microsoft.com/en-us/javascript/api/overview/azure/container-service)
-- [SDK](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/resourcemanager.containerservice-readme)
-- [SDK](https://learn.microsoft.com/en-us/java/api/overview/azure/resourcemanager-containerservice-readme)
-- [SDK](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/containerservice/armcontainerservice/v6)
-
-### Azure Kubernetes Service Managed Clusters API
-
-REST API for creating, updating, deleting, and managing AKS managed clusters including cluster configuration, upgrades, credentials, and run commands.
-
-- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/managed-clusters](https://learn.microsoft.com/en-us/rest/api/aks/managed-clusters)
-- **Base URL:** `https://management.azure.com`
-
-#### Tags
-
-- Clusters
-- Kubernetes
-- Management
-
-#### Properties
-
-- [Documentation](https://learn.microsoft.com/en-us/azure/aks/)
-- [API Reference](https://learn.microsoft.com/en-us/rest/api/aks/managed-clusters)
-- [OpenAPI](openapi/azure-kubernetes-service-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/azure-kubernetes-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/azure-kubernetes-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/azure-kubernetes-service-cluster-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/azure-kubernetes-service-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Authentication](https://learn.microsoft.com/en-us/azure/aks/concepts-identity)
-- [Getting Started](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli)
-- [Pricing](https://azure.microsoft.com/en-us/pricing/details/kubernetes-service/)
-
-### Azure Kubernetes Service Agent Pools API
-
-REST API for creating, updating, deleting, and managing agent pools (node pools) within AKS managed clusters, including scaling and configuration.
-
-- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/agent-pools](https://learn.microsoft.com/en-us/rest/api/aks/agent-pools)
-- **Base URL:** `https://management.azure.com`
-
-#### Tags
-
-- Agent Pools
-- Kubernetes
-- Node Pools
-
-#### Properties
-
-- [Documentation](https://learn.microsoft.com/en-us/azure/aks/create-node-pools)
-- [API Reference](https://learn.microsoft.com/en-us/rest/api/aks/agent-pools)
-- [OpenAPI](openapi/azure-kubernetes-service-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/azure-kubernetes-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/azure-kubernetes-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/azure-kubernetes-service-cluster-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Authentication](https://learn.microsoft.com/en-us/azure/aks/concepts-identity)
-- [Getting Started](https://learn.microsoft.com/en-us/azure/aks/create-node-pools)
-
-### Azure Kubernetes Service Maintenance Configurations API
-
-REST API for managing planned maintenance configurations, used to configure when updates can be deployed to an AKS managed cluster.
-
-- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/maintenance-configurations](https://learn.microsoft.com/en-us/rest/api/aks/maintenance-configurations)
-- **Base URL:** `https://management.azure.com`
-
-#### Tags
-
-- Configuration
-- Kubernetes
-- Maintenance
-
-#### Properties
-
-- [Documentation](https://learn.microsoft.com/en-us/azure/aks/planned-maintenance)
-- [API Reference](https://learn.microsoft.com/en-us/rest/api/aks/maintenance-configurations)
-- [Authentication](https://learn.microsoft.com/en-us/azure/aks/concepts-identity)
-- [Postman Collection](collections/azure-kubernetes-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/azure-kubernetes-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Azure Kubernetes Service Snapshots API
-
-REST API for creating, updating, deleting, and managing node pool snapshots in AKS, including listing snapshots by resource group.
-
-- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/snapshots](https://learn.microsoft.com/en-us/rest/api/aks/snapshots)
-- **Base URL:** `https://management.azure.com`
-
-#### Tags
-
-- Backup
-- Kubernetes
-- Snapshots
-
-#### Properties
-
-- [Documentation](https://learn.microsoft.com/en-us/azure/aks/node-pool-snapshot)
-- [API Reference](https://learn.microsoft.com/en-us/rest/api/aks/snapshots)
-- [Authentication](https://learn.microsoft.com/en-us/azure/aks/concepts-identity)
-- [Postman Collection](collections/azure-kubernetes-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/azure-kubernetes-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Azure Kubernetes Service Private Endpoint Connections API
-
-REST API for managing private endpoint connections for AKS clusters, enabling secure private network access to the cluster API server.
-
-- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/private-endpoint-connections](https://learn.microsoft.com/en-us/rest/api/aks/private-endpoint-connections)
-- **Base URL:** `https://management.azure.com`
-
-#### Tags
-
-- Kubernetes
-- Networking
-- Private Endpoints
-
-#### Properties
-
-- [Documentation](https://learn.microsoft.com/en-us/azure/aks/private-clusters)
-- [API Reference](https://learn.microsoft.com/en-us/rest/api/aks/private-endpoint-connections)
-- [Authentication](https://learn.microsoft.com/en-us/azure/aks/concepts-identity)
-- [Postman Collection](collections/azure-kubernetes-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/azure-kubernetes-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Azure Kubernetes Service Trusted Access Role Bindings API
-
-REST API for managing trusted access role bindings that give Azure services secure access to AKS API server using system-assigned managed identities.
-
-- **Human URL:** [https://learn.microsoft.com/en-us/rest/api/aks/trusted-access-role-bindings](https://learn.microsoft.com/en-us/rest/api/aks/trusted-access-role-bindings)
-- **Base URL:** `https://management.azure.com`
-
-#### Tags
-
-- Kubernetes
-- Security
-- Trusted Access
-
-#### Properties
-
-- [Documentation](https://learn.microsoft.com/en-us/azure/aks/trusted-access-feature)
-- [API Reference](https://learn.microsoft.com/en-us/rest/api/aks/trusted-access-role-bindings)
-- [Authentication](https://learn.microsoft.com/en-us/azure/aks/concepts-identity)
-- [Postman Collection](collections/azure-kubernetes-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/azure-kubernetes-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Azure Kubernetes Service kubectl API
-
-Kubernetes API accessible via kubectl for cluster operations.
-
-- **Human URL:** [https://kubernetes.io/docs/reference/](https://kubernetes.io/docs/reference/)
-- **Base URL:** `https://{cluster-name}.{region}.azmk8s.io`
-
-#### Tags
-
-- Cluster Management
-- Kubectl
-- Kubernetes
-
-#### Properties
-
-- [Documentation](https://learn.microsoft.com/en-us/azure/aks/kubernetes-walkthrough)
-- [API Reference](https://kubernetes.io/docs/reference/kubernetes-api/)
-- [Authentication](https://learn.microsoft.com/en-us/azure/aks/control-kubeconfig-access)
-- [Getting Started](https://learn.microsoft.com/en-us/azure/aks/tutorial-kubernetes-deploy-cluster)
-- [Postman Collection](collections/azure-kubernetes-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/azure-kubernetes-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Portal](https://portal.azure.com/)
-- [Getting Started](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal)
-- [C L I](https://learn.microsoft.com/en-us/cli/azure/aks)
-- [Status Page](https://status.azure.com/)
 - [Support](https://azure.microsoft.com/en-us/support/options/)
+- [Changelog](https://github.com/Azure/AKS/blob/master/CHANGELOG.md)
 - [Blog](https://azure.microsoft.com/en-us/blog/topics/kubernetes/)
-- [GitHub Repository](https://github.com/Azure/AKS)
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-aks)
 - [Security](https://learn.microsoft.com/en-us/azure/aks/concepts-security)
 - [Compliance](https://learn.microsoft.com/en-us/azure/aks/concepts-security#azure-policy)
-- [Documentation](https://learn.microsoft.com/en-us/azure/aks/)
-- [Pricing](https://azure.microsoft.com/en-us/pricing/details/kubernetes-service/)
-- [Sign Up](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account)
-- [Login](https://portal.azure.com/)
-- [Terms of Service](https://azure.microsoft.com/en-us/support/legal/)
-- [Privacy Policy](https://privacy.microsoft.com/en-us/privacystatement)
-- [Changelog](https://github.com/Azure/AKS/blob/master/CHANGELOG.md)
-- [Release Notes](https://learn.microsoft.com/en-us/azure/aks/release-tracker)
-- [F A Q](https://learn.microsoft.com/en-us/azure/aks/faq)
-- [Training](https://learn.microsoft.com/en-us/training/modules/intro-to-azure-kubernetes-service/)
-- [YouTube](https://www.youtube.com/c/MicrosoftAzure)
-- [Spectral Rules](rules/azure-kubernetes-service-spectral-rules.yml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
+- [Terms of service](https://azure.microsoft.com/en-us/support/legal/)
+- [Privacy policy](https://privacy.microsoft.com/en-us/privacystatement)
+- [Status](https://status.azure.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 68.4** — exemplar · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 57.9 |
+| Contract governance | 13.6 |
+| Operational transparency | 55.3 |
+| Developer ergonomics | 82.1 |
+| Access clarity | 60.5 |
+
+**Agent readiness 28.9** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | verified |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 39.2** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/microsoft-azure-kubernetes-service/](https://apis.io/providers/microsoft-azure-kubernetes-service/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Azure Kubernetes Service: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/microsoft-azure-kubernetes-service/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
